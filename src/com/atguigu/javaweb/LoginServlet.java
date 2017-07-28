@@ -1,6 +1,7 @@
 package com.atguigu.javaweb;
 
 import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Enumeration;
@@ -53,6 +54,14 @@ public class LoginServlet implements Servlet {
             String[] value = servletRequest.getParameterValues(name);
             System.out.println("enum : = " + name + " === " + Arrays.asList(value));
         }
+
+        //　子接口，真的ｈｔｔｐ请求的
+        HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
+        System.out.println("uri = " + httpServletRequest.getRequestURI());
+        System.out.println("url = " + httpServletRequest.getRequestURL());
+        System.out.println("method = " + httpServletRequest.getMethod());
+        System.out.println("servlet path = " + httpServletRequest.getServletPath());
+        System.out.println("query stirng = " + httpServletRequest.getQueryString()); //ｐｏｓｔ请求这个是ｎｕｌｌ
 
     }
 

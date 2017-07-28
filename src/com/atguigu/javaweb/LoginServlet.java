@@ -15,8 +15,11 @@ public class LoginServlet implements Servlet {
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
         //初始化的
-        mUser = servletConfig.getInitParameter("user");
-        mPassword = servletConfig.getInitParameter("password");
+
+        //mUser = servletConfig.getInitParameter("user");
+        //mPassword = servletConfig.getInitParameter("password");
+        mUser = servletConfig.getServletContext().getInitParameter("user");
+        mPassword = servletConfig.getServletContext().getInitParameter("password");
 
         System.out.println("mUser = " + mUser);
         System.out.println("mPassword = " + mPassword);

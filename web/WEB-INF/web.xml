@@ -15,6 +15,16 @@
         <param-value>jdbc:mysql://com.mysql.jdbc</param-value>
     </context-param>
 
+    <context-param>
+        <param-name>user</param-name>
+        <param-value>root</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>password</param-name>
+        <param-value>123456</param-value>
+    </context-param>
+
     <!-- 添加servlet名称 -->
     <servlet>
         <servlet-name>HelloServlet</servlet-name> <!--名字随便起 -->

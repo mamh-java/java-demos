@@ -3,14 +3,23 @@ package com.atguigu.javaweb;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Map;
 
 public class LoginServlet implements Servlet {
+    private String mUser;
+    private String mPassword;
+
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
         //初始化的
+        mUser = servletConfig.getInitParameter("user");
+        mPassword = servletConfig.getInitParameter("password");
+
+        System.out.println("mUser = " + mUser);
+        System.out.println("mPassword = " + mPassword);
     }
 
     @Override
@@ -63,6 +72,15 @@ public class LoginServlet implements Servlet {
         System.out.println("servlet path = " + httpServletRequest.getServletPath());
         System.out.println("query stirng = " + httpServletRequest.getQueryString()); //ｐｏｓｔ请求这个是ｎｕｌｌ
 
+
+        // servletResponse 响应
+        servletResponse.setContentType("text/plain"); //设置响应的内容类型
+        PrintWriter writer = servletResponse.getWriter();//返回一个PrintWriter对象
+        if (user.equals(mUser) && passwd.equals(mPassword)) {
+            writer.println("hello world");// 这里可以打印到浏览器上面
+        } else {
+            writer.println("sorry: " + user);// 这里可以打印到浏览器上面
+        }
     }
 
     @Override

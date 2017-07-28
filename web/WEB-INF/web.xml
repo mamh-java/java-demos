@@ -20,14 +20,6 @@
         <servlet-name>HelloServlet</servlet-name> <!--名字随便起 -->
         <servlet-class>com.atguigu.javaweb.HelloServlet</servlet-class> <!-- 全类名 -->
 
-        <init-param>
-            <param-name>user</param-name>
-            <param-value>root</param-value>
-        </init-param>
-        <init-param>
-            <param-name>password</param-name>
-            <param-value>123456</param-value>
-        </init-param>
 
         <load-on-startup>10</load-on-startup>
     </servlet>
@@ -50,6 +42,14 @@
     <servlet>
         <servlet-name>loginServlet</servlet-name>
         <servlet-class>com.atguigu.javaweb.LoginServlet</servlet-class>
+        <init-param>
+            <param-name>user</param-name>
+            <param-value>root</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value>123456</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>

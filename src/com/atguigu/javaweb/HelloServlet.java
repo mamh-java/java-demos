@@ -13,7 +13,7 @@ public class HelloServlet implements Servlet {
 
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
-        System.out.print("init\n");
+        System.out.print("hello servlet init\n");
 
         //或者servlet配置名称，很少使用, <servlet-name>HelloServlet</servlet-name> 获取的就是这里的自己定义的名
         System.out.print("init servlet name = " + servletConfig.getServletName() + "\n");

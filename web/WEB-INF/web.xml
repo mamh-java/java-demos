@@ -66,6 +66,32 @@
         <url-pattern>/loginServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>loginServlet3</servlet-name>
+        <servlet-class>com.atguigu.javaweb.LoginServlet3</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>loginServlet3</servlet-name>
+        <url-pattern>/loginServlet3</url-pattern>
+    </servlet-mapping>
+
+    
+    <servlet>
+        <servlet-name>hellojsp</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+        <init-param>
+            <param-name>hellojsp.password</param-name>
+            <param-value>hellojsp1234569273498271394723094723984134</param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>hellojsp</servlet-name>
+        <url-pattern>/index.jsp</url-pattern>
+    </servlet-mapping>
+    
+    
+    
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>

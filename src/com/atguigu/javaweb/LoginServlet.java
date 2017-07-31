@@ -9,6 +9,9 @@ import java.util.Enumeration;
 import java.util.Map;
 
 public class LoginServlet implements Servlet {
+    // 实际开发中一般继承 HttpServlet 类,直接覆盖其中的doPost() and doGet() method
+
+    
     private String mUser;
     private String mPassword;
 

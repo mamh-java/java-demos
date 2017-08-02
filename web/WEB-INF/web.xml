@@ -90,6 +90,14 @@
         <url-pattern>/index.jsp</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>attrServlet</servlet-name>
+        <servlet-class>com.atguigu.javaweb.AttrServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>attrServlet</servlet-name>
+        <url-pattern>/attrServlet</url-pattern>
+    </servlet-mapping>
     
     
     <welcome-file-list>

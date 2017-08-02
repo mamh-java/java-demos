@@ -14,7 +14,7 @@
 
     //作用范围限于一次会话,浏览器打开直道关闭，在此期间会话不失效的前提下。
     session.setAttribute("s", "sessionValue");
-    
+
     //限于当前web应用，全局的范围，范围最大
     application.setAttribute("a", "applicationValue");
 %>
@@ -33,5 +33,14 @@ applicationContext: <%= application.getAttribute("a") %>
 <a href="attr1.jsp">to attr1.sjp</a>
 
 <a href="attrServlet">to attrServlet</a>
+
+<%@include file="attr1.jsp" %>
+
+<jsp:include page="attr1.jsp"/>
+
+<jsp:forward page="attr1.jsp">
+    <jsp:param name="username" value="xxxx"/>
+
+</jsp:forward>
 </body>
 </html>

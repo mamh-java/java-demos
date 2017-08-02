@@ -36,7 +36,7 @@
 
     <servlet-mapping> <!-- 映射 -->
         <servlet-name>HelloServlet</servlet-name>
-        <url-pattern>/first</url-pattern>
+        <url-pattern>/helloServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -75,7 +75,7 @@
         <url-pattern>/loginServlet3</url-pattern>
     </servlet-mapping>
 
-    
+
     <servlet>
         <servlet-name>hellojsp</servlet-name>
         <jsp-file>/index.jsp</jsp-file>
@@ -84,12 +84,12 @@
             <param-value>hellojsp1234569273498271394723094723984134</param-value>
         </init-param>
     </servlet>
-    
+
     <servlet-mapping>
         <servlet-name>hellojsp</servlet-name>
-        <url-pattern>/index.jsp</url-pattern>
+        <url-pattern>/indexjsp</url-pattern>
     </servlet-mapping>
-    
+
     <servlet>
         <servlet-name>attrServlet</servlet-name>
         <servlet-class>com.atguigu.javaweb.AttrServlet</servlet-class>
@@ -98,8 +98,8 @@
         <servlet-name>attrServlet</servlet-name>
         <url-pattern>/attrServlet</url-pattern>
     </servlet-mapping>
-    
-    
+
+
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>

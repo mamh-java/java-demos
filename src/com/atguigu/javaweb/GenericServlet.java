@@ -12,8 +12,11 @@ public abstract class GenericServlet implements Servlet, ServletConfig {
     public void init(ServletConfig servletConfig) throws ServletException {
         mServletConfig = servletConfig;
         mServletContext = servletConfig.getServletContext();
+        this.init();
 
     }
+
+    protected abstract void init();
 
     @Override
     public ServletConfig getServletConfig() {
@@ -52,6 +55,6 @@ public abstract class GenericServlet implements Servlet, ServletConfig {
 
     @Override
     public Enumeration<String> getInitParameterNames() {
-        return mServletConfig.getInitParameterNames() ;
+        return mServletConfig.getInitParameterNames();
     }
 }

@@ -1,13 +1,20 @@
 <%@ page import="com.atguigu.javaweb.Person" %>
 <%@ page import="com.atguigu.javaweb.HelloServlet" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@page isErrorPage="true" %>
 <html>
 <head>
     <title>$Title$</title>
 </head>
 <body>
+<a href="upload.jsp">upload</a>
+<br/><br/>
+<a href="download.jsp">download</a>
 
 <%
+
+
     //9 个隐含对象
     //1.HttpServletRequest类的一个对象
     String username = request.getParameter("username");
@@ -28,7 +35,7 @@
 
     //5.application,代表当前web应用，可以获取web应用的初始化参数
     System.out.println(application.getInitParameter("user"));
-    
+
 
     //6.config,当前jsp对象的servlet的ServletConfig对象，几乎不用
     System.out.println(config.getInitParameter("hellojsp.password"));
@@ -42,13 +49,12 @@
 
     //8.page是Obejct的对象，等于是this,    final java.lang.Object page = this;
     //指向当前ｊｓｐ对象的一个引用,但是他是一个Object类型只能使用Object　类的方法，几乎不用
-    out.print("<br/>");
+    out.print("<br/>this:");
     out.print(this);
-    out.print("<br/>");
+    out.print("<br/>page:");
     out.print(page);
 
     //9.exception  只有在error 页面才可以使用
-
 
 
 %>
@@ -56,11 +62,6 @@
 
 </body>
 </html>
-
-
-
-
-
 
 
 </body>

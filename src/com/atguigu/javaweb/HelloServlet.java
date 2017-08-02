@@ -1,9 +1,15 @@
 package com.atguigu.javaweb;
 
 import javax.servlet.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.Enumeration;
+import java.util.Map;
 
 public class HelloServlet implements Servlet {
 
@@ -74,7 +80,52 @@ public class HelloServlet implements Servlet {
 
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
+        System.out.println(servletRequest);
+        System.out.println(servletResponse);
         System.out.print("service\n");
+
+        String user = servletRequest.getParameter("user");
+        String passwd = servletRequest.getParameter("passwd");
+
+
+        String[] interesting = servletRequest.getParameterValues("interesting");
+
+        Enumeration<String> names = servletRequest.getParameterNames();
+        while (names.hasMoreElements()) {
+            String name = names.nextElement();
+            System.out.print("servletRequest parameter Name = " + name + "\n");
+            System.out.print("servletRequest parameter Value= " + servletRequest.getParameter(name) + "\n");
+        }
+
+        Map<String, String[]> map = servletRequest.getParameterMap();
+        for (Map.Entry<String, String[]> entry : map.entrySet()) {
+            System.out.println("servletRequest: map = " + entry);
+        }
+
+
+        String uri = ((HttpServletRequest) servletRequest).getRequestURI();
+        System.out.println("uri = " + uri);
+        StringBuffer url = ((HttpServletRequest) servletRequest).getRequestURL();
+        System.out.println("url = " + url);
+        String method = ((HttpServletRequest) servletRequest).getMethod();
+        System.out.println("method = " + method);
+        String queryString = ((HttpServletRequest) servletRequest).getQueryString();
+        System.out.println("query string= " + queryString);
+        String servletPath = ((HttpServletRequest) servletRequest).getServletPath();
+        System.out.println("servletPath = " + servletPath);
+
+        Object attr = ((HttpServletRequest) servletRequest).getAttribute("attr");
+
+        PrintWriter out = servletResponse.getWriter();
+        out.println("hello world");
+
+        servletResponse.setContentType("application/msword");
+
+
+        ServletOutputStream outputstream = servletResponse.getOutputStream();
+
+        ((HttpServletResponse) servletResponse).sendRedirect("path");
+
     }
 
     @Override

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.mamh.hibernate.demo.entities.HbNewsEntity" table="hb_news" schema="atguigu">
+        <id name="hbId">
+            <column name="hb_id" sql-type="int(11)"/>
+        </id>
+        <property name="hbTitle">
+            <column name="hb_title" sql-type="varchar(1024)" length="1024" not-null="true"/>
+        </property>
+        <property name="hbAuthor">
+            <column name="hb_author" sql-type="varchar(2048)" length="2048" not-null="true"/>
+        </property>
+        <property name="hbDate">
+            <column name="hb_date" sql-type="date" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

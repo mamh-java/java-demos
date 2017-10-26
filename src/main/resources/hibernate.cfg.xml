@@ -24,6 +24,7 @@
         <property name="hbm2ddl.auto">update</property>
 
         <property name="connection.isolation">2</property>
+        <!--<property name="use_identifier_rollback">true</property>-->
 
 
         <mapping resource="News.hbm.xml"/>

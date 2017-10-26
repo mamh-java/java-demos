@@ -6,14 +6,17 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.jdbc.Work;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.sound.midi.Soundbank;
+import java.net.PortUnreachableException;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.SQLException;
 
 
 public class HibernateTest {
@@ -36,6 +39,68 @@ public class HibernateTest {
         session = sessionFactory.openSession();
         //3.开启事务
         transaction = session.beginTransaction();
+    }
+
+    @Test
+    public void testDoWork(){
+        session.doWork(new Work() {
+            public void execute(Connection connection) throws SQLException {
+                //在这个里面调用存储过程
+                System.out.println(connection);
+            }
+        });
+    }
+
+    @Test
+    public void testEvict(){
+        News news1 = (News) session.get(News.class, 1);
+        news1.setAuthor("11");
+
+        News news2 = (News) session.get(News.class, 2);
+        news2.setAuthor("==============");
+
+//        session.evict(news1);
+    }
+
+
+    @Test
+    public void testDelete() {
+        //执行删除操作，只要OID和数据库表中的记录对应就会执行删除操作，如果没有对应的记录就抛出异常。
+        //可以通过设置hibernate配置文件use_identifier_rollback属性为true，是删除对象后，把其OID置为null
+        News news = new News(8, "ff", "fff", new Date(new java.util.Date().getTime()));
+        //news.setId(10);
+        System.out.println(news);
+        session.delete(news);
+        System.out.println(news);
+    }
+
+    @Test
+    public void testSaveOrUpdate() {
+        News news = new News("ff", "fff", new Date(new java.util.Date().getTime()));
+        news.setId(23121);
+        session.saveOrUpdate(news);
+    }
+
+    @Test
+    public void testUpdate() {
+        //若更新一个持久化对象，不需要显示的调用update()方法,因为在调用transaction的commit方法时候，会先执行flush方法的。
+        //更新一个游离对象，需要显示的调用session的update()方法，可以把游离对象变为持久化对象。
+        //无论要更新的对象 是否和数据库表中的记录是否一致都会发送update语句的
+        //如何让update盲目的发送update语句呢？在.hbm.xml 中设置select-before-update="true"（默认false），通常不设置为true，会影响效率。
+        //若数据库表中没有对应的记录还继续调用update()方法，这时候会抛出异常。
+        //同一个session中不能有ID相同的对象,会抛出异常NonUniqueObjectException
+        News news = (News) session.get(News.class, 1);
+
+        transaction.commit();
+        session.close();
+
+        session = sessionFactory.openSession();
+        transaction = session.beginTransaction();
+        //这个时候news对象已经变成游离对象了，应为前面关闭了session，后续又重新打开了session。
+
+        News news2 = (News) session.get(News.class, 1);
+        news.setAuthor("sun");
+        session.update(news);
     }
 
     @Test

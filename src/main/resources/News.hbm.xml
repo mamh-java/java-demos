@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.mamh.hibernate.demo.entities.News" table="hb_news" schema="atguigu">
+    <class name="com.mamh.hibernate.demo.entities.News" table="hb_news" schema="atguigu" select-before-update="true">
         <id name="id">
             <column name="hb_id" sql-type="int(11)"/>
             <!--指定主键的生成方法，native使用数据库本地方式，mysql就是自动增长的数字-->

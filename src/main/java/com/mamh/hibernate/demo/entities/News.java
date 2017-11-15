@@ -1,5 +1,7 @@
 package com.mamh.hibernate.demo.entities;
 
+import java.sql.Blob;
+import java.sql.Clob;
 import java.util.Date;
 
 public class News {
@@ -11,6 +13,8 @@ public class News {
 
     private String desc;
 
+    private Clob content;
+    private Blob image;
 
     public News() {
     }
@@ -67,6 +71,22 @@ public class News {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public Clob getContent() {
+        return content;
+    }
+
+    public void setContent(Clob content) {
+        this.content = content;
+    }
+
+    public Blob getImage() {
+        return image;
+    }
+
+    public void setImage(Blob image) {
+        this.image = image;
     }
 
     @Override

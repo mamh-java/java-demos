@@ -4,25 +4,37 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.mamh.hibernate.demo.entities">
 
-    <class  name="News" table="hb_news" schema="atguigu" select-before-update="true" dynamic-update="true">
+    <class name="News" table="hb_news" schema="atguigu" select-before-update="true" dynamic-update="true">
         <id name="id">
             <column name="hb_id" sql-type="int(11)"/>
             <!--指定主键的生成方法，native使用数据库本地方式，mysql就是自动增长的数字-->
             <generator class="hilo"/>
         </id>
         <property name="title" type="string" update="true" index="hb_title">
-            <column name="hb_title"  length="1024" not-null="true" unique="true" />
+            <column name="hb_title" length="1024" not-null="true" unique="true"/>
         </property>
 
 
         <property name="author" index="tile_author_index">
             <column name="hb_author" sql-type="varchar(2048)" length="2048" not-null="true"/>
         </property>
-        <property name="date">
-            <column name="hb_date" sql-type="datetime" not-null="true"/>
+        <property name="date" type="timestamp">
+            <column name="hb_date"/>
         </property>
 
-        <property name="desc" formula="(select concat(author, ': ', title) from hb_news)"/>
+
+        <!-- 映射派生属性 -->
+        <property name="desc" formula="(select concat(hb_author, ':= ', hb_title) from hb_news)"/>
+
+
+        <property name="content" type="clob">
+            <column name="hb_content" sql-type="mediumtext"/>
+        </property>
+
+        <property name="image" type="blob">
+            <column name="hb_image" sql-type="mediumblob"/>
+        </property>
+
 
     </class>
 </hibernate-mapping>

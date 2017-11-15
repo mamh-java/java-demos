@@ -2,7 +2,9 @@ package com.mamh.hibernate.demo;
 
 
 import com.mamh.hibernate.demo.entities.News;
+import com.mysql.cj.jdbc.Clob;
 import com.sun.org.apache.bcel.internal.generic.NEW;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -14,7 +16,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.PortUnreachableException;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -42,10 +49,34 @@ public class HibernateTest {
         transaction = session.beginTransaction();
     }
 
+
     @Test
-    public void testPropUpdate(){
+    public void testBlob() {
+        News news = new News();
+        news.setTitle("title");
+        news.setAuthor("author");
+        news.setDate(new java.util.Date());
+
+        news.setDesc("desc.......");
+
+        InputStream stream = null;
+        try {
+            stream = new FileInputStream("/home/mamh/马哥私房菜-8X8-02.jpg");
+            Blob image = Hibernate.getLobCreator(session).createBlob(stream, stream.available());
+            news.setImage(image);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        session.save(news);
+    }
+
+    @Test
+    public void testPropUpdate() {
         News news = (News) session.get(News.class, 1);
-        news.setTitle("new title");
+        //news.setTitle("new title");
+
+        System.out.println(news.getDesc());
     }
 
     @Test

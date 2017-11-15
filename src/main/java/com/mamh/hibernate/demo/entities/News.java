@@ -1,6 +1,6 @@
 package com.mamh.hibernate.demo.entities;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class News {
     private Integer id;
@@ -8,6 +8,8 @@ public class News {
     private String author;
 
     private Date date;
+
+    private String desc;
 
 
     public News() {
@@ -58,6 +60,15 @@ public class News {
         this.date = date;
     }
 
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
     @Override
     public String toString() {
         return "News{" +
@@ -65,6 +76,7 @@ public class News {
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", date=" + date +
-                '}' + '\n';
+                ", desc='" + desc + '\'' +
+                '}';
     }
 }

@@ -2,6 +2,7 @@ package com.mamh.hibernate.demo;
 
 
 import com.mamh.hibernate.demo.entities.News;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -42,7 +43,13 @@ public class HibernateTest {
     }
 
     @Test
-    public void testDoWork(){
+    public void testPropUpdate(){
+        News news = (News) session.get(News.class, 1);
+        news.setTitle("new title");
+    }
+
+    @Test
+    public void testDoWork() {
         session.doWork(new Work() {
             public void execute(Connection connection) throws SQLException {
                 //在这个里面调用存储过程
@@ -52,7 +59,7 @@ public class HibernateTest {
     }
 
     @Test
-    public void testEvict(){
+    public void testEvict() {
         News news1 = (News) session.get(News.class, 1);
         news1.setAuthor("11");
 
@@ -79,6 +86,12 @@ public class HibernateTest {
         News news = new News("ff", "fff", new Date(new java.util.Date().getTime()));
         news.setId(23121);
         session.saveOrUpdate(news);
+    }
+
+    @Test
+    public void testIdGenerator() {
+        News news = new News("ff", "fff", new Date(new java.util.Date().getTime()));
+        session.save(news);
     }
 
     @Test
@@ -201,6 +214,12 @@ public class HibernateTest {
         session.flush();//让数据库和session缓存中的对象保持一致。
 
 
+    }
+
+    @Test
+    public void testDynamicUpdate() {
+        News news = (News) session.get(News.class, 1);
+        news.setAuthor("dfsdfasdf");
     }
 
     @After

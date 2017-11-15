@@ -11,8 +11,8 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/atguigu</property>
 
         <!-- 配置数据库的方言 -->
-        <!--<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>-->
-        <property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <!--<property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>-->
 
         <!--是否打印sql语句-->
         <property name="show_sql">true</property>
@@ -25,6 +25,22 @@
 
         <property name="connection.isolation">2</property>
         <!--<property name="use_identifier_rollback">true</property>-->
+
+        <!--C3P0配置 -->
+        <property name="hibernate.connection.provider_class">
+            org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider
+        </property>
+        <property name="hibernate.c3p0.max_size">10</property>
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.acquire_increment">5</property>
+        <property name="hibernate.c3p0.timeout">20000</property>
+        <property name="hibernate.c3p0.idle_test_period">20000</property>
+        <property name="hibernate.c3p0.max_statements">2</property>
+
+
+
+        <property name="hibernate.jdbc.fetch_size">100</property>
+        <property name="hibernate.jdbc.batch_size">30</property>
 
 
         <mapping resource="News.hbm.xml"/>

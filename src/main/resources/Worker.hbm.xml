@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mamh.hibernate.demo.entities">
+
+    <class name="Worker" table="hb_work" schema="atguigu" select-before-update="true" dynamic-update="true">
+        <id name="id">
+            <column name="hb_id" sql-type="int(11)"/>
+            <!--指定主键的生成方法，native使用数据库本地方式，mysql就是自动增长的数字-->
+            <generator class="hilo"/>
+        </id>
+        <property name="name" type="string" update="true" index="hb_title">
+            <column name="hb_name" length="1024" not-null="true" unique="true"/>
+        </property>
+
+
+        <component name="pay">
+            <property name="monthlyPay" column="hb_monthly_pay"/>
+            <property name="yearPay" column="hb_year_pay"/>
+            <property name="vacation" column="hb_vacation"/>
+        </component>
+
+
+    </class>
+</hibernate-mapping>

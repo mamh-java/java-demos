@@ -2,6 +2,8 @@ package com.mamh.hibernate.demo;
 
 
 import com.mamh.hibernate.demo.entities.News;
+import com.mamh.hibernate.demo.entities.Pay;
+import com.mamh.hibernate.demo.entities.Worker;
 import com.mysql.cj.jdbc.Clob;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.hibernate.Hibernate;
@@ -49,6 +51,19 @@ public class HibernateTest {
         transaction = session.beginTransaction();
     }
 
+    @Test
+    public void testWorker() {
+        Worker worker = new Worker();
+        Pay pay = new Pay();
+        pay.setMonthlyPay(12000);
+        pay.setYearPay(170000);
+        pay.setVacation(10);
+
+        worker.setName("bright.ma");
+        worker.setPay(pay);
+
+        session.save(worker);
+    }
 
     @Test
     public void testBlob() {

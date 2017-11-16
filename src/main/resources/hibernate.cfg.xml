@@ -44,6 +44,10 @@
 
         <mapping resource="News.hbm.xml"/>
         <mapping resource="Worker.hbm.xml"/>
+        <mapping resource="Customer.hbm.xml"/>
+        <mapping resource="Order.hbm.xml"/>
+
+        <mapping resource="HbWorkEntity.hbm.xml"/>
 
 
     </session-factory>

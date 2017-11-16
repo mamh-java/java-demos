@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mamh.hibernate.demo.entities">
+
+    <class name="Order" table="hb_order" schema="atguigu">
+        <id name="orderId">
+            <column name="hb_order_id" sql-type="int(11)"/>
+            <generator class="native"/>
+        </id>
+        <property name="orderName" type="string">
+            <column name="hb_order_name"/>
+        </property>
+
+        <!-- 映射多对一的关联关系 property不再试用这个多对一的关系了
+               name是多这一端关联的那个一那一端属性名称
+               class的类全名
+               column是多的一端这边数据表的一个列名，一般是外键
+        -->
+        <many-to-one name="customer" class="Customer" column="customer_id"/>
+
+
+    </class>
+</hibernate-mapping>

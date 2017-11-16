@@ -1,11 +1,10 @@
 package com.mamh.hibernate.demo;
 
 
-import com.mamh.hibernate.demo.entities.News;
-import com.mamh.hibernate.demo.entities.Pay;
-import com.mamh.hibernate.demo.entities.Worker;
+import com.mamh.hibernate.demo.entities.*;
 import com.mysql.cj.jdbc.Clob;
 import com.sun.org.apache.bcel.internal.generic.NEW;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -49,6 +48,47 @@ public class HibernateTest {
         session = sessionFactory.openSession();
         //3.开启事务
         transaction = session.beginTransaction();
+    }
+
+    @Test
+    public void testManyToOneDelete() {
+        Customer customer = (Customer) session.get(Customer.class, 1);
+        session.delete(customer);
+    }
+
+    @Test
+    public void testManyToOneUpdate() {
+        Order order = (Order) session.get(Order.class, 1);
+        order.getCustomer().setCustomerName("new customer name!!!");
+    }
+
+    @Test
+    public void testManyToOneGet() {
+        Order order = (Order) session.get(Order.class, 1);
+        System.out.println(order.getOrderName() + ":  " + order.getOrderId());
+
+        session.close();
+
+        Customer customer = order.getCustomer();
+        System.out.println(customer);
+    }
+
+    @Test
+    public void testManyToOneSave() {
+        Customer customer = new Customer("aa");
+        Order order1 = new Order();
+        order1.setOrderName("order 1");
+        Order order2 = new Order();
+        order2.setOrderName("order 2");
+        order1.setCustomer(customer);
+        order2.setCustomer(customer);
+
+        //执行save操作
+        session.save(order1);
+        session.save(order2);
+
+        //先保存customer，然后保存order。
+        session.save(customer);
     }
 
     @Test

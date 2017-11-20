@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-mapping PUBLIC
-    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<hibernate-mapping>
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mamh.hibernate.demo.entities">
 
-    <class name="com.mamh.hibernate.demo.entities.Customer" table="hb_customer" schema="atguigu">
+    <class name="Customer" table="hb_customer" schema="atguigu">
         <id name="customerId">
             <column name="hb_customer_id" sql-type="int(11)"/>
             <generator class="native"/>
@@ -12,5 +12,10 @@
         <property name="customerName" type="string">
             <column name="hb_customer_name"/>
         </property>
+
+        <set name="orders" table="hb_order" inverse="true" cascade="save-update" order-by="hb_order_id">
+            <key column="customer_id"/>
+            <one-to-many class="Order"/>
+        </set>
     </class>
 </hibernate-mapping>

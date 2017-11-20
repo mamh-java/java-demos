@@ -4,6 +4,7 @@ package com.mamh.hibernate.demo;
 import com.mamh.hibernate.demo.entities.*;
 import com.mysql.cj.jdbc.Clob;
 import com.sun.org.apache.bcel.internal.generic.NEW;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import com.sun.org.apache.xpath.internal.operations.Or;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
@@ -51,6 +52,13 @@ public class HibernateTest {
     }
 
     @Test
+    public void testCascade() {
+        Customer customer = (Customer) session.get(Customer.class, 2);
+        customer.getOrders().clear();
+        session.delete(customer);
+    }
+
+    @Test
     public void testManyToOneDelete() {
         Customer customer = (Customer) session.get(Customer.class, 1);
         session.delete(customer);
@@ -63,11 +71,29 @@ public class HibernateTest {
     }
 
     @Test
+    public void testOneToManyUpdate() {
+        Customer customer = (Customer) session.get(Customer.class, 1);
+        customer.getOrders().iterator().next().setOrderName("d22");
+
+    }
+
+    @Test
+    public void testOneToManyGet() {
+        //对多的一端的集合使用延迟加载
+        Customer customer = (Customer) session.get(Customer.class, 1);
+        System.out.println(customer);
+        //返回的集合类型是hibernate内置的一个类型，改类型具有延迟加载和存放代理对象功能
+        System.out.println(customer.getOrders().getClass());
+
+        session.close();
+
+        System.out.println(customer.getOrders().size());
+    }
+
+    @Test
     public void testManyToOneGet() {
         Order order = (Order) session.get(Order.class, 1);
         System.out.println(order.getOrderName() + ":  " + order.getOrderId());
-
-        session.close();
 
         Customer customer = order.getCustomer();
         System.out.println(customer);
@@ -75,20 +101,24 @@ public class HibernateTest {
 
     @Test
     public void testManyToOneSave() {
-        Customer customer = new Customer("aa");
+        //双向关联关系
+        Customer customer = new Customer("dfs");
         Order order1 = new Order();
-        order1.setOrderName("order 1");
+        order1.setOrderName("order 1111111111");
         Order order2 = new Order();
-        order2.setOrderName("order 2");
+        order2.setOrderName("order 2222222222");
         order1.setCustomer(customer);
         order2.setCustomer(customer);
 
-        //执行save操作
-        session.save(order1);
-        session.save(order2);
+        customer.getOrders().add(order1);
+        customer.getOrders().add(order2);
 
+        //执行save操作
+        //session.save(order1);
+        //session.save(order2);
         //先保存customer，然后保存order。
         session.save(customer);
+
     }
 
     @Test

@@ -17,6 +17,7 @@ import org.hibernate.service.ServiceRegistryBuilder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.validator.PublicClassValidator;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -49,6 +50,39 @@ public class HibernateTest {
         session = sessionFactory.openSession();
         //3.开启事务
         transaction = session.beginTransaction();
+    }
+
+    @Test
+    public void testGetManager() {
+        Manager manager = (Manager) session.get(Manager.class, 1);
+        System.out.println(manager);
+
+
+    }
+
+    @Test
+    public void testGetDepartment() {
+        Department department = (Department) session.get(Department.class, 1);
+        System.out.println(department.getManager());
+
+    }
+
+    @Test
+    public void testSaveDepartment() {
+        Department department = new Department();
+        department.setDepartmentName("dept-aaa");
+
+        Manager manager = new Manager();
+        manager.setManagerName("mgr-aaa");
+
+        manager.setDepartment(department);
+        department.setManager(manager);
+
+        //建议先保存没有外键的那个对象。这样会减少update语句。
+        session.save(manager);
+        session.save(department);
+
+
     }
 
     @Test

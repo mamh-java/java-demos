@@ -48,6 +48,8 @@
         <mapping resource="Order.hbm.xml"/>
 
         <mapping resource="HbWorkEntity.hbm.xml"/>
+        <mapping resource="Department.hbm.xml"/>
+        <mapping resource="Manager.hbm.xml"/>
 
 
     </session-factory>

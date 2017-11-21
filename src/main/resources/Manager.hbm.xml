@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mamh.hibernate.demo.entities">
+
+    <class name="Manager" table="hb_manager" schema="atguigu">
+        <id name="managerId">
+            <column name="hb_manager_id" sql-type="int(11)"/>
+            <generator class="native"/>
+        </id>
+        <property name="managerName" type="string">
+            <column name="hb_manager_name"/>
+        </property>
+
+        <!--映射1to1,关联关系  -->
+        <one-to-one name="department" class="Department" property-ref="manager"/>
+
+    </class>
+</hibernate-mapping>

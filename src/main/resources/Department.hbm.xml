@@ -7,14 +7,17 @@
     <class name="Department" table="hb_department" schema="atguigu">
         <id name="depatmentId">
             <column name="hb_department_id" sql-type="int(11)"/>
-            <generator class="native"/>
+            <generator class="foreign">
+                <param name="property">manager</param>
+            </generator>
         </id>
         <property name="departmentName" type="string">
             <column name="hb_department_name"/>
         </property>
 
-        <!-- 使用many to one 方式来映射一对一关联关系 -->
-        <many-to-one name="manager" class="Manager" column="hb_manager_id" unique="true" />
+        <!-- 使用one to one 方式来映射一对一关联关系 -->
+        <!-- 采用foreign主键生成器的一端需要设置constrainend=true -->
+        <one-to-one name="manager" class="Manager" constrained="true"/>
 
 
     </class>

@@ -55,31 +55,29 @@ public class HibernateTest {
     @Test
     public void testGetManager() {
         Manager manager = (Manager) session.get(Manager.class, 1);
-        System.out.println(manager);
-
-
+        System.out.println(manager.getManagerName());
     }
 
     @Test
     public void testGetDepartment() {
         Department department = (Department) session.get(Department.class, 1);
-        System.out.println(department.getManager());
+        System.out.println(department.getDepartmentName());
 
     }
 
     @Test
     public void testSaveDepartment() {
         Department department = new Department();
-        department.setDepartmentName("dept-aaa");
+        department.setDepartmentName("dept-aaabb");
 
         Manager manager = new Manager();
-        manager.setManagerName("mgr-aaa");
+        manager.setManagerName("mgr-aaabbb");
 
         manager.setDepartment(department);
         department.setManager(manager);
 
         //建议先保存没有外键的那个对象。这样会减少update语句。
-        session.save(manager);
+//        session.save(manager);
         session.save(department);
 
 

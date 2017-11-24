@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mamh.hibernate.demo.entities">
+
+    <class name="Item" table="hb_item" schema="atguigu">
+        <id name="id">
+            <column name="hb_id"/>
+            <generator class="native"/>
+        </id>
+        <property name="name" type="string">
+            <column name="hb_name"/>
+        </property>
+        <set name="categories" table="hb_category_item">
+            <key>
+                <column name="hb_item_id"/>
+            </key>
+            <many-to-many class="Category" column="hb_category_id"/>
+        </set>
+    </class>
+</hibernate-mapping>

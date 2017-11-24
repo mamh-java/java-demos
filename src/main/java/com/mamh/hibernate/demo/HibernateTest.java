@@ -53,6 +53,37 @@ public class HibernateTest {
     }
 
     @Test
+    public void testGetCategory(){
+        Category category = (Category) session.get(Category.class, 1);
+        System.out.println(category.getName());
+
+        System.out.println(category.getItems().size());
+    }
+
+    @Test
+    public void testSaveCategory() {
+        Category category1 = new Category();
+        category1.setName("c-aa");
+        Category category2 = new Category();
+        category2.setName("c-bb");
+
+        Item item1 = new Item();
+        item1.setName("item-aa");
+        Item item2 = new Item();
+        item2.setName("item-aa");
+
+        category1.getItems().add(item1);
+        category1.getItems().add(item2);
+        category2.getItems().add(item1);
+        category2.getItems().add(item2);
+
+        session.save(category1);
+        session.save(category2);
+        session.save(item1);
+        session.save(item2);
+    }
+
+    @Test
     public void testGetManager() {
         Manager manager = (Manager) session.get(Manager.class, 1);
         System.out.println(manager.getManagerName());

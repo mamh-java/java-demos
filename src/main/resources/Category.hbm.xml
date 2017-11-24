@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mamh.hibernate.demo.entities">
+
+    <class name="Category" table="hb_category" schema="atguigu">
+        <id name="id">
+            <column name="hb_id"/>
+            <generator class="native"/>
+        </id>
+        <property name="name" type="string">
+            <column name="hb_name"/>
+        </property>
+
+        <set name="items" table="hb_category_item" inverse="true">
+            <key><column name="hb_category_id"/></key>
+            <!-- 使用manay to many 指定多对多关联关系。
+            column是执行set集合中的持久化类在中间表的外键列名。-->
+            <many-to-many class="Item" column="hb_item_id"/>
+        </set>
+
+    </class>
+</hibernate-mapping>

@@ -51,6 +51,9 @@
         <mapping resource="Department.hbm.xml"/>
         <mapping resource="Manager.hbm.xml"/>
 
+        <mapping resource="Category.hbm.xml"/>
+        <mapping resource="Item.hbm.xml"/>
+
 
     </session-factory>
 </hibernate-configuration>

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mamh.hibernate.demo.entities">
+
+    <class name="Person" table="hb_person" schema="atguigu" discriminator-value="person">
+        <id name="id">
+            <column name="hb_id"/>
+            <generator class="native"/>
+        </id>
+
+        <discriminator type="java.lang.String" column="type"/>
+
+        <property name="name" type="java.lang.String">
+            <column name="hb_name"/>
+        </property>
+
+        <property name="age" type="int">
+            <column name="hb_age"/>
+        </property>
+
+
+        <!--映射子类 使用subclass-->
+
+        <subclass name="Student" discriminator-value="student">
+            <property name="school" type="java.lang.String">
+                <column name="hb_school"/>
+            </property>
+        </subclass>
+
+
+    </class>
+</hibernate-mapping>

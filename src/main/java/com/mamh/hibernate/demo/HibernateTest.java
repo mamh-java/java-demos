@@ -28,6 +28,7 @@ import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 
 public class HibernateTest {
@@ -50,6 +51,32 @@ public class HibernateTest {
         session = sessionFactory.openSession();
         //3.开启事务
         transaction = session.beginTransaction();
+    }
+
+    @Test
+    public void testGetPerson(){
+        List person = session.createQuery("from Person ").list();
+        System.out.println(person);
+
+        List student = session.createQuery("from Student ").list();
+        System.out.println(student);
+    }
+
+    @Test
+    public void testSavePerson(){
+        //插入操作对于子类对象只需包记录擦人到一张表中。
+        // 辨别者列由hibernate自动维护。
+        Person person = new Person();
+        person.setAge(18);
+        person.setName("pppp");
+
+        Student student = new Student() ;
+        student.setSchool("zz");
+        student.setAge(128);
+        student.setName("sss");
+
+        session.save(person);
+        session.save(student);
     }
 
     @Test

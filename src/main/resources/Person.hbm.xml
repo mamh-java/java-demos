@@ -4,13 +4,12 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.mamh.hibernate.demo.entities">
 
-    <class name="Person" table="hb_person" schema="atguigu" discriminator-value="person">
+    <class name="Person" table="hb_person" schema="atguigu" >
         <id name="id">
             <column name="hb_id"/>
             <generator class="native"/>
         </id>
 
-        <discriminator type="java.lang.String" column="type"/>
 
         <property name="name" type="java.lang.String">
             <column name="hb_name"/>
@@ -20,14 +19,12 @@
             <column name="hb_age"/>
         </property>
 
-
-        <!--映射子类 使用subclass-->
-
-        <subclass name="Student" discriminator-value="student">
+        <joined-subclass name="Student" table="hb_student">
+            <key column="hb_id"></key>
             <property name="school" type="java.lang.String">
                 <column name="hb_school"/>
             </property>
-        </subclass>
+        </joined-subclass>
 
 
     </class>

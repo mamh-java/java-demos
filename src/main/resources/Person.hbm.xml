@@ -7,7 +7,7 @@
     <class name="Person" table="hb_person" schema="atguigu" >
         <id name="id">
             <column name="hb_id"/>
-            <generator class="native"/>
+            <generator class="hilo"/>
         </id>
 
 
@@ -19,13 +19,11 @@
             <column name="hb_age"/>
         </property>
 
-        <joined-subclass name="Student" table="hb_student">
-            <key column="hb_id"></key>
+        <union-subclass name="Student" table="hb_student">
             <property name="school" type="java.lang.String">
                 <column name="hb_school"/>
             </property>
-        </joined-subclass>
-
+        </union-subclass>
 
     </class>
 </hibernate-mapping>

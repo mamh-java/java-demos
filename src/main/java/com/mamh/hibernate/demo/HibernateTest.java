@@ -54,6 +54,12 @@ public class HibernateTest {
     }
 
     @Test
+    public void testUpdatePerson(){
+        String hql = "update Person p set p.age = 120";
+        session.createQuery(hql).executeUpdate();
+    }
+
+    @Test
     public void testGetPerson(){
         List person = session.createQuery("from Person ").list();
         System.out.println(person);

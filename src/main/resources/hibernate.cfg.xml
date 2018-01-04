@@ -5,13 +5,14 @@
 <hibernate-configuration>
     <session-factory>
         <!--  链接数据库的基本信息 -->
-        <property name="hibernate.connection.username">atguigu</property>
-        <property name="hibernate.connection.password">123456</property>
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/atguigu</property>
+        <property name="hibernate.connection.username">system</property>
+        <property name="hibernate.connection.password">maminghui</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@10.0.63.42:1521:orcl</property>
 
         <!-- 配置数据库的方言 -->
-        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <!--<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>-->
         <!--<property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>-->
 
         <!--是否打印sql语句-->
@@ -26,35 +27,24 @@
         <property name="connection.isolation">2</property>
         <!--<property name="use_identifier_rollback">true</property>-->
 
-        <!--C3P0配置 -->
-        <property name="hibernate.connection.provider_class">
-            org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider
-        </property>
-        <property name="hibernate.c3p0.max_size">10</property>
-        <property name="hibernate.c3p0.min_size">5</property>
-        <property name="hibernate.c3p0.acquire_increment">5</property>
-        <property name="hibernate.c3p0.timeout">20000</property>
-        <property name="hibernate.c3p0.idle_test_period">20000</property>
-        <property name="hibernate.c3p0.max_statements">2</property>
+        <!--&lt;!&ndash;C3P0配置 &ndash;&gt;-->
+        <!--<property name="hibernate.connection.provider_class">-->
+            <!--org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider-->
+        <!--</property>-->
+        <!--<property name="hibernate.c3p0.max_size">10</property>-->
+        <!--<property name="hibernate.c3p0.min_size">5</property>-->
+        <!--<property name="hibernate.c3p0.acquire_increment">5</property>-->
+        <!--<property name="hibernate.c3p0.timeout">20000</property>-->
+        <!--<property name="hibernate.c3p0.idle_test_period">20000</property>-->
+        <!--<property name="hibernate.c3p0.max_statements">2</property>-->
 
 
         <property name="hibernate.jdbc.fetch_size">100</property>
         <property name="hibernate.jdbc.batch_size">30</property>
 
 
-        <mapping resource="News.hbm.xml"/>
-        <mapping resource="Worker.hbm.xml"/>
-        <mapping resource="Customer.hbm.xml"/>
-        <mapping resource="Order.hbm.xml"/>
-
-        <mapping resource="HbWorkEntity.hbm.xml"/>
         <mapping resource="Department.hbm.xml"/>
-        <mapping resource="Manager.hbm.xml"/>
-
-        <mapping resource="Category.hbm.xml"/>
-        <mapping resource="Item.hbm.xml"/>
-
-        <mapping resource="Person.hbm.xml"/>
+        <mapping resource="Employee.hbm.xml"/>
 
 
     </session-factory>

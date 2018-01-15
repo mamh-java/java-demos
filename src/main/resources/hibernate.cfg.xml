@@ -8,7 +8,8 @@
         <property name="hibernate.connection.username">system</property>
         <property name="hibernate.connection.password">maminghui</property>
         <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
-        <property name="hibernate.connection.url">jdbc:oracle:thin:@10.0.63.42:1521:orcl</property>
+        <!--<property name="hibernate.connection.url">jdbc:oracle:thin:@10.0.63.42:1521:orcl</property>-->
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@10.0.63.31:1521:xe</property>
 
         <!-- 配置数据库的方言 -->
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>

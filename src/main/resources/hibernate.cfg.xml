@@ -30,7 +30,7 @@
 
         <!--&lt;!&ndash;C3P0配置 &ndash;&gt;-->
         <!--<property name="hibernate.connection.provider_class">-->
-            <!--org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider-->
+        <!--org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider-->
         <!--</property>-->
         <!--<property name="hibernate.c3p0.max_size">10</property>-->
         <!--<property name="hibernate.c3p0.min_size">5</property>-->
@@ -43,9 +43,18 @@
         <property name="hibernate.jdbc.fetch_size">100</property>
         <property name="hibernate.jdbc.batch_size">30</property>
 
+        <!--配置使用二级缓存-->
+        <property name="cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+        <property name="cache.use_query_cache">true</property>
 
         <mapping resource="Department.hbm.xml"/>
         <mapping resource="Employee.hbm.xml"/>
+
+        <class-cache class="com.mamh.hibernate.hql.entities.Employee" usage="read-write"/>
+
+        <class-cache class="com.mamh.hibernate.hql.entities.Department" usage="read-write"/>
+        <collection-cache collection="com.mamh.hibernate.hql.entities.Department.emps" usage="read-write"/>
 
 
     </session-factory>

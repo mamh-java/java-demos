@@ -28,7 +28,6 @@ public class HibernateCacheTest {
 
     @Before
     public void init() {
-        System.out.println("=init=");
         //1.创建一个SessionFactory 对象，创建session的工厂的一个类
         //1.1创建一个Configuration对象，对应hibernate的基本配置信息和对象关系映射信息
         Configuration configuration = new Configuration().configure();

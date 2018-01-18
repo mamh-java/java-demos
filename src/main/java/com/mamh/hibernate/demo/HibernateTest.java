@@ -1,7 +1,9 @@
 package com.mamh.hibernate.demo;
 
 
+import com.mamh.hibernate.dao.DepartmentDao;
 import com.mamh.hibernate.demo.entities.*;
+import com.mamh.hibernate.utils.HibernateUtils;
 import com.mysql.cj.jdbc.Clob;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.sun.org.apache.xpath.internal.SourceTree;
@@ -51,6 +53,40 @@ public class HibernateTest {
         session = sessionFactory.openSession();
         //3.开启事务
         transaction = session.beginTransaction();
+    }
+
+    @Test
+    public void testBatch(){
+        //批量操作
+        session.doWork(new Work() {
+            public void execute(Connection connection) throws SQLException {
+                //通过jdbc的原生api来操作，效率最高，速度最快
+            }
+        });
+
+
+    }
+
+
+    @Test
+    public void testSessonManage(){
+        Session session = HibernateUtils.getInstance().getSession();
+        System.out.println("---->"+session.hashCode());
+        Transaction transaction = session.beginTransaction();
+
+        DepartmentDao departmentDao = new DepartmentDao();
+        com.mamh.hibernate.hql.entities.Department department = null;
+        department = new com.mamh.hibernate.hql.entities.Department();
+        department.setName("马哥的淘宝店铺");
+
+        departmentDao.save(department);
+        departmentDao.save(department);
+        departmentDao.save(department);
+        departmentDao.save(department);
+
+        transaction.commit();
+
+        System.out.println("-----> session is open ? "+session.isOpen());
     }
 
     @Test

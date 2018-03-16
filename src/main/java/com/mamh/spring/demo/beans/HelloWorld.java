@@ -29,5 +29,8 @@ public class HelloWorld {
 
         helloWorld.hello();
 
+        Car car = (Car) ctx.getBean("car");
+        System.out.println(car);
+
     }
 }

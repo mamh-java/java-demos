@@ -1,8 +1,5 @@
 package com.mamh.spring.demo.beans;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.web.context.support.XmlWebApplicationContext;
 
 public class HelloWorld {
     private String name;
@@ -15,6 +12,7 @@ public class HelloWorld {
     }
 
     public void setName(String name) {
+        System.out.println("setName: " + name);
         this.name = name;
     }
 
@@ -22,16 +20,5 @@ public class HelloWorld {
         System.out.println("hello: = " + getName());
     }
 
-    public static void main(String[] args) {
-        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        HelloWorld helloWorld = (HelloWorld) ctx.getBean("helloWorld");
-
-        helloWorld.hello();
-
-        Car car = (Car) ctx.getBean("car");
-        System.out.println(car);
-        Car car2 = (Car) ctx.getBean("car2");
-        System.out.println(car2);
-    }
 }

@@ -31,6 +31,7 @@ public class HelloWorld {
 
         Car car = (Car) ctx.getBean("car");
         System.out.println(car);
-
+        Car car2 = (Car) ctx.getBean("car2");
+        System.out.println(car2);
     }
 }

@@ -16,7 +16,11 @@
     </bean>
     <bean id="car2" class="com.mamh.spring.demo.beans.Car">
         <constructor-arg value="Audi" type="java.lang.String"/>
-        <constructor-arg value="shanghai" type="java.lang.String"/>
-        <constructor-arg value="123" type="int"/>
+        <constructor-arg type="java.lang.String">
+            <value><![CDATA[aasljfkadlfjakdf>ldafjaldfjldks<lajdflkadjfladf>]]></value>
+        </constructor-arg>
+        <constructor-arg type="int">
+            <value>234234</value>
+        </constructor-arg>
     </bean>
 </beans>

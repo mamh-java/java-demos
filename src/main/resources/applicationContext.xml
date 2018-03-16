@@ -7,4 +7,16 @@
     <bean id="helloWorld" class="com.mamh.spring.demo.beans.HelloWorld">
         <property name="name" value="xxxxxxxxxxxxxxxx"/>
     </bean>
+
+
+    <bean id="car" class="com.mamh.spring.demo.beans.Car">
+        <constructor-arg value="Audi" index="0"/>
+        <constructor-arg value="shanghai" index="1"/>
+        <constructor-arg value="123" index="2"/>
+    </bean>
+    <bean id="car2" class="com.mamh.spring.demo.beans.Car">
+        <constructor-arg value="Audi" type="java.lang.String"/>
+        <constructor-arg value="shanghai" type="java.lang.String"/>
+        <constructor-arg value="123" type="int"/>
+    </bean>
 </beans>

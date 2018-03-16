@@ -5,22 +5,72 @@
 
 
     <bean id="helloWorld" class="com.mamh.spring.demo.beans.HelloWorld">
-        <property name="name" value="xxxxxxxxxxxxxxxx"/>
+        <property name="name" value="xxxxxxxxxxxxxxxx"/>  <!--通过setter方法设置属性值 -->
     </bean>
 
 
     <bean id="car" class="com.mamh.spring.demo.beans.Car">
-        <constructor-arg value="Audi" index="0"/>
-        <constructor-arg value="shanghai" index="1"/>
+        <constructor-arg value="Audi" index="0"/>      <!-- 通过构造方法设置属性值 -->
+        <constructor-arg value="shanghai" index="1"/>  <!-- 按照参数顺序来配置 -->
         <constructor-arg value="123" index="2"/>
     </bean>
+
+    <bean id="car1" class="com.mamh.spring.demo.beans.Car">
+        <constructor-arg value="BMW" index="0"/>      <!-- 通过构造方法设置属性值 -->
+        <constructor-arg value="shanghai" index="1"/>  <!-- 按照参数顺序来配置 -->
+        <constructor-arg value="240" index="2" type="int"/>   <!-- 可以指定参数类型以区分重载构造器 -->
+    </bean>
+
     <bean id="car2" class="com.mamh.spring.demo.beans.Car">
-        <constructor-arg value="Audi" type="java.lang.String"/>
+        <constructor-arg value="Audi" type="java.lang.String"/> <!-- 可以使用value子节点 -->
         <constructor-arg type="java.lang.String">
-            <value><![CDATA[aasljfkadlfjakdf>ldafjaldfjldks<lajdflkadjfladf>]]></value>
+            <value><![CDATA[ 上海《><><><><>aasljfkadlfjakdf>ldafjaldfjldks<lajdflkadjfladf>]]></value>
         </constructor-arg>
         <constructor-arg type="int">
             <value>234234</value>
         </constructor-arg>
+    </bean>
+
+    <bean id="person" class="com.mamh.spring.demo.beans.Person">
+        <property name="name" value="Tom"/>
+        <property name="age" value="28"/>
+        <property name="car" ref="car2"/> <!--引用类型的 -->
+
+    </bean>
+
+
+    <bean id="person1" class="com.mamh.spring.demo.beans.Person">
+        <property name="name" value="Jerry"/>
+        <property name="age" value="28"/>
+
+        <!--内部bean,不能够被外部引用-->
+        <property name="car">
+            <bean class="com.mamh.spring.demo.beans.Car">
+                <constructor-arg value="bens" index="0"/>      <!-- 通过构造方法设置属性值 -->
+                <constructor-arg value="shanghai" index="1"/>  <!-- 按照参数顺序来配置 -->
+                <constructor-arg value="340" index="2" type="int"/>   <!-- 可以指定参数类型以区分重载构造器 -->
+            </bean>
+        </property>
+    </bean>
+
+
+    <bean id="person2" class="com.mamh.spring.demo.beans.Person">
+        <constructor-arg value="mamh"/>
+        <constructor-arg value="29"/>
+        <constructor-arg>
+            <null/>
+        </constructor-arg>  <!-- null值的写法 -->
+
+
+    </bean>
+
+
+    <bean id="person3" class="com.mamh.spring.demo.beans.Person">
+        <constructor-arg value="mamh"/>
+        <constructor-arg value="29"/>
+        <constructor-arg ref="car"/>
+        <property name="car.maxSpeed" value="2600"/>    <!-- 级联属性赋值 -->
+
+
     </bean>
 </beans>

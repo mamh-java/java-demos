@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 
     <bean id="helloWorld" class="com.mamh.spring.demo.beans.HelloWorld">
@@ -107,6 +107,21 @@
             </props>
         </property>
     </bean>
+
+    <bean id="person5" class="com.mamh.spring.demo.beans.Person">
+        <constructor-arg value="ss"/>
+        <constructor-arg value="23"/>
+        <constructor-arg ref="car1"/>
+
+        <!--配置独立的集合bean -->
+        <property name="cars" ref="carList"/>
+    </bean>
+
+    <util:list id="carList">
+        <ref bean="car2"/>
+        <ref bean="car"/>
+        <ref bean="car1"/>
+    </util:list>
 
 
 </beans>

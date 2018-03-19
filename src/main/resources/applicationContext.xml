@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 
@@ -123,5 +124,22 @@
         <ref bean="car1"/>
     </util:list>
 
+    <util:map id="map">
+        <entry key="aa" value-ref="car"/>
+        <entry key="bb" value-ref="car1"/>
+        <entry key="cc" value-ref="car2"/>
+    </util:map>
+
+    <util:properties id="properties">
+        <prop key="user">root</prop>
+        <prop key="password">123456</prop>
+        <prop key="jdbcurl">jdbc:///mysql</prop>
+        <prop key="driverclass">driver.mysql.jdbc</prop>
+    </util:properties>
+
+    <!-- p命名空间 -->
+    <bean id="person6" class="com.mamh.spring.demo.beans.Person" p:age="30" p:name="queen" p:cars-ref="carList"
+          p:carMap-ref="map"
+          p:properties-ref="properties"/>
 
 </beans>

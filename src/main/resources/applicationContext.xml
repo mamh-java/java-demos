@@ -90,5 +90,13 @@
             </list>
         </property>
 
+        <property name="carMap">
+            <map>
+                <entry key="aa" value-ref="car"/>
+                <entry key="bb" value-ref="car1"/>
+                <entry key="cc" value-ref="car2"/>
+            </map>
+        </property>
+
     </bean>
 </beans>

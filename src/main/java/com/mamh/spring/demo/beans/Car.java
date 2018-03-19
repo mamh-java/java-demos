@@ -62,7 +62,7 @@ public class Car {
                 ", corp='" + corp + '\'' +
                 ", price=" + price +
                 ", maxSpeed=" + maxSpeed +
-                '}';
+                '}'+'\n';
     }
 
 

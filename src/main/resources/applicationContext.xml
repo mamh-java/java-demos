@@ -24,7 +24,7 @@
     <bean id="car2" class="com.mamh.spring.demo.beans.Car">
         <constructor-arg value="Audi" type="java.lang.String"/> <!-- 可以使用value子节点 -->
         <constructor-arg type="java.lang.String">
-            <value><![CDATA[ 上海《><><><><>aasljfkadlfjakdf>ldafjaldfjldks<lajdflkadjfladf>]]></value>
+            <value><![CDATA[ 上海f>]]></value>
         </constructor-arg>
         <constructor-arg type="int">
             <value>234234</value>
@@ -71,6 +71,24 @@
         <constructor-arg ref="car"/>
         <property name="car.maxSpeed" value="2600"/>    <!-- 级联属性赋值 -->
 
+
+    </bean>
+
+
+    <bean id="person4" class="com.mamh.spring.demo.beans.Person">
+        <constructor-arg value="z"/>
+        <constructor-arg value="29"/>
+        <constructor-arg ref="car"/>
+        <property name="car.maxSpeed" value="2600"/>    <!-- 级联属性赋值 -->
+
+        <property name="cars">
+            <list>
+                <ref bean="car2"/>
+                <ref bean="car1"/>
+                <ref bean="car"/>
+
+            </list>
+        </property>
 
     </bean>
 </beans>

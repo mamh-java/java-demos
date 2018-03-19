@@ -2,6 +2,7 @@ package com.mamh.spring.demo.beans;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 public class Person {
     private String name;
@@ -9,6 +10,8 @@ public class Person {
     private Car car;
     private List<Car> cars;
     private Map<String, Car> carMap;
+
+    private Properties properties;
 
     public Person() {
     }
@@ -59,6 +62,14 @@ public class Person {
         this.carMap = carMap;
     }
 
+    public Properties getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Properties properties) {
+        this.properties = properties;
+    }
+
     @Override
     public String toString() {
         return "\nPerson{" +
@@ -67,6 +78,7 @@ public class Person {
                 ", car=" + car +
                 ", cars=" + cars +
                 ", carMap=" + carMap +
+                ", properties=" + properties +
                 '}';
     }
 }

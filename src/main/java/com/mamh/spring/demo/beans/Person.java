@@ -1,9 +1,12 @@
 package com.mamh.spring.demo.beans;
 
+import java.util.List;
+
 public class Person {
     private String name;
     private int age;
     private Car car;
+    private List<Car> cars;
 
     public Person() {
     }
@@ -38,12 +41,21 @@ public class Person {
         this.car = car;
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", car=" + car +
-                '}';
+                ", cars=" + cars +
+                '}'+'\n';
     }
 }

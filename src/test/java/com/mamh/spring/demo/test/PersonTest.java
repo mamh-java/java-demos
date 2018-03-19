@@ -21,5 +21,8 @@ public class PersonTest {
 
         Person person3 = (Person) ctx.getBean("person3");
         System.out.println(person3);
+
+        Person person4 = (Person) ctx.getBean("person4");
+        System.out.println(person4);
     }
 }

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
        xmlns:p="http://www.springframework.org/schema/p"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
     <bean id="helloWorld" class="com.mamh.spring.demo.beans.HelloWorld">
@@ -33,8 +35,7 @@
     </bean>
 
     <bean id="car3" abstract="true"/> <!--抽象bean，不能被实例化。若改bean没有指定class，则必须指定为抽象bean -->
-    <bean id="car4" parent="car" /> <!-- 子bean继承父bean中的配置 , 也可以覆盖父bean中的配置-->
-
+    <bean id="car4" parent="car"/> <!-- 子bean继承父bean中的配置 , 也可以覆盖父bean中的配置-->
 
 
     <bean id="car5" class="com.mamh.spring.demo.beans.Car" scope="prototype">      <!-- 默认scope是singleton，单例的。 -->
@@ -156,4 +157,23 @@
     <bean id="person7" class="com.mamh.spring.demo.beans.Person" p:name="xskfjsl" autowire="byName"/>
 
 
-</beans>
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="user" value="user"/>
+        <property name="password" value="password"/>
+        <property name="jdbcUrl" value="jdbc url"/>
+        <property name="driverClass" value="dirver class is ...."/>
+
+    </bean>
+
+
+    <context:property-placeholder location="db.prop"/>
+
+    <bean id="dataSource1" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="user" value="${user}"/>
+        <property name="password" value="${password}"/>
+        <property name="jdbcUrl" value="$jdbcUrl}"/>
+        <property name="driverClass" value="${driverClass}"/>
+
+
+    </bean>
+</beans>    <!-- 导入属性文件 -->

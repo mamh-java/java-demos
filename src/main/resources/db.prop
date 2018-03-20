@@ -1,0 +1,4 @@
+user="user"
+password="passwordxxxxx"
+jdbcUrl="jdbc url"
+driverClass="dirver class is ...."

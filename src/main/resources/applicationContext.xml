@@ -32,6 +32,13 @@
         </constructor-arg>
     </bean>
 
+    <bean id="car3" abstract="true"/> <!--抽象bean，不能被实例化。若改bean没有指定class，则必须指定为抽象bean -->
+    <bean id="car4" parent="car" /> <!-- 子bean继承父bean中的配置 , 也可以覆盖父bean中的配置-->
+
+
+
+
+
     <bean id="person" class="com.mamh.spring.demo.beans.Person">
         <property name="name" value="Tom"/>
         <property name="age" value="28"/>
@@ -115,10 +122,10 @@
         <constructor-arg ref="car1"/>
 
         <!--配置独立的集合bean -->
-        <property name="cars" ref="carList"/>
+        <property name="cars" ref="cars"/>
     </bean>
 
-    <util:list id="carList">
+    <util:list id="cars">
         <ref bean="car2"/>
         <ref bean="car"/>
         <ref bean="car1"/>
@@ -138,8 +145,11 @@
     </util:properties>
 
     <!-- p命名空间 -->
-    <bean id="person6" class="com.mamh.spring.demo.beans.Person" p:age="30" p:name="queen" p:cars-ref="carList"
+    <bean id="person6" class="com.mamh.spring.demo.beans.Person" p:age="30" p:name="queen" p:cars-ref="cars"
           p:carMap-ref="map"
           p:properties-ref="properties"/>
+
+    <bean id="person7" class="com.mamh.spring.demo.beans.Person" p:name="xskfjsl" autowire="byName"/>
+
 
 </beans>

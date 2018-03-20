@@ -37,6 +37,10 @@
 
 
 
+    <bean id="car5" class="com.mamh.spring.demo.beans.Car" scope="prototype">      <!-- 默认scope是singleton，单例的。 -->
+        <property name="brand" value="audi"/>
+        <property name="price" value="100000"/>
+    </bean>
 
 
     <bean id="person" class="com.mamh.spring.demo.beans.Person">

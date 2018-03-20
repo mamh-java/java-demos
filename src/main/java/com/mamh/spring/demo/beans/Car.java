@@ -6,6 +6,9 @@ public class Car {
     private double price;
     private int maxSpeed;
 
+    public Car(){
+
+    }
 
     public Car(String brand, String corp, double price) {
         System.out.println("constructor: Car(String brand, String corp, double price)");

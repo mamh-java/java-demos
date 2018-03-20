@@ -9,13 +9,12 @@ public class CarTest {
     public void test() {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        Car car = (Car) ctx.getBean("car");
-        System.out.println(car);
-
-        Car car1 = (Car) ctx.getBean("car1");
+        Car car1 = (Car) ctx.getBean("car5");
         System.out.println(car1);
 
-        Car car2 = (Car) ctx.getBean("car2");
-        System.out.println(car2);
+        Car car5 = (Car) ctx.getBean("car5");
+        System.out.println(car5);
+
+        System.out.println(car1 == car5);
     }
 }

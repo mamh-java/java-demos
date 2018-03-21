@@ -43,6 +43,12 @@
         <property name="price" value="100000"/>
     </bean>
 
+    <bean id="car6" class="com.mamh.spring.demo.beans.Car">
+        <property name="brand" value="audi"/>
+        <property name="price" value="100000"/>
+        <property name="tyrePerimeter" value="#{T(java.lang.Math).PI * 80}"/>
+        <property name="maxSpeed" value="1280"/>
+    </bean>
 
     <bean id="person" class="com.mamh.spring.demo.beans.Person">
         <property name="name" value="Tom"/>
@@ -156,6 +162,12 @@
 
     <bean id="person7" class="com.mamh.spring.demo.beans.Person" p:name="xskfjsl" autowire="byName"/>
 
+    <bean id="person8" class="com.mamh.spring.demo.beans.Person">
+        <property name="car" value="#{car6}"/>
+        <property name="city" value="#{address.city}"/>
+        <property name="info" value="#{car.price > 30000?'jin':'bai'}"/>
+        <property name="name" value="tom"/>
+    </bean>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="user" value="user"/>
@@ -165,7 +177,7 @@
 
     </bean>
 
-
+    <!-- 导入属性文件 -->
     <context:property-placeholder location="db.prop"/>
 
     <bean id="dataSource1" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -176,4 +188,14 @@
 
 
     </bean>
-</beans>    <!-- 导入属性文件 -->
+
+
+    <!--spel的用法 -->
+    <bean id="address" class="com.mamh.spring.demo.beans.Address">
+        <property name="city" value="#{'Beijing'}"/>    <!--使用spel给属性赋值，字面值 -->
+        <property name="street" value="#{'wudaokou'}"/>
+
+    </bean>
+
+
+</beans>

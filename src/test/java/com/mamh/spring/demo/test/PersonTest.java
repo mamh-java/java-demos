@@ -30,8 +30,12 @@ public class PersonTest {
 //
 //        Person person6 = (Person) ctx.getBean("person6");
 //        System.out.println(person6);
+//
+//        Person person7 = (Person) ctx.getBean("person7");
+//        System.out.println(person7);
 
-        Person person7 = (Person) ctx.getBean("person7");
-        System.out.println(person7);
+
+        Person person8 = (Person) ctx.getBean("person8");
+        System.out.println(person8);
     }
 }

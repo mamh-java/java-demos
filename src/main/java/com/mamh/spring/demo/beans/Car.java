@@ -6,21 +6,19 @@ public class Car {
     private double price;
     private int maxSpeed;
 
-    public Car(){
+    private double tyrePerimeter;//轮胎大小
+
+    public Car() {
 
     }
 
     public Car(String brand, String corp, double price) {
-        System.out.println("constructor: Car(String brand, String corp, double price)");
-
         this.brand = brand;
         this.corp = corp;
         this.price = price;
     }
 
     public Car(String brand, String corp, int maxSpeed) {
-        System.out.println("constructor: Car(String brand, String corp, int maxSpeed)");
-
         this.brand = brand;
         this.corp = corp;
         this.maxSpeed = maxSpeed;
@@ -58,6 +56,14 @@ public class Car {
         this.maxSpeed = maxSpeed;
     }
 
+    public double getTyrePerimeter() {
+        return tyrePerimeter;
+    }
+
+    public void setTyrePerimeter(double tyrePerimeter) {
+        this.tyrePerimeter = tyrePerimeter;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
@@ -65,8 +71,7 @@ public class Car {
                 ", corp='" + corp + '\'' +
                 ", price=" + price +
                 ", maxSpeed=" + maxSpeed +
-                '}'+'\n';
+                ", tyrePerimeter=" + tyrePerimeter +
+                '}';
     }
-
-
 }

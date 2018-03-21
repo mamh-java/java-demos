@@ -57,6 +57,12 @@
         <constructor-arg value="audi"/>  <!-- 静态工厂方法 -->
     </bean>
 
+    <bean id="carFactory" class="com.mamh.spring.demo.factory.InstanceCarFactory"/><!-- 配置工厂实例 -->
+
+    <bean id="car8" factory-bean="carFactory" factory-method="getCar">
+        <constructor-arg value="ford"/>  <!-- 实例工厂方法 -->
+    </bean>
+
 
     <bean id="person" class="com.mamh.spring.demo.beans.Person">
         <property name="name" value="Tom"/>

@@ -13,6 +13,7 @@ public class CarTest {
         Car car7 = (Car) ctx.getBean("car7");
         System.out.println(car7);
 
-
+        Car car8 = (Car) ctx.getBean("car8");
+        System.out.println(car8);
     }
 }

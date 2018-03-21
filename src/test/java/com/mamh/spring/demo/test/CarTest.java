@@ -14,8 +14,5 @@ public class CarTest {
         System.out.println(car1);
 
 
-
-
-
     }
 }

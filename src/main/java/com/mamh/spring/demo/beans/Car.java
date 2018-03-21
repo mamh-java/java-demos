@@ -64,6 +64,15 @@ public class Car {
         this.tyrePerimeter = tyrePerimeter;
     }
 
+    public void init(){
+        System.out.println("init method....");
+    }
+
+    public void destroy(){
+        System.out.println("destroy method.....");
+    }
+
+
     @Override
     public String toString() {
         return "Car{" +

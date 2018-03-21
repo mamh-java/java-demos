@@ -51,7 +51,12 @@
         <property name="corp" value="slfjsldfj"/>
 
     </bean>
-    <bean class="com.mamh.spring.demo.processor.PostProcessor"/>
+    <!--<bean class="com.mamh.spring.demo.processor.PostProcessor"/>-->
+
+    <bean id="car7" class="com.mamh.spring.demo.factory.StaticCarFactory" factory-method="getCar">
+        <constructor-arg value="audi"/>  <!-- 静态工厂方法 -->
+    </bean>
+
 
     <bean id="person" class="com.mamh.spring.demo.beans.Person">
         <property name="name" value="Tom"/>

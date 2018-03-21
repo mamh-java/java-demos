@@ -10,8 +10,8 @@ public class CarTest {
     public void test() {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        Car car1 = (Car) ctx.getBean("car6");
-        System.out.println(car1);
+        Car car7 = (Car) ctx.getBean("car7");
+        System.out.println(car7);
 
 
     }

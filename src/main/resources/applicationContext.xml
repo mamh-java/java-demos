@@ -63,6 +63,11 @@
         <constructor-arg value="ford"/>  <!-- 实例工厂方法 -->
     </bean>
 
+    <!-- 通过factory bean来创建bean-->
+    <bean id="car9" class="com.mamh.spring.demo.factorybeans.CarFactoryBean">
+        <property name="branch" value="bmwx"/>
+    </bean>
+
 
     <bean id="person" class="com.mamh.spring.demo.beans.Person">
         <property name="name" value="Tom"/>

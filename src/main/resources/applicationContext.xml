@@ -43,12 +43,15 @@
         <property name="price" value="100000"/>
     </bean>
 
-    <bean id="car6" class="com.mamh.spring.demo.beans.Car">
+    <bean id="car6" class="com.mamh.spring.demo.beans.Car" init-method="init" destroy-method="destroy">
         <property name="brand" value="audi"/>
         <property name="price" value="100000"/>
         <property name="tyrePerimeter" value="#{T(java.lang.Math).PI * 80}"/>
         <property name="maxSpeed" value="1280"/>
+        <property name="corp" value="slfjsldfj"/>
+
     </bean>
+    <bean class="com.mamh.spring.demo.processor.PostProcessor"/>
 
     <bean id="person" class="com.mamh.spring.demo.beans.Person">
         <property name="name" value="Tom"/>

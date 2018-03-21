@@ -12,7 +12,6 @@ public class HelloWorld {
     }
 
     public void setName(String name) {
-        System.out.println("setName: " + name);
         this.name = name;
     }
 

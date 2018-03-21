@@ -13,6 +13,9 @@ public class Person {
 
     private Properties properties;
 
+    private String city;
+    private String info;//根据car的price确定 info，金领，白领等。
+
     public Person() {
     }
 
@@ -70,15 +73,33 @@ public class Person {
         this.properties = properties;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
     @Override
     public String toString() {
-        return "\nPerson{" +
+        return "Person{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", car=" + car +
                 ", cars=" + cars +
                 ", carMap=" + carMap +
                 ", properties=" + properties +
+                ", city='" + city + '\'' +
+                ", info='" + info + '\'' +
                 '}';
     }
 }

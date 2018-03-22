@@ -25,4 +25,14 @@ public class AnnotationTest {
         UserService userService = (UserService) ctx.getBean("userService");
         System.out.println(userService);
     }
+
+    @Test
+    public void test1() {
+
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+        UserController userController = (UserController) ctx.getBean("userController");
+        userController.execute();
+
+    }
 }

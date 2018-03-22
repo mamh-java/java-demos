@@ -217,7 +217,21 @@
     </bean>
 
 
-    <context:component-scan base-package="com.mamh.spring.demo.annotation"/> <!-- 都会扫描这个子包 -->
+    <!--<context:component-scan base-package="com.mamh.spring.demo.annotation" resource-pattern="*.class"/> &lt;!&ndash; 都会扫描这个子包 &ndash;&gt;-->
+
+    <context:component-scan base-package="com.mamh.spring.demo.annotation"
+                             > <!-- 都会扫描这个子包 -->
+        <!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" /> &lt;!&ndash; 不包含某个注解 &ndash;&gt;-->
+
+
+        <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"  /> &lt;!&ndash; 只包含，需要配置个属性use-default-filters="false"&ndash;&gt;-->
+
+        <!--<context:exclude-filter type="assignable" expression="com.mamh.spring.demo.annotation.UserRepository"/> &lt;!&ndash; 不包含某个接口，和实现类 &ndash;&gt;-->
+    </context:component-scan>
+
+
+
+
 
 
 </beans>

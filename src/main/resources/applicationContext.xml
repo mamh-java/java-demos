@@ -8,7 +8,7 @@
 
 
     <bean id="helloWorld" class="com.mamh.spring.demo.beans.HelloWorld">
-        <property name="name" value="xxxxxxxxxxxxxxxx"/>  <!--通过setter方法设置属性值 -->
+        <property name="name" value="hello World"/>  <!--通过setter方法设置属性值 -->
     </bean>
 
 
@@ -215,6 +215,9 @@
         <property name="street" value="#{'wudaokou'}"/>
 
     </bean>
+
+
+    <context:component-scan base-package="com.mamh.spring.demo.annotation"/> <!-- 都会扫描这个子包 -->
 
 
 </beans>

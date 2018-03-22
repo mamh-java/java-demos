@@ -1,6 +1,8 @@
 package com.mamh.spring.demo.annotation;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,8 +12,12 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
 
+    @Autowired
+    private UserRepository userRepository;
+
     public void add() {
         System.out.println("UserService add()....");
+        userRepository.save();
     }
 
 

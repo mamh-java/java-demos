@@ -1,4 +1,4 @@
-package com.mamh.spring.demo.aop;
+package com.mamh.spring.demo.aop.byannotation;
 
 public interface ArithmeticCalculator {
     int add(int i, int j);

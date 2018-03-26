@@ -1,4 +1,4 @@
-package com.mamh.spring.demo.aop;
+package com.mamh.spring.demo.aop.byannotation;
 
 import org.springframework.stereotype.Component;
 

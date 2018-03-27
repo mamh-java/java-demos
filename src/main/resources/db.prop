@@ -1,4 +1,7 @@
-user="user"
-password="passwordxxxxx"
-jdbcUrl="jdbc url"
-driverClass="dirver class is ...."
+jdbc.user=atguigu
+jdbc.password=123456
+jdbc.url=jdbc:mysql:///atguigu
+jdbc.driverClass=com.mysql.jdbc.Driver
+
+jdbc.initPoolSize=5
+jdbc.maxPoolSize=10

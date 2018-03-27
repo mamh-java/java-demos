@@ -4,24 +4,34 @@ import com.mamh.spring.demo.aop.byannotation.CustomerDao;
 import com.mamh.spring.demo.beans.Customer;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class JdbcTest {
 
     private ClassPathXmlApplicationContext ctx;
     private JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Before
     public void init() {
         ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 //        dataSource = (DataSource) ctx.getBean("dataSource");
         jdbcTemplate = (JdbcTemplate) ctx.getBean("jdbcTemplate");
+
+        namedParameterJdbcTemplate = (NamedParameterJdbcTemplate) ctx.getBean("namedParameterJdbcTemplate");
+
     }
 
     @Test
@@ -53,6 +63,34 @@ public class JdbcTest {
         list.add(new Object[]{16, "wwwwwww"});
 
         jdbcTemplate.batchUpdate(sql, list);
+    }
+
+    @Test
+    public void update2() {
+        String sql = "INSERT INTO hb_customer(hb_customer_id, hb_customer_name) VALUES(:id, :name)";
+
+        Map<String, Object> parameter = new HashMap<String, Object>();
+        parameter.put("id", 111);
+        parameter.put("name", "namesxxxxxx");
+        //这里可以使用map来传入参数，当参数多了，不用一个一个取对位置了。
+
+        namedParameterJdbcTemplate.update(sql, parameter);
+
+    }
+
+    @Test
+    public void update3() {
+        String sql = "INSERT INTO hb_customer(hb_customer_id, hb_customer_name) VALUES(:customerId, :customerName)";
+
+        Customer customer = new Customer();
+        customer.setCustomerId(123);
+        customer.setCustomerName("alsdjfaldfjaldkj");
+        //使用具名参数时，可以传入一个对象进行更新操作。若有多个参数，不用取一个一个对位置了。
+
+        SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(customer);
+
+        namedParameterJdbcTemplate.update(sql, sqlParameterSource);
+
     }
 
 

@@ -1,17 +1,12 @@
 package com.mamh.spring.demo.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
-@Service("bookShopService")
 public class BookShopServiceImpl implements BookShopService {
 
-    @Autowired
     private BookShopDao bookShopDao;
 
+    public void setBookShopDao(BookShopDao bookShopDao) {
+        this.bookShopDao = bookShopDao;
+    }
 
     /**
      * 1.事务的传播行为，默认是用调用者的那个事务Propagation.REQUIRED。
@@ -23,16 +18,7 @@ public class BookShopServiceImpl implements BookShopService {
      * @param username
      * @param isbn
      */
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW,
-            isolation = Isolation.READ_COMMITTED, timeout = 3)
-//添加事务注解
     public void purchase(String username, String isbn) {
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         //1.获取书的单价
         Float price = bookShopDao.findBookPriceByIsbn(isbn);
 

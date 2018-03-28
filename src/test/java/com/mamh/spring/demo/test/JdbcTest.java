@@ -34,29 +34,22 @@ public class JdbcTest {
     @Before
     public void init() {
         ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-//        dataSource = (DataSource) ctx.getBean("dataSource");
         jdbcTemplate = (JdbcTemplate) ctx.getBean("jdbcTemplate");
-
-        namedParameterJdbcTemplate = (NamedParameterJdbcTemplate) ctx.getBean("namedParameterJdbcTemplate");
-
-
         bookShopDao = (BookShopDao) ctx.getBean("bookShopDao");
-
         bookShopService = ctx.getBean(BookShopService.class);
-
-        cashier= ctx.getBean(Cashier.class);
+        cashier = ctx.getBean(Cashier.class);
     }
 
     @Test
-    public void testBookShop2(){
-        List<String> list= new ArrayList<String>();
+    public void testBookShop2() {
+        List<String> list = new ArrayList<String>();
         list.add("1001");
         list.add("1002");
         cashier.checkout("mamh", list);
     }
 
     @Test
-    public void testBookShop1(){
+    public void testBookShop1() {
         bookShopService.purchase("mamh", "1001");
     }
 

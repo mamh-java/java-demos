@@ -1,15 +1,14 @@
 package com.mamh.spring.demo.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 
-@Repository("bookShopDao")
 public class BookShopDaoImpl implements BookShopDao {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public Float findBookPriceByIsbn(String isbn) {

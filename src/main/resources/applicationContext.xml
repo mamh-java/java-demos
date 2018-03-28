@@ -9,7 +9,6 @@
 
     <context:property-placeholder location="classpath:db.prop"/>
 
-    <context:component-scan base-package="com.mamh.spring.demo.dao"/>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="user" value="${jdbc.user}"/>
@@ -25,18 +24,34 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <!-- 具有名字的 -->
-    <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
-        <constructor-arg ref="dataSource"/>
+    <bean id="bookShopDao" class="com.mamh.spring.demo.dao.BookShopDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 
+    <bean id="bookShopService" class="com.mamh.spring.demo.dao.BookShopServiceImpl">
+        <property name="bookShopDao" ref="bookShopDao"/>
+    </bean>
+
+    <bean id="cashier" class="com.mamh.spring.demo.dao.CashierImpl">
+        <property name="bookShopService" ref="bookShopService"/>
+    </bean>
 
     <!-- 配置事务管理器 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <!-- 启动事务注解 -->
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!-- 配置事务属性 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--配置事务切点 -->
+    <aop:config>
+        <aop:pointcut id="txPointCut" expression="execution(* com.mamh.spring.demo.dao.BookShopService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+    </aop:config>
 
 </beans>

@@ -4,6 +4,7 @@ import com.mamh.spring.demo.aop.byannotation.CustomerDao;
 import com.mamh.spring.demo.beans.Customer;
 import com.mamh.spring.demo.dao.BookShopDao;
 import com.mamh.spring.demo.dao.BookShopService;
+import com.mamh.spring.demo.dao.Cashier;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class JdbcTest {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private BookShopDao bookShopDao;
     private BookShopService bookShopService;
+    private Cashier cashier;
 
     @Before
     public void init() {
@@ -41,6 +43,16 @@ public class JdbcTest {
         bookShopDao = (BookShopDao) ctx.getBean("bookShopDao");
 
         bookShopService = ctx.getBean(BookShopService.class);
+
+        cashier= ctx.getBean(Cashier.class);
+    }
+
+    @Test
+    public void testBookShop2(){
+        List<String> list= new ArrayList<String>();
+        list.add("1001");
+        list.add("1002");
+        cashier.checkout("mamh", list);
     }
 
     @Test

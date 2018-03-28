@@ -2,6 +2,7 @@ package com.mamh.spring.demo.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,14 +14,25 @@ public class BookShopServiceImpl implements BookShopService {
 
 
     /**
-     * 事务的传播行为，默认是用调用者的那个事务Propagation.REQUIRED。
+     * 1.事务的传播行为，默认是用调用者的那个事务Propagation.REQUIRED。
+     * 2.事务的隔离级别，常用的是读已提交Isolation.READ_COMMITTED
+     * 3.默认情况下是对所有runtime异常进行回滚。通常情况采用默认值就行。
+     * 4.只读事务，readonly=true来设置。
+     * 5.使用timeout只读强制回滚之前事务可以占用的时间。
      *
      * @param username
      * @param isbn
      */
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)//添加事务注解
+    @Transactional(propagation = Propagation.REQUIRES_NEW,
+            isolation = Isolation.READ_COMMITTED, timeout = 3)
+//添加事务注解
     public void purchase(String username, String isbn) {
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         //1.获取书的单价
         Float price = bookShopDao.findBookPriceByIsbn(isbn);
 

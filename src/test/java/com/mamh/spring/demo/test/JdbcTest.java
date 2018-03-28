@@ -2,6 +2,8 @@ package com.mamh.spring.demo.test;
 
 import com.mamh.spring.demo.aop.byannotation.CustomerDao;
 import com.mamh.spring.demo.beans.Customer;
+import com.mamh.spring.demo.dao.BookShopDao;
+import com.mamh.spring.demo.dao.BookShopService;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
+import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +26,8 @@ public class JdbcTest {
     private ClassPathXmlApplicationContext ctx;
     private JdbcTemplate jdbcTemplate;
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private BookShopDao bookShopDao;
+    private BookShopService bookShopService;
 
     @Before
     public void init() {
@@ -31,6 +36,30 @@ public class JdbcTest {
         jdbcTemplate = (JdbcTemplate) ctx.getBean("jdbcTemplate");
 
         namedParameterJdbcTemplate = (NamedParameterJdbcTemplate) ctx.getBean("namedParameterJdbcTemplate");
+
+
+        bookShopDao = (BookShopDao) ctx.getBean("bookShopDao");
+
+        bookShopService = ctx.getBean(BookShopService.class);
+    }
+
+    @Test
+    public void testBookShop1(){
+        bookShopService.purchase("mamh", "1001");
+    }
+
+    @Test
+    public void testBookShop() {
+        Float bookPriceByIsbn = bookShopDao.findBookPriceByIsbn("1001");
+        System.out.println(bookPriceByIsbn);
+        Float bookPriceByIsbn1 = bookShopDao.findBookPriceByIsbn("1002");
+        System.out.println(bookPriceByIsbn1);
+
+        System.out.println("\n");
+
+        bookShopDao.updateBookStock("1001");//测试库存
+
+        bookShopDao.updateAccountBalance("mamh", 100);
 
     }
 

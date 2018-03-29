@@ -79,7 +79,11 @@
 
 
     <!-- spring 整合struts2  是IOC容器来管理struts2的Action -->
-
+    <!-- 要在spring的ioc容器中配置struts2的action -->
+    <bean id="personAction" class="com.mamh.spring.demo.action.PersonAction" scope="prototype"><!--这里一定要配置为单例 -->
+        <property name="personService" ref="personService"/>
+    </bean>
+    <bean id="personService" class="com.mamh.spring.demo.action.PersonService"/>
 
 
 </beans>

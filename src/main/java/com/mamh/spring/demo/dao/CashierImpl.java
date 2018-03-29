@@ -1,9 +1,14 @@
 package com.mamh.spring.demo.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class CashierImpl implements Cashier {
 
+    @Autowired
     private BookShopService bookShopService;
 
     public void setBookShopService(BookShopService bookShopService) {

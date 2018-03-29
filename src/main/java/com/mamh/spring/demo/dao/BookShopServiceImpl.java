@@ -1,7 +1,12 @@
 package com.mamh.spring.demo.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class BookShopServiceImpl implements BookShopService {
 
+    @Autowired
     private BookShopDao bookShopDao;
 
     public void setBookShopDao(BookShopDao bookShopDao) {
@@ -19,15 +24,20 @@ public class BookShopServiceImpl implements BookShopService {
      * @param isbn
      */
     public void purchase(String username, String isbn) {
+        System.out.println("获取书的价格");
         //1.获取书的单价
         Float price = bookShopDao.findBookPriceByIsbn(isbn);
+        System.out.println("\n");
 
+
+        System.out.println("获取书的库存");
         //2.更新书的库存
         bookShopDao.updateBookStock(isbn);
         //这个时候还没设置事务，我们先减少库存能成功，然后减少余额失败了。但是库存还是正常的减少了，这不是我们想要的。
+        System.out.println("\n");
 
-        //下面我们要加上事务，使用注解方式。
 
+        System.out.println("更新账户余额");
         //3.更新用户余额
         bookShopDao.updateAccountBalance(username, price);
     }

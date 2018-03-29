@@ -70,4 +70,16 @@
     </aop:config>
 
 
+    <bean id="helloworld" class="com.mamh.spring.demo.beans.HelloWorld">
+        <property name="name" value="sdflajldfkjaldkfjadsf"/>
+    </bean>
+    <bean id="person" class="com.mamh.spring.demo.beans.Person">
+        <property name="name" value="spring xxx"/>
+    </bean>
+
+
+    <!-- spring 整合struts2  是IOC容器来管理struts2的Action -->
+
+
+
 </beans>

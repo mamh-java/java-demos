@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <!--
+        package 配置个包。name可以随便起。extends是继承struts-default.xml 中配置的一个package的name
+        namespace 命名空间，默认是/。如果是/java 调用url时候需要加上/java了。
+    -->
+    <package name="com.mamh.struts2.demo" extends="struts-default" namespace="/">
+        <!--
+            配置一个action
+                class 的默认值 struts-default.xml 中有个默认的 <default-class-ref class="com.opensymphony.xwork2.ActionSupport" />
+                里面有个默认的方法execute()
+                public String input() throws Exception {
+                    return "input";
+                }
+
+                public String execute() throws Exception {
+                    return "success";
+                }
+
+                method的默认值是success。
+
+               <result>表示action方法执行后可能返回的一个结果。一个action节点可以有多个result节点。多个result使用name来区分。
+               name和action的方法的返回值对应。默认是“success”
+               type是结果类型，默认是转发。
+        -->
+        <action name="product-input">
+            <result name="success" type="dispatcher">/WEB-INF/pages/input.jsp</result>
+        </action>
+
+
+
+        <action name="product-save" class="com.mamh.struts2.demo.Product" method="save">
+            <result name="success">/WEB-INF/pages/details.jsp</result>
+        </action>
+    </package>
+</struts>

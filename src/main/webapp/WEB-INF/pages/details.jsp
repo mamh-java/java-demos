@@ -1,20 +1,21 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" %>
 
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
 <html>
 <body>
 
 
-productID: ${requestScope.product.id}
+productID: ${id}
 <br/>
 
-productName : ${requestScope.product.name}
+productName : ${name}
 <br/>
 
-productDesc: ${requestScope.product.desc}
+productDesc: ${desc}
 <br/>
 
-productPrice: ${requestScope.product.price}
+productPrice: ${price}
 <br/>
 
 

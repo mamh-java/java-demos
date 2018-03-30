@@ -7,11 +7,12 @@
 
 
     <filter>
-        <filter-name>filterDispacter</filter-name>
-        <filter-class>com.mamh.struts2.demo.FilterDispacter</filter-class>
+        <filter-name>strutsPrepareAndExecuteFilter</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
     </filter>
+
     <filter-mapping>
-        <filter-name>filterDispacter</filter-name>
-        <url-pattern>*.action</url-pattern>
+        <filter-name>strutsPrepareAndExecuteFilter</filter-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
 </web-app>

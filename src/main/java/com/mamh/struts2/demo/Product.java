@@ -1,19 +1,14 @@
 package com.mamh.struts2.demo;
 
 public class Product {
+    /**
+     * 这些成员变量名称和form表单中的要一致 .真正对应的是和setter方法对应。
+     */
     private int id;
     private String name;
     private String desc;
     private String price;
 
-    public Product() {
-    }
-
-    public Product(String name, String desc, String price) {
-        this.name = name;
-        this.desc = desc;
-        this.price = price;
-    }
 
     public int getId() {
         return id;
@@ -55,5 +50,10 @@ public class Product {
                 ", desc='" + desc + '\'' +
                 ", price='" + price + '\'' +
                 '}';
+    }
+
+    public String save() throws Exception {
+        System.out.println("save() in class Product......." + this);
+        return "success";
     }
 }

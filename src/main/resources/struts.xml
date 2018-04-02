@@ -44,7 +44,9 @@
         <action name="testAware" class="com.mamh.struts2.demo.TestAwareAction" method="execute">
             <result name="success">/WEB-INF/pages/aware.jsp</result>
         </action>
-
+        <action name="testServletAware" class="com.mamh.struts2.demo.TestServletAwareAction" method="execute">
+            <result name="success">/WEB-INF/pages/aware.jsp</result>
+        </action>
 
     </package>
 </struts>

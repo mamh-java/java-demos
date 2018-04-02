@@ -6,6 +6,8 @@
 <a href="product-input.action"> product input</a>
 <br/>
 <a href="testAware.action"> testAware.action</a>
+<br/>
+<a href="testServletAware.action"> testServletAware.action</a>
 
 
 <%

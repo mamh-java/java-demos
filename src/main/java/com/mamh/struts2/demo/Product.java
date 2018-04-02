@@ -1,7 +1,6 @@
 package com.mamh.struts2.demo;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.config.entities.ActionConfig;
 import org.apache.struts2.dispatcher.HttpParameters;
 
 import java.util.Map;

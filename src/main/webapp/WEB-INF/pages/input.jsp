@@ -1,3 +1,4 @@
+<%@ page import="java.util.Date" %>
 <html>
 <body>
 <form action="product-save.action" method="post">
@@ -13,6 +14,7 @@
 
     <input type="submit" value="Submit">
 </form>
+
 
 </body>
 </html>

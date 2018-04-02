@@ -19,5 +19,7 @@ productPrice: ${price}
 <br/>
 
 
+${applicationScope.applicationKey}
+
 </body>
 </html>

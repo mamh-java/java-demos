@@ -37,5 +37,12 @@
         <action name="product-save" class="com.mamh.struts2.demo.Product" method="save">
             <result name="success">/WEB-INF/pages/details.jsp</result>
         </action>
+
+
+
+
+
+
+
     </package>
 </struts>

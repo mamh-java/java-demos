@@ -3,13 +3,11 @@
 
 <html>
 <body>
-
-<h1>login success.jsp</h1>
+<h1>logout success.jsp</h1>
 
 <br/>
 
-welcome: ${sessionScope.username}
-
+<a href="logout.do">logout</a>
 
 </body>
 </html>

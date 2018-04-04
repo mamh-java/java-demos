@@ -4,7 +4,10 @@
 <html>
 <body>
 
-<a href="login-ui.do">login 登陆页面</a>
+<a href="testResult.action?number=4">test result action</a>
+
+
+
 
 
 </body>

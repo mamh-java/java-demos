@@ -33,5 +33,26 @@
             <result name="success">/logout-success.jsp</result>
         </action>
 
+
+        <action name="testResult" class="com.mamh.struts2.demo.TestResultAction" method="execute">
+            <!--
+              可以有多个result，result代表action方法执行后可能去的目的地。
+
+              result有2个属性，一个是name，一个是type。
+              type有
+              dispatcher，        转发。 这个不能转发到一个action的。
+              redirect，         重定向。
+              redirectAction，   重定向到一个action。
+              chain              转发到一个action
+            -->
+
+            <result name="success" type="dispatcher">login-success.jsp</result>
+            <result name="index" type="redirect">index.jsp</result>
+            <result name="login" type="redirectAction">
+                <param name="actionName">login-ui</param>
+                <param name="namespace">/</param>
+            </result>
+            <result name="logout" type="chain">logout</result>
+        </action>
     </package>
 </struts>

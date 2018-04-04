@@ -21,6 +21,7 @@ public class UserAction implements SessionAware, ApplicationAware {
 
         ((SessionMap) sessionMap).invalidate();
 
+        System.out.println("user action: logout().....");
         return "success";
     }
 

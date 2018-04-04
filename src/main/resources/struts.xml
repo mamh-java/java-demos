@@ -5,54 +5,19 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
-    <!--
-    ### Used by the DefaultActionMapper
-    ### You may provide a comma separated list, e.g. struts.action.extension=action,jnlp,do
-    ### The blank extension allows you to match directory listings as well as pure action names
-    ### without interfering with static resources, which can be specified as an empty string
-    ### prior to a comma e.g. struts.action.extension=, or struts.action.extension=x,y,z,,
-    struts.action.extension=action,,
-    -->
-    <constant name="struts.action.extension" value="action,do,"/>
-
 
     <!--
         package 配置个包。name可以随便起。extends是继承struts-default.xml 中配置的一个package的name
         namespace 命名空间，默认是/。如果是/java 调用url时候需要加上/java了。
     -->
     <package name="com.mamh.struts2.demo" extends="struts-default" namespace="/">
-        <action name="login-ui">
-            <result>/login.jsp</result>
-        </action>
 
-        <action name="user-login" class="com.mamh.struts2.demo.UserAction" method="execute">
-            <result name="success">/login-success.jsp</result>
-        </action>
-
-        <action name="logout" class="com.mamh.struts2.demo.UserAction" method="logout">
-            <result name="success">/logout-success.jsp</result>
+        <action name="UserAction-*" class="com.mamh.struts2.demo.UserAction" method="{1}">
+            <result name="{1}-success">index.jsp</result>
+            <!--总结：在struts2.3之前的版本，正常的配置就可以了，但在struts2.3版本之后，使用通配符调用方法时，内部会验证是否允许访问该方法，所以要加上<allowed-methods>方法名1，方法名2…</allowed-methods>代码。-->
+            <allowed-methods>query,update,save,delete</allowed-methods>
         </action>
 
 
-        <action name="testResult" class="com.mamh.struts2.demo.TestResultAction" method="execute">
-            <!--
-              可以有多个result，result代表action方法执行后可能去的目的地。
-
-              result有2个属性，一个是name，一个是type。
-              type有
-              dispatcher，        转发。 这个不能转发到一个action的。
-              redirect，         重定向。
-              redirectAction，   重定向到一个action。
-              chain              转发到一个action
-            -->
-
-            <result name="success" type="dispatcher">login-success.jsp</result>
-            <result name="index" type="redirect">index.jsp</result>
-            <result name="login" type="redirectAction">
-                <param name="actionName">login-ui</param>
-                <param name="namespace">/</param>
-            </result>
-            <result name="logout" type="chain">logout</result>
-        </action>
     </package>
 </struts>

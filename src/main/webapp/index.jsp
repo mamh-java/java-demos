@@ -3,9 +3,11 @@
 
 <html>
 <body>
+<a href="UserAction-query.action">query</a><br/><br/>
 
-<a href="testResult.action?number=4">test result action</a>
-
+<a href="UserAction-save.action">save</a><br/><br/>
+<a href="UserAction-update.action">update</a><br/><br/>
+<a href="UserAction-delete.action">delete</a><br/><br/>
 
 
 

@@ -1,20 +1,11 @@
-<%@ page import="java.util.Date" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
 <html>
 <body>
-<a href="product-execute.action"> product execute</a>
-<br/>
-<a href="product-input.action"> product input</a>
-<br/>
-<a href="testAware.action"> testAware.action</a>
-<br/>
-<a href="testServletAware.action"> testServletAware.action</a>
+
+<a href="login-ui.do">login 登陆页面</a>
 
 
-<%
-    if (application.getAttribute("date") == null) {
-        application.setAttribute("date", new Date());
-    }
-    request.setAttribute("req", "reqvalue");
-%>
 </body>
 </html>

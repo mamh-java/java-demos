@@ -1,12 +1,8 @@
 package com.mamh.struts2.demo;
 
-import com.opensymphony.xwork2.ActionContext;
-import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.dispatcher.HttpParameters;
+import org.apache.struts2.interceptor.RequestAware;
+import org.apache.struts2.interceptor.SessionAware;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
@@ -18,7 +14,7 @@ import java.util.Map;
  * <p>
  * 实现 xxxAware接口
  */
-public class Product {
+public class Product implements RequestAware, SessionAware {
     /**
      * 这些成员变量名称和form表单中的要一致 .真正对应的是和setter方法对应。
      */
@@ -26,7 +22,8 @@ public class Product {
     private String name;
     private String desc;
     private String price;
-
+    private Map<String, Object> requestMap;
+    private Map<String, Object> sessionMap;
 
     public int getId() {
         return id;
@@ -70,43 +67,19 @@ public class Product {
                 '}';
     }
 
-    public String save() throws Exception {
-        System.out.println("save() in class Product......." + this);
-        //获取ActionContext对象
-        ActionContext actionContext = ActionContext.getContext();
 
+    public void setRequest(Map<String, Object> request) {
+        this.requestMap = request;
+    }
 
-        //获取application对应的map。添加属性。
-        Map<String, Object> applicationMap = actionContext.getApplication();
-        applicationMap.put("applicationKey", "applicationValue");
-
-
-        //获取session
-        Map<String, Object> sessionMap = actionContext.getSession();
-        System.out.println(sessionMap);
-
-        //获取request
-        Map<String, Object> requestMap = (Map<String, Object>) actionContext.get("request");
-        System.out.println(requestMap);
-
-
-        //获取请求参数
-        HttpParameters parameters = actionContext.getParameters();
-        System.out.println(parameters);
-
-
-        return "success";
+    public void setSession(Map<String, Object> session) {
+        this.sessionMap = session;
     }
 
 
-    public String execute() {
-        HttpServletRequest request = ServletActionContext.getRequest();
-        HttpSession session = request.getSession();
-        ServletContext servletContext = ServletActionContext.getServletContext();
+    public String save() {
 
-        System.out.println("xxxxxxxxxxxxxx");
-        System.out.println(session);
-        System.out.println(servletContext);
+        System.out.println("save..............");
 
         return "success";
     }

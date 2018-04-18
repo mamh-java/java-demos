@@ -6,18 +6,18 @@
 
 <struts>
 
+    <constant name="struts.devMode" value="true"/>
+
+
     <!--
         package 配置个包。name可以随便起。extends是继承struts-default.xml 中配置的一个package的name
         namespace 命名空间，默认是/。如果是/java 调用url时候需要加上/java了。
     -->
     <package name="com.mamh.struts2.demo" extends="struts-default" namespace="/">
 
-        <action name="UserAction-*" class="com.mamh.struts2.demo.UserAction" method="{1}">
-            <result name="{1}-success">index.jsp</result>
-            <!--总结：在struts2.3之前的版本，正常的配置就可以了，但在struts2.3版本之后，使用通配符调用方法时，内部会验证是否允许访问该方法，所以要加上<allowed-methods>方法名1，方法名2…</allowed-methods>代码。-->
-            <allowed-methods>query,update,save,delete</allowed-methods>
+        <action name="product-save" method="save" class="com.mamh.struts2.demo.Product">
+            <result name="success">details.jsp</result>
         </action>
-
 
     </package>
 </struts>

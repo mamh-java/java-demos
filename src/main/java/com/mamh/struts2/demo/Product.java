@@ -25,6 +25,16 @@ public class Product implements RequestAware, SessionAware {
     private Map<String, Object> requestMap;
     private Map<String, Object> sessionMap;
 
+    public Product() {
+    }
+
+    public Product(int id, String name, String desc, String price) {
+        this.id = id;
+        this.name = name;
+        this.desc = desc;
+        this.price = price;
+    }
+
     public int getId() {
         return id;
     }

@@ -19,5 +19,8 @@
             <result name="success">details.jsp</result>
         </action>
 
+        <action name="user-save" method="save" class="com.mamh.struts2.demo.UserAction">
+            <result name="input">index.jsp</result>
+        </action>
     </package>
 </struts>

@@ -8,19 +8,10 @@
 
     <constant name="struts.devMode" value="true"/>
 
-
-    <!--
-        package 配置个包。name可以随便起。extends是继承struts-default.xml 中配置的一个package的name
-        namespace 命名空间，默认是/。如果是/java 调用url时候需要加上/java了。
-    -->
     <package name="com.mamh.struts2.demo" extends="struts-default" namespace="/">
-
-        <action name="product-save" method="save" class="com.mamh.struts2.demo.Product">
-            <result name="success">details.jsp</result>
+        <action name="emp-*" class="com.mamh.struts2.demo.Employee" method="{1}">
+            <result name="{1}">/emp-{1}.jsp</result>
         </action>
 
-        <action name="user-save" method="save" class="com.mamh.struts2.demo.UserAction">
-            <result name="input">index.jsp</result>
-        </action>
     </package>
 </struts>

@@ -1,93 +1,51 @@
 package com.mamh.struts2.demo;
 
-import org.apache.struts2.interceptor.RequestAware;
+public class Employee {
 
-import java.util.List;
-import java.util.Map;
+    private Integer employeeId;
+    private String firstName;
+    private String lastName;
+    private String email;
 
-public class Employee implements RequestAware {
-    private Map<String, Object> request;
-
-    private Dao dao = new Dao();
-
-
-    private String name;
-    private String password;
-    private String dept;
-    private List<String> role;
-    private boolean gender;
-    private String desc;
-
-
-    public String getPassword() {
-        return password;
+    public Employee() {
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public Employee(Integer employeeId, String firstName, String lastName, String email) {
+        this.employeeId = employeeId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public Integer getEmployeeId() {
+        return employeeId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public String getDept() {
-        return dept;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setDept(String dept) {
-        this.dept = dept;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public List<String> getRole() {
-        return role;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setRole(List<String> role) {
-        this.role = role;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public boolean isGender() {
-        return gender;
+    public String getEmail() {
+        return email;
     }
 
-    public void setGender(boolean gender) {
-        this.gender = gender;
+    public void setEmail(String email) {
+        this.email = email;
     }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public String input() {
-        request.put("depts", dao.getDepartments());
-        request.put("roles", dao.getRoles());
-
-        System.out.println("input......................");
-
-        return "input";
-    }
-
-
-    public String save() {
-        System.out.println("save.......................");
-
-
-        return "save";
-    }
-
-    public void setRequest(Map<String, Object> request) {
-        this.request = request;
-
-    }
-
-
 }

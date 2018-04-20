@@ -1,33 +1,52 @@
 package com.mamh.struts2.demo;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class Dao {
+    private static Map<Integer, Employee> emps = new HashMap<Integer, Employee>();
 
-    public List<Department> getDepartments() {
-        List<Department> list = new ArrayList<Department>();
-        list.add(new Department(1001, "aaaa"));
-        list.add(new Department(1002, "bbbb"));
-        list.add(new Department(1003, "cccc"));
-        list.add(new Department(1004, "dddd"));
-        list.add(new Department(1005, "eeee"));
-        list.add(new Department(1006, "ffff"));
-        return list;
+    static {
+        emps.put(1001, new Employee(1001, "mage", "s", "mage@mage.com"));
+        emps.put(1002, new Employee(1002, "bright", "ma", "bright@mage.com"));
+        emps.put(1003, new Employee(1003, "mamh", "ma", "mamh@mage.com"));
+        emps.put(1004, new Employee(1004, "java", "tim", "java@mage.com"));
+        emps.put(1005, new Employee(1005, "python2", "ji", "python@mage.com"));
+        emps.put(1006, new Employee(1006, "bash", "sh", "bash@mage.com"));
+        emps.put(1007, new Employee(1007, "zsh", "zh", "zsh@mage.com"));
+        emps.put(1008, new Employee(1008, "python3", "py", "python@mage.com"));
+        emps.put(1009, new Employee(1009, "perl", "pl", "perl@mage.com"));
     }
 
-    public List<Role> getRoles() {
-        List<Role> list = new ArrayList<Role>();
-        list.add(new Role(1001, "java"));
-        list.add(new Role(1002, "golang"));
-        list.add(new Role(1003, "mysql"));
-        list.add(new Role(1004, "bash"));
-        list.add(new Role(1005, "php"));
-        list.add(new Role(1006, "python"));
-        list.add(new Role(1007, "perl"));
-
-        return list;
+    public List<Employee> getEmployees() {
+        return new ArrayList<Employee>(emps.values());
     }
 
+
+    public void delete(Integer id) {
+        emps.remove(id);
+    }
+
+    public void save(Employee employee) {
+        Set<Integer> integers = emps.keySet();
+        Integer max = Collections.max(integers);
+
+        employee.setEmployeeId(max + 1);
+        emps.put(employee.getEmployeeId(), employee);
+    }
+
+
+    public Employee get(Integer id) {
+        return emps.get(id);
+    }
+
+
+    public void update(Employee employee) {
+        emps.put(employee.getEmployeeId(), employee);
+    }
 
 }

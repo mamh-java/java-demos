@@ -10,22 +10,10 @@
 
 
     <package name="com.mamh.struts2.demo" extends="struts-default" namespace="/">
-        <default-interceptor-ref name="paramsPrepareParamsStack"/>
-        <action name="emp-*" class="com.mamh.struts2.demo.EmployeeAction" method="{1}">
-            <result name="{1}">emp-{1}.jsp</result>
 
-
-            <result name="delete" type="redirectAction">emp-list</result>
-            <result name="save" type="redirectAction">emp-list</result>
-
-        </action>
-
-        <action name="emp-edit" class="com.mamh.struts2.demo.EmployeeAction" method="edit">
-            <result name="edit">emp-edit.jsp</result>
-        </action>
-
-        <action name="emp-update" class="com.mamh.struts2.demo.EmployeeAction" method="update">
-            <result name="update" type="redirectAction">emp-list</result>
+        <action name="testCoversion" class="com.mamh.struts2.demo.CoversionAction">
+            <result name="input">/index.jsp</result>
+            <result>/success.jsp</result>
         </action>
     </package>
 

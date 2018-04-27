@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- 配置hibernate的基本属性 -->
+        <!-- 数据源配置到ioc容器中，所以此处不在需要配置数据源-->
+        <!-- 关联*.hbm.xml 也在ioc容器配置sessionfactory实例 -->
+
+        <!-- 这里只做一些基本的配置，方言，sql显示及格式化，生成数据表的策略，二级缓存-->
+
+
+
+    </session-factory>
+</hibernate-configuration>

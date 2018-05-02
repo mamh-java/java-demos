@@ -1,8 +1,7 @@
 <html>
 <body>
-<h2>Hello World!</h2>
 
-<a href="person-save">person save action</a>
+<a href="helloworld">helloworld</a>
 
 
 </body>

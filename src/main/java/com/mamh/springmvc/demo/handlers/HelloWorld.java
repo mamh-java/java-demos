@@ -1,5 +1,6 @@
 package com.mamh.springmvc.demo.handlers;
 
+import com.mamh.springmvc.demo.entities.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HelloWorld {
 
+    @RequestMapping("/testPOJO")
+    private String testPOJO(User user) {
+        System.out.println("hellow world.....testPOJO..." + user);
+        return "success";
+    }
 
     @RequestMapping("/testCookieValue")
     private String testCookieValue(@CookieValue(value = "JSESSIONID") String c) {

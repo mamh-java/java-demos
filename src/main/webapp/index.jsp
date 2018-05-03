@@ -1,29 +1,17 @@
 <html>
 <body>
 
-<a href="helloworld">helloworld</a>
-<br><br><br><br><br><br>
+<form action="/springmvc/testPOJO" method="post">
+    username: <input type="text" name="username"/><br/>
+    password: <input type="text" name="password"/><br/>
+    email: <input type="text" name="email"/><br/>
+    age: <input type="text" name="age"/><br/> <br/>
+    city: <input type="text" name="address.city"/><br/>
+    province: <input type="text" name="address.province"/><br/> <br/>
 
-
-
-<form action="springmvc/testREST/1" method="post">
-    <input type="hidden" name="_method" value="PUT"/>
-    <input type="submit" value="TestRest PUT"/>
+    <input type="submit" value="Submit"/>
 </form>
-<br><br>
 
-<form action="springmvc/testREST/1" method="post">
-    <input type="hidden" name="_method" value="DELETE"/>
-    <input type="submit" value="TestRest DELETE"/>
-</form>
-<br><br>
 
-<form action="springmvc/testREST" method="post">
-    <input type="submit" value="TestRest POST"/>
-</form>
-<br><br>
-
-<a href="springmvc/testREST/1">Test Rest Get</a>
-<br><br>
 </body>
 </html>

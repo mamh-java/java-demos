@@ -1,13 +1,37 @@
 package com.mamh.springmvc.demo.handlers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RequestMapping("/springmvc")
 @Controller
 public class HelloWorld {
+
+
+    @RequestMapping("/testCookieValue")
+    private String testCookieValue(@CookieValue(value = "JSESSIONID") String c) {
+        System.out.println("hellow world.....testCookieValue....CookieValue =  " + c);
+        return "success";
+    }
+
+    @RequestMapping("/testRequestHeader")
+    private String testRequestHeader(@RequestHeader(value = "Accept-Language") String al) {
+        System.out.println("hellow world.....testRequestHeader............\"Accept-Language\" = " + al);
+        return "success";
+    }
+
+
+    @RequestMapping("/testRequestParam")
+    private String testRequestParam(@RequestParam(value = "username") String username,
+                                    @RequestParam(value = "password", required = false, defaultValue = "0") String password) {
+        System.out.println("hellow world....testRequestParam..............username = " + username + "  password = " + password);
+        return "success";
+    }
 
 
     /**
@@ -18,19 +42,14 @@ public class HelloWorld {
      */
     @RequestMapping("/helloworld")
     private String hello() {
-
         System.out.println("hellow world...................");
-
         return "success";
     }
 
     @RequestMapping(value = "/testMethod", method = RequestMethod.POST)
     private String testMethod() {
         System.out.println("hellow world....testMethod...............");
-
-
         return "success";
-
     }
 
 

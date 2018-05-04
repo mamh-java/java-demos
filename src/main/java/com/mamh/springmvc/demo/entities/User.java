@@ -1,12 +1,32 @@
 package com.mamh.springmvc.demo.entities;
 
 public class User {
+    private int id;
     private String username;
     private String password;
     private String email;
     private int age;
     private Address address;
 
+    public User() {
+    }
+
+    public User(int id, String username, String password, String email, int age, Address address) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.age = age;
+        this.address = address;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -50,12 +70,13 @@ public class User {
 
     @Override
     public String toString() {
-        return "\nUser{" +
-                "username='" + username + '\'' +
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", age=" + age +
                 ", address=" + address +
-                '}' + '\n';
+                '}';
     }
 }

@@ -9,13 +9,6 @@
 
 
 <br/><br/>
-
-${requestScope.user}, ${sessionScope.user}
-
-<br/><br/>
-${sessionScope.string1}, ${sessionScope.int1}
-
-<br/><br/>
 <br/><br/>
 <br/><br/>
 <br/><br/>

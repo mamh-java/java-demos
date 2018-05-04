@@ -8,10 +8,34 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-@RequestMapping("/springmvc")
+import java.util.Map;
+
+
 @Controller
+@RequestMapping("/springmvc")
+@SessionAttributes(value = {"user"}, types = {Integer.class,String.class, User.class})
 public class HelloWorld {
+
+    @RequestMapping("/testSessionAttributes")
+    public String testSessionAttributes(Map<String, Object> map) {
+        User user = new User();
+        user.setAge(123);
+        user.setUsername("Tom");
+        user.setEmail("123@mm.com");
+        user.setPassword("123456");
+        map.put("user", user);
+        //默认这个是放到request里面的
+
+        //可以在类上加上 @SessionAttributes(value = {"user"}, types = {Integer.class,String.class, User.class})
+        //来把map中对应的类型的,或者对应键值的 对象也放到session中取
+        map.put("string1", "xxxxxxxxxxxxxxxxxxx this is a stirng ....");
+        map.put("int1", 123321);
+
+        return "success";
+    }
+
 
     @RequestMapping("/testPOJO")
     private String testPOJO(User user) {

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- 配置hibernate的基本属性 -->
+        <!-- 数据源配置到ioc容器中，所以此处不在需要配置数据源-->
+        <!-- 关联*.hbm.xml 也在ioc容器配置sessionfactory实例 -->
+
+        <!-- 这里只做一些基本的配置，方言，sql显示及格式化，生成数据表的策略，二级缓存-->
+
+        <!-- 配置数据库的方言 -->
+        <!--<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>-->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <!--<property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>-->
+
+        <!--是否打印sql语句-->
+        <property name="hibernate.show_sql">true</property>
+
+        <!--是否对sql语句格式化-->
+        <property name="hibernate.format_sql">true</property>
+
+        <!--指定自动生成数据库表的策略，有4个值-->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+
+
+
+
+    </session-factory>
+</hibernate-configuration>

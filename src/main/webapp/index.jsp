@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <html>
 <body>
 
@@ -10,6 +13,14 @@
 
     <input type="submit" value="Submit"/>
 </form>
+
+<br/><br/>
+<fmt:bundle basename="i18n">
+    <fmt:message key="i18n.username"/> <br/><br/>
+
+
+    <fmt:message key="i18n.passowrd"/> <br/><br/>
+</fmt:bundle>
 
 
 </body>

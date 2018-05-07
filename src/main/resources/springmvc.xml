@@ -29,9 +29,9 @@
     </bean>
 
     <!-- 配置直接转发的页面，可以直接配置转发的页面，而不需要经过handler方法 -->
-    <mvc:view-controller path="/success" view-name="success"/>
+    <mvc:view-controller path="/list" view-name="success"/>
 
     <mvc:annotation-driven/>
 
-
+    <mvc:default-servlet-handler/>
 </beans>

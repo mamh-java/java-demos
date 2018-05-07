@@ -16,17 +16,28 @@ import java.util.Map;
 @Controller
 @RequestMapping("/springmvc")
 public class HelloWorld {
+    @RequestMapping("/testForward")
+    public String testForward() {
+        System.out.println("testForward");
+        return "forward:/index.jsp";
+    }
+
+    @RequestMapping("/testRedirect")
+    public String testRedirect() {
+        System.out.println("testRedirect");
+        return "redirect:/index.jsp";
+    }
 
     @RequestMapping("/testHelloView")
-    public String testHelloView(){
+    public String testHelloView() {
         System.out.println("testHelloView");
-
         return "helloView";
     }
 
 
     /**
      * 次handler没有包含@SessionAttributes注解，
+     *
      * @param id
      * @param map
      */
@@ -34,7 +45,6 @@ public class HelloWorld {
     public void getUser(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> map) {
         if (id != null) {
             User user = new User(1, "tom", "123456", "tom@123.com", 12, null);
-
             System.out.println("从数据库获取一个对象" + user);
             map.put("abc", user);
         }

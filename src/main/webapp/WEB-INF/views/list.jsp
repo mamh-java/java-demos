@@ -36,6 +36,9 @@
     </table>
 </c:if>
 
+<br/>
+<a href="/emp">Add new Employee.........</a>
+
 
 </body>
 </html>

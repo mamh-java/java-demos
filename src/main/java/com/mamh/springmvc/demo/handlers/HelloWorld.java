@@ -17,6 +17,14 @@ import java.util.Map;
 @RequestMapping("/springmvc")
 public class HelloWorld {
 
+    @RequestMapping("/testHelloView")
+    public String testHelloView(){
+        System.out.println("testHelloView");
+
+        return "helloView";
+    }
+
+
     /**
      * 次handler没有包含@SessionAttributes注解，
      * @param id

@@ -2,7 +2,7 @@
 
 <html>
 <body>
-<a href="/list">List All Employees</a>
+<a href="/emps">List All Employees</a>
 <br><br>
 
 

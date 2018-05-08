@@ -15,7 +15,18 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/springmvc")
-public class HelloWorld {
+public class SpringMvcTest {
+
+
+
+
+
+
+
+
+
+
+
     @RequestMapping("/testForward")
     public String testForward() {
         System.out.println("testForward");

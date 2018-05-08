@@ -31,7 +31,16 @@
     <!-- 配置直接转发的页面，可以直接配置转发的页面，而不需要经过handler方法 -->
     <mvc:view-controller path="/list" view-name="success"/>
 
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven conversion-service="conversionServiceFactoryBean"/>
 
     <mvc:default-servlet-handler/>
+
+    <!-- 配置conversion service -->
+    <bean class="org.springframework.context.support.ConversionServiceFactoryBean" id="conversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <ref bean="employeeConverter"/>
+            </set>
+        </property>
+    </bean>
 </beans>

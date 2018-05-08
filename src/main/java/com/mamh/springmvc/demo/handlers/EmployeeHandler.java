@@ -22,6 +22,13 @@ public class EmployeeHandler {
     @Autowired
     private DepartmentDao departmentDao;
 
+    @RequestMapping("/testConverter")
+    public String testConverter(@RequestParam("employee") Employee employee) {
+        System.out.println("testConverter......." + employee);
+        employeeDao.save(employee);
+        return "emps";
+    }
+
 
     @ModelAttribute
     public void getEmployee(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> map) {

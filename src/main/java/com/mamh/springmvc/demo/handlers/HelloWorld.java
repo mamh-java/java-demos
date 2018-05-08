@@ -43,6 +43,7 @@ public class HelloWorld {
      */
     @ModelAttribute
     public void getUser(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> map) {
+        System.out.println("@ModelAttribute getUser " + id);
         if (id != null) {
             User user = new User(1, "tom", "123456", "tom@123.com", 12, null);
             System.out.println("从数据库获取一个对象" + user);

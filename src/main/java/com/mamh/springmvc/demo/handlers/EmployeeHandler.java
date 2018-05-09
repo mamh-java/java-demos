@@ -5,6 +5,8 @@ import com.mamh.springmvc.demo.dao.EmployeeDao;
 import com.mamh.springmvc.demo.entities.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,12 @@ public class EmployeeHandler {
 
     @Autowired
     private DepartmentDao departmentDao;
+
+    @InitBinder
+    public void initBinder(WebDataBinder webDataBinder){
+        webDataBinder.setDisallowedFields("lastName");
+    }
+
 
     @RequestMapping("/testConverter")
     public String testConverter(@RequestParam("employee") Employee employee) {

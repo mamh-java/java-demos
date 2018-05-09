@@ -41,7 +41,6 @@ command 的表单 bean，如果该属性值也不存在，则会
     %>
     Gender: <form:radiobuttons path="gender" items="${genders}"/> <br/>
 
-    Birth: <form:input path="birth"/><br/>
 
     Department: <form:select path="department.id" items="${departments}" itemLabel="departmentName" itemValue="id"/>
     <br/>

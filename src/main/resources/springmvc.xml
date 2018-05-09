@@ -36,7 +36,9 @@
     <mvc:default-servlet-handler/>
 
     <!-- 配置conversion service -->
-    <bean class="org.springframework.context.support.ConversionServiceFactoryBean" id="conversionServiceFactoryBean">
+    <bean id="conversionServiceFactoryBean"
+          class="org.springframework.format.support.FormattingConversionServiceFactoryBean"
+    >
         <property name="converters">
             <set>
                 <ref bean="employeeConverter"/>

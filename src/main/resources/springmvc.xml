@@ -31,7 +31,7 @@
     <!-- 配置直接转发的页面，可以直接配置转发的页面，而不需要经过handler方法 -->
     <mvc:view-controller path="/list" view-name="success"/>
 
-    <mvc:annotation-driven conversion-service="conversionServiceFactoryBean"/>
+    <mvc:annotation-driven/>
 
     <mvc:default-servlet-handler/>
 

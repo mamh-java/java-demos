@@ -8,12 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Map;
 
 @Controller
@@ -26,11 +28,19 @@ public class EmployeeHandler {
     private DepartmentDao departmentDao;
 
     @ResponseBody
-    @RequestMapping("/testJson")
-    public Collection<Employee> testJson( ) {
-        System.out.println("testJson......." );
+    @RequestMapping("/testHttpMessageConverter")
+    public String testHttpMessageConverter(@RequestBody String body) {
+        System.out.println("testHttpMessageConverter.......\n" + body + "\n\n");
 
-        return  employeeDao.getAll();
+        return "hello world! " + new Date();
+    }
+
+    @ResponseBody
+    @RequestMapping("/testJson")
+    public Collection<Employee> testJson() {
+        System.out.println("testJson.......");
+
+        return employeeDao.getAll();
     }
 
     @RequestMapping("/testConverter")

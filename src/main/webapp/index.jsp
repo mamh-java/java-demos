@@ -28,8 +28,11 @@
 <body>
 
 
-<a href="/testJson" id="testJson">test json</a>
+<form action="/testHttpMessageConverter" method="post" >
+    <input id="name" name="name" type="text"/>
 
+    <input type="submit" value="submit"/>
+</form>
 
 </body>
 </html>

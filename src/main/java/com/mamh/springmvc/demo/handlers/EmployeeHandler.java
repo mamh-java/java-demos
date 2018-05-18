@@ -3,7 +3,9 @@ package com.mamh.springmvc.demo.handlers;
 import com.mamh.springmvc.demo.dao.DepartmentDao;
 import com.mamh.springmvc.demo.dao.EmployeeDao;
 import com.mamh.springmvc.demo.entities.Employee;
+import org.hibernate.boot.jaxb.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
+import java.util.SortedMap;
 
 @Controller
 public class EmployeeHandler {
@@ -26,6 +30,22 @@ public class EmployeeHandler {
 
     @Autowired
     private DepartmentDao departmentDao;
+
+
+    @Autowired
+    private ResourceBundleMessageSource messageSource;
+
+    @RequestMapping("/testFileUpload")
+    public String testFileUpload(@RequestParam(value = "desc", required = false) String desc,
+                                 @RequestParam(value = "file", required = false) MultipartFile file) {
+        System.out.println("testFileUpload.......\n");
+        System.out.println("desc: " + desc);
+        System.out.println("filename: " + file.getOriginalFilename());
+        System.out.println("filesize: " + file.getSize());
+
+        return "success";
+    }
+
 
     @ResponseBody
     @RequestMapping("/testHttpMessageConverter")

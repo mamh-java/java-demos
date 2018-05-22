@@ -53,4 +53,14 @@
     </bean>
 
 
+    <mvc:interceptors>
+        <!-- 配置自定义拦截器 -->
+        <bean id="firstInterceptor" class="com.mamh.springmvc.demo.interceptor.FirstInterceptor"/>
+
+        <mvc:interceptor>
+            <mvc:mapping path="/emps"/>
+            <bean class="com.mamh.springmvc.demo.interceptor.SecondInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>

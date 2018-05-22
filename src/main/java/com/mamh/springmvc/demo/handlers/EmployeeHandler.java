@@ -75,7 +75,6 @@ public class EmployeeHandler {
     public void getEmployee(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> map) {
         //这个ID应该是post表单中传过来的。 这个方法作用到update（）方法之前，这个时候能获得ID的，然后从数据库中获得这个id对应的employee对象。
         //然后把它放到map中，键名是类名第一个字母小写。然后在update（Employee employee）方法中就能得到入参
-        System.out.println("ModelAttribute getEmployee " + id);
         if (id != null) {
             map.put("employee", employeeDao.get(id));
         }

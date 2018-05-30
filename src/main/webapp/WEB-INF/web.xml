@@ -5,6 +5,7 @@
          id="WebApp_ID" version="2.5">
 
 
+    <!-- 把delete 请求和put请求转换为post请求 -->
     <filter>
         <filter-name>hiddenHttpMethodFilter</filter-name>
         <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>

@@ -3,20 +3,73 @@ package com.mamh.springmvc.demo.handlers;
 import com.mamh.springmvc.demo.entities.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.Map;
 
 
 @Controller
 @RequestMapping("/springmvc")
-@SessionAttributes(value = {"user"}, types = {Integer.class,String.class, User.class})
-public class HelloWorld {
+public class SpringMvcTest {
+
+
+
+
+
+
+
+
+
+
+
+    @RequestMapping("/testForward")
+    public String testForward() {
+        System.out.println("testForward");
+        return "forward:/index.jsp";
+    }
+
+    @RequestMapping("/testRedirect")
+    public String testRedirect() {
+        System.out.println("testRedirect");
+        return "redirect:/index.jsp";
+    }
+
+    @RequestMapping("/testHelloView")
+    public String testHelloView() {
+        System.out.println("testHelloView");
+        return "helloView";
+    }
+
+
+    /**
+     * 次handler没有包含@SessionAttributes注解，
+     *
+     * @param id
+     * @param map
+     */
+    @ModelAttribute
+    public void getUser(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> map) {
+        System.out.println("@ModelAttribute getUser " + id);
+        if (id != null) {
+            User user = new User(1, "tom", "123456", "tom@123.com", 12, null);
+            System.out.println("从数据库获取一个对象" + user);
+            map.put("abc", user);
+        }
+    }
+
+    @RequestMapping("/testModelAttribute")
+    public String testModelAttribute(@ModelAttribute(value = "abc") User user) {
+        System.out.println("testModelAttribute=== " + user);
+
+
+        return "success";
+    }
+
 
     @RequestMapping("/testSessionAttributes")
     public String testSessionAttributes(Map<String, Object> map) {

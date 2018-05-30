@@ -1,17 +1,18 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
+<head>
+
+</head>
 <body>
 
-<form action="/springmvc/testPOJO" method="post">
-    username: <input type="text" name="username"/><br/>
-    password: <input type="text" name="password"/><br/>
-    email: <input type="text" name="email"/><br/>
-    age: <input type="text" name="age"/><br/> <br/>
-    city: <input type="text" name="address.city"/><br/>
-    province: <input type="text" name="address.province"/><br/> <br/>
-
+<form action="testFileUpload" method="POST" enctype="multipart/form-data">
+    File: <input type="file" name="file"/>
+    Desc: <input type="text" name="desc"/>
     <input type="submit" value="Submit"/>
 </form>
 
+<br><br>
 
 </body>
 </html>

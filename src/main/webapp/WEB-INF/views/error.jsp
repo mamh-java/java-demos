@@ -2,12 +2,12 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>Error</title>
 </head>
 <body>
-        <h2>success Hello World!</h2>
+        <h2>Error  Hello World!</h2>
 
-
+        ${exception}
 <br/><br/>
 <br/><br/>
 <br/><br/>

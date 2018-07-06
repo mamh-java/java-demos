@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.cil.proto";
+option java_outer_classname = "SendProto";
+package pb;
+
+// Trans service definition
+service SendService {
+  rpc Send (SendRequest) returns (SendResponse) {}
+}
+
+// The request trans message definition
+message SendRequest {
+    string msgSrc=1;
+    string inscd=2;
+    string groupCode=3;
+    string msgType=4;
+    string orderAmt=5;
+    string discountAmt=6;
+    string merCode=7;
+    string merName=8;
+    string cardBrand=9;
+    string txnType=10;
+    string orderNum=11;
+    string transTime=12;
+    string transCurr=13;
+    string subOpenid=14;
+    string subAppid=15;
+    string settFlag=16;
+    string checkCode=17;
+    string origTxnType=18;
+    string termCode=19;
+    string chanOrderNum=20;
+    string origOrderNum=21;
+    string attach=22;
+    string merDiscount=23;
+    string chcdDiscount=24;
+    string outOrderNum=25;
+    string respcd=26;
+    string recvInsName=27;
+    string retrivlRefNum=28;
+    string origretrivlRefNum=29;
+    string terminalid=30;
+    string respAuthCode=31;
+    string consumerAccount=32;
+    string userDef=33;
+}
+
+
+
+message SendResponse {
+  string message = 1;
+}

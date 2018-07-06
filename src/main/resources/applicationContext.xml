@@ -45,7 +45,8 @@
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>
+                <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>-->
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 
 
                 <prop key="hibernate.cache.user_second_level_cache">true</prop>
@@ -66,5 +67,5 @@
 
 
     <!-- jpa 自动扫描的包 -->
-    <jpa:repositories base-package="com.mage.sssp" entity-manager-factory-ref="transactionManager"/>
+    <jpa:repositories base-package="com.mage.sssp" entity-manager-factory-ref="entityManagerFactory"/>
 </beans>

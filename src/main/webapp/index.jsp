@@ -6,11 +6,7 @@
 </head>
 <body>
 
-<form action="testFileUpload" method="POST" enctype="multipart/form-data">
-    File: <input type="file" name="file"/>
-    Desc: <input type="text" name="desc"/>
-    <input type="submit" value="Submit"/>
-</form>
+<a href="emps">list all employee</a>
 
 <br><br>
 

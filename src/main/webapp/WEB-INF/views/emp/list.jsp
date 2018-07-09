@@ -57,7 +57,7 @@
                     <fmt:formatDate value="${emp.createTime}" pattern="yyyy-MM-dd hh:mm:ss"/>
                 </td>
                 <td>
-                    部门
+                    ${emp.department.departmentName}
                 </td>
                 <td>
                     Edit

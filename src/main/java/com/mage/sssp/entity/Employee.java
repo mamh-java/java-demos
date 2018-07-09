@@ -2,6 +2,7 @@ package com.mage.sssp.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -68,7 +69,7 @@ public class Employee {
     }
 
     @JoinColumn(name = "department_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY) //这里如果设置为lazy的话页面打开会报懒加载异常
     public Department getDepartment() {
         return department;
     }

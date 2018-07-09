@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 @Service
 public class EmployeeService {
 
@@ -31,5 +33,11 @@ public class EmployeeService {
 
         Employee employee = employeeRepository.getByLastName(lastName);
         return employee;
+    }
+
+
+    public void saveEmployee(Employee employee) {
+        employee.setCreateTime(new Date());
+        employeeRepository.saveAndFlush(employee);
     }
 }

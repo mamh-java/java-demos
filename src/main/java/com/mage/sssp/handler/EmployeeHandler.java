@@ -23,6 +23,15 @@ public class EmployeeHandler {
     private DepartmentService departmentService;
 
 
+    @RequestMapping(value = "/emp", method = RequestMethod.POST)
+    public String save(Employee employee) {
+
+        employeeService.saveEmployee(employee);
+
+        return "redirect:/emps";
+    }
+
+
     @ResponseBody  //这个很关键
     @RequestMapping(value = "/ajaxValidateLastName", method = RequestMethod.POST)
     public String validateLastName(@RequestParam(value = "lastName", required = true) String lastName) {

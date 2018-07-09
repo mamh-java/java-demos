@@ -1,5 +1,7 @@
 package com.mage.sssp.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,6 +20,8 @@ public class Employee {
     private Integer id;
     private String lastName;
     private String email;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth;
     private Date createTime;
 

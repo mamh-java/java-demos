@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
 
@@ -20,6 +21,18 @@ public class EmployeeHandler {
 
     @Autowired
     private DepartmentService departmentService;
+
+
+    @ResponseBody  //这个很关键
+    @RequestMapping(value = "/ajaxValidateLastName", method = RequestMethod.POST)
+    public String validateLastName(@RequestParam(value = "lastName", required = true) String lastName) {
+        Employee employee = employeeService.getByLastName(lastName);
+        if (employee == null) {
+            return "0";
+        }
+        return "1";
+    }
+
 
     @RequestMapping(value = "/emp", method = RequestMethod.GET)
     public String input(Map<String, Object> map) {

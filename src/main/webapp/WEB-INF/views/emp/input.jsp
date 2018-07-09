@@ -3,11 +3,36 @@
 <html>
 <head>
     <title>Title</title>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/scripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#lastName").change(function () {
+                var val = $(this).val();
+                val = $.trim(val);
+                $(this).val(val);
+
+                var url = "${pageContext.request.contextPath}/ajaxValidateLastName";
+                var args = {"lastName": val, "date": new Date()};
+
+                $.post(url, args, function (data) {
+                    if (data == "0") {
+                        alert("可以使用");
+                        console.log("ok");
+                    } else if (data == "1") {
+                        alert("不可以使用");
+                        console.log("no ok");
+
+                    }
+                });
+
+            })
+        })
+    </script>
 </head>
 <body>
 
 
-<form:form action="${pageContext}/emp" method="post" modelAttribute="employee">
+<form:form action="${pageContext.request.contextPath}/emp" method="post" modelAttribute="employee">
 
     <table border="=1" cellpadding="10" cellspacing="0">
 
@@ -15,7 +40,7 @@
             <td>
                 LastName
             </td>
-            <td><form:input path="lastName"/>
+            <td><form:input path="lastName" id="lastName"/>
             </td>
         </tr>
         <tr>

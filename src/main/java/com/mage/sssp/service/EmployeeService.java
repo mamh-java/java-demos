@@ -14,7 +14,7 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<Employee> getPage(int pageNo, int pageSize) {
 
         PageRequest pageRequest = PageRequest.of(pageNo - 1, pageSize);
@@ -23,5 +23,13 @@ public class EmployeeService {
 
 
         return all;
+    }
+
+
+    @Transactional(readOnly = true)
+    public Employee getByLastName(String lastName) {
+
+        Employee employee = employeeRepository.getByLastName(lastName);
+        return employee;
     }
 }

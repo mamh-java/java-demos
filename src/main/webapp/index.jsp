@@ -9,6 +9,7 @@
 <a href="emps">list all employee</a>
 
 <br><br>
+<a href="emp">add</a>
 
 </body>
 </html>

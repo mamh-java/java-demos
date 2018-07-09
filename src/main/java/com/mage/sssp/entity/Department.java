@@ -1,12 +1,14 @@
 package com.mage.sssp.entity;
 
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@Cacheable
 @Entity
 @Table(name = "sssp_department")
 public class Department {
@@ -30,5 +32,13 @@ public class Department {
 
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
+    }
+
+    @Override
+    public String toString() {
+        return "\nDepartment{" +
+                "id=" + id +
+                ", departmentName='" + departmentName + '\'' +
+                '}';
     }
 }

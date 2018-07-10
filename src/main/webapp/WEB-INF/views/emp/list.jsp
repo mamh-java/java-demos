@@ -60,7 +60,7 @@
                     ${emp.department.departmentName}
                 </td>
                 <td>
-                    Edit
+                    <a href="${pageContext.request.contextPath}/emp/${emp.id}"> Edit </a>
                 </td>
                 <td>
                     Delete

@@ -1,16 +1,19 @@
 package com.mage.sssp.handler;
 
+import com.mage.sssp.entity.Department;
 import com.mage.sssp.entity.Employee;
 import com.mage.sssp.service.DepartmentService;
 import com.mage.sssp.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -21,6 +24,20 @@ public class EmployeeHandler {
 
     @Autowired
     private DepartmentService departmentService;
+
+
+    @RequestMapping(value = "/emp/{id}", method = RequestMethod.GET)
+    public String input(@PathVariable("id") Integer id, Map<String, Object> map) {
+
+        Employee employee = employeeService.get(id);
+        List<Department> departments = departmentService.getAll();
+        map.put("employee", employee);
+        map.put("departments", departments);
+
+
+        return "emp/input";
+
+    }
 
 
     @RequestMapping(value = "/emp", method = RequestMethod.POST)

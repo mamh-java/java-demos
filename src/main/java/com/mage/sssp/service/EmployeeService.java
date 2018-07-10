@@ -36,8 +36,14 @@ public class EmployeeService {
     }
 
 
+    @Transactional
     public void saveEmployee(Employee employee) {
         employee.setCreateTime(new Date());
         employeeRepository.saveAndFlush(employee);
+    }
+
+    @Transactional(readOnly = true)
+    public Employee get(Integer id) {
+        return employeeRepository.getOne(id);
     }
 }

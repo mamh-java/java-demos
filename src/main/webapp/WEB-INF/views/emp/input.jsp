@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -10,6 +11,13 @@
                 var val = $(this).val();
                 val = $.trim(val);
                 $(this).val(val);
+                var oldLastName = $("#oldLastName").val();
+                oldLastName = $.trim(oldLastName);
+
+                if (oldLastName != null && oldLastName != "" && oldLastName == val) {
+                    $("#lastNameSpan").text("可以使用的");
+                    return;
+                }
 
                 var url = "${pageContext.request.contextPath}/ajaxValidateLastName";
                 var args = {"lastName": val, "date": new Date()};
@@ -28,6 +36,9 @@
 </head>
 <body>
 
+<c:if test="${employee != null}">
+    <input type="hidden" id="oldLastName" value="${employee.lastName}"><!--存放之前的lastName-->
+</c:if>
 
 <form:form action="${pageContext.request.contextPath}/emp" method="post" modelAttribute="employee">
 
@@ -62,7 +73,8 @@
             <td>
                 Department
             </td>
-            <td colspan="2"><form:select path="department.id" items="${departments}" itemValue="id" itemLabel="departmentName"/>
+            <td colspan="2"><form:select path="department.id" items="${departments}" itemValue="id"
+                                         itemLabel="departmentName"/>
             </td>
 
         </tr>

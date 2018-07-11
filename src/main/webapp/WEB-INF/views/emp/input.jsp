@@ -36,11 +36,20 @@
 </head>
 <body>
 
+
+<c:set value="${pageContext.request.contextPath}/emp" var="url"/>
 <c:if test="${employee != null}">
-    <input type="hidden" id="oldLastName" value="${employee.lastName}"><!--存放之前的lastName-->
+    <c:set value="${pageContext.request.contextPath}/emp/${employee.id}" var="url"/>
 </c:if>
 
-<form:form action="${pageContext.request.contextPath}/emp" method="post" modelAttribute="employee">
+<form:form action="${url}" method="post" modelAttribute="employee">
+
+    <c:if test="${employee != null}">
+        <input type="hidden" id="oldLastName" value="${employee.lastName}"><!--存放之前的lastName-->
+        <form:hidden path="id"/>
+        <input type="hidden" name="_method" value="PUT"/>
+    </c:if>
+
 
     <table border="=1" cellpadding="10" cellspacing="0">
 

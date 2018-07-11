@@ -38,7 +38,9 @@ public class EmployeeService {
 
     @Transactional
     public void saveEmployee(Employee employee) {
-        employee.setCreateTime(new Date());
+        if (employee.getId() == null) { //id等于空的情况说明是新建的。否则说明是修改。
+            employee.setCreateTime(new Date());
+        }
         employeeRepository.saveAndFlush(employee);
     }
 

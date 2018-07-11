@@ -7,6 +7,7 @@ import com.mage.sssp.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,25 +27,36 @@ public class EmployeeHandler {
     private DepartmentService departmentService;
 
 
+    @ModelAttribute
+    public void getEmployee(@RequestParam(value = "id", required = false) Integer id, Map<String, Object> map) {
+        System.out.println("==model attribute===========================");
+        if (id != null) {
+            Employee employee = employeeService.get(id);
+            System.out.println("update employee = " + employee);
+            map.put("employee", employee);
+        }
+
+    }
+
+    @RequestMapping(value = "/emp/{id}", method = RequestMethod.PUT)
+    public String update(Employee employee) {
+        employeeService.saveEmployee(employee);
+        return "redirect:/emps";
+    }
+
     @RequestMapping(value = "/emp/{id}", method = RequestMethod.GET)
     public String input(@PathVariable("id") Integer id, Map<String, Object> map) {
-
         Employee employee = employeeService.get(id);
         List<Department> departments = departmentService.getAll();
         map.put("employee", employee);
         map.put("departments", departments);
-
-
         return "emp/input";
-
     }
 
 
     @RequestMapping(value = "/emp", method = RequestMethod.POST)
     public String save(Employee employee) {
-
         employeeService.saveEmployee(employee);
-
         return "redirect:/emps";
     }
 

@@ -63,7 +63,7 @@
                     <a href="${pageContext.request.contextPath}/emp/${emp.id}"> Edit </a>
                 </td>
                 <td>
-                    Delete
+                    <a href="${pageContext.request.contextPath}/emp/"
                 </td>
             </tr>
         </c:forEach>

@@ -16,12 +16,9 @@
 
                 $.post(url, args, function (data) {
                     if (data == "0") {
-                        alert("可以使用");
-                        console.log("ok");
+                        $("#lastNameSpan").text("");
                     } else if (data == "1") {
-                        alert("不可以使用");
-                        console.log("no ok");
-
+                        $("#lastNameSpan").text("*");
                     }
                 });
 
@@ -40,14 +37,15 @@
             <td>
                 LastName
             </td>
-            <td><form:input path="lastName" id="lastName"/>
+            <td><form:input path="lastName" id="lastName"/></td>
+            <td><span id="lastNameSpan"></span>
             </td>
         </tr>
         <tr>
             <td>
                 Email
             </td>
-            <td><form:input path="email"/>
+            <td colspan="2"><form:input path="email"/>
             </td>
         </tr>
 
@@ -55,7 +53,7 @@
             <td>
                 Birth
             </td>
-            <td><form:input path="birth"/>
+            <td colspan="2"><form:input path="birth"/>
             </td>
         </tr>
 
@@ -64,13 +62,13 @@
             <td>
                 Department
             </td>
-            <td><form:select path="department.id" items="${departments}" itemValue="id" itemLabel="departmentName"/>
+            <td colspan="2"><form:select path="department.id" items="${departments}" itemValue="id" itemLabel="departmentName"/>
             </td>
 
         </tr>
 
         <tr>
-            <td colspan="2">
+            <td colspan="3">
                 <input type="submit" value="Submit!">
             </td>
         </tr>

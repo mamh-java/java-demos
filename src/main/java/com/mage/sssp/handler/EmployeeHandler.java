@@ -32,6 +32,7 @@ public class EmployeeHandler {
         System.out.println("==model attribute===========================");
         if (id != null) {
             Employee employee = employeeService.get(id);
+            employee.setDepartment(null);
             System.out.println("update employee = " + employee);
             map.put("employee", employee);
         }
@@ -41,6 +42,7 @@ public class EmployeeHandler {
     @RequestMapping(value = "/emp/{id}", method = RequestMethod.PUT)
     public String update(Employee employee) {
         employeeService.saveEmployee(employee);
+        System.out.println("update employee = " + employee);
         return "redirect:/emps";
     }
 

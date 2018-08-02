@@ -1,0 +1,11 @@
+# 支持的文件的扩展名
+exts=zip
+
+# 一个文件的大小
+file.max.size=1024000000
+
+# 总的大小
+total.max.size=1024000000
+
+# 这个要在servletlistener中读取，初始化
+

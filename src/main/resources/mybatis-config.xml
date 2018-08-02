@@ -46,6 +46,7 @@
     <!--mapping文件路径配置-->
     <mappers>
         <mapper resource="UserMapper.xml"/>
+        <mapper class="com.mamh.mybatis.demo.UserMapper"/>
     </mappers>
 
 </configuration>

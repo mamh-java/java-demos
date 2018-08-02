@@ -33,6 +33,16 @@ public class UserTest {
     }
 
     @Test
+    public void testDeleteUser1() {
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        int delete = mapper.delete(6);
+        Assert.assertEquals(1, delete);
+
+        delete = mapper.delete(3);
+        Assert.assertEquals(0, delete);
+    }
+
+    @Test
     public void testDeleteUser() {
         String statement = "com.mamh.mybatis.demo.User" + ".delUser";
         int delete = session.delete(statement, 3);
@@ -40,6 +50,14 @@ public class UserTest {
 
         delete = session.delete(statement, 3);
         Assert.assertEquals(0, delete);
+    }
+
+    @Test
+    public void testUpdateUser1() {
+        User user = new User(6, "mamh", 20);
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        int update = mapper.update(user);
+        Assert.assertEquals(1, update);
     }
 
     @Test
@@ -51,11 +69,31 @@ public class UserTest {
     }
 
     @Test
+    public void testAddUser1() {
+        User user = new User("bright", 28);
+
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        int insert = mapper.add(user);
+
+        Assert.assertEquals(insert, 1);
+    }
+
+    @Test
     public void testAddUser() {
         String statement = "com.mamh.mybatis.demo.User" + ".addUser";
         User user = new User("bright", 28);
         int insert = session.insert(statement, user);
         Assert.assertEquals(insert, 1);
+    }
+
+    @Test
+    public void testGetUser1() {
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        User user1 = mapper.get(1);
+        Assert.assertEquals("tom", user1.getName());
+
+        User user2 = mapper.get(2);
+        Assert.assertEquals("jack", user2.getName());
     }
 
     @Test

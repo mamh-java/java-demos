@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,16 +15,15 @@ import java.io.Reader;
 import java.util.List;
 
 public class UserTest {
-    private String resource = "mybatis-config.xml";
-    private SqlSessionFactory sqlSessionFactory;
     private SqlSession session;
 
     @Before
     public void before() {
+        String resource = "mybatis-config.xml";
         InputStream is = getClass().getClassLoader().getResourceAsStream(resource);
-        sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
         session = sqlSessionFactory.openSession();
-
+        //session = sqlSessionFactory.openSession(true);自动提交auto commit
     }
 
     @After
@@ -33,15 +33,40 @@ public class UserTest {
     }
 
     @Test
+    public void testDeleteUser() {
+        String statement = "com.mamh.mybatis.demo.User" + ".delUser";
+        int delete = session.delete(statement, 3);
+        Assert.assertEquals(1, delete);
+
+        delete = session.delete(statement, 3);
+        Assert.assertEquals(0, delete);
+    }
+
+    @Test
+    public void testUpdateUser() {
+        String statement = "com.mamh.mybatis.demo.User" + ".updateUser";
+        User user = new User(3, "mamh", 20);
+        int update = session.update(statement, user);
+        Assert.assertEquals(1, update);
+    }
+
+    @Test
+    public void testAddUser() {
+        String statement = "com.mamh.mybatis.demo.User" + ".addUser";
+        User user = new User("bright", 28);
+        int insert = session.insert(statement, user);
+        Assert.assertEquals(insert, 1);
+    }
+
+    @Test
     public void testGetUser() {
         String statement = "com.mamh.mybatis.demo.User" + ".getUser";
         User user1 = session.selectOne(statement, 1);
-
-        System.out.println(user1);
+        Assert.assertEquals("tom", user1.getName());
 
         User user2 = session.selectOne(statement, 2);
 
-        System.out.println(user2);
+        Assert.assertEquals("jack", user2.getName());
     }
 
     @Test
@@ -49,7 +74,7 @@ public class UserTest {
         String statement = "com.mamh.mybatis.demo.User" + ".getAllUser";
         List<User> user = session.selectList(statement);
 
-        System.out.println(user);
+        Assert.assertEquals(3, user.size());
     }
 
     @Test
@@ -68,7 +93,7 @@ public class UserTest {
 
             session.commit();
 
-            System.out.println(user.getName());
+            Assert.assertEquals("jack", user.getName());
 
         } catch (IOException e) {
             e.printStackTrace();

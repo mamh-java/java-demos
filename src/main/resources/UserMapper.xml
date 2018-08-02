@@ -4,15 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mamh.mybatis.demo.User">
-    <select id="getUser" parameterType="int" resultType="com.mamh.mybatis.demo.User">
+    <select id="getUser" parameterType="int" resultType="User">
         SELECT *
         FROM mb_users
         WHERE id = #{id}
     </select>
 
+    <insert id="addUser" parameterType="User">
+        INSERT INTO mb_users (name, age) VALUE (#{name}, #{age})
+    </insert>
 
-    <select  id="getAllUser" parameterType="int" resultType="com.mamh.mybatis.demo.User">
+    <delete id="delUser">
+        DELETE FROM mb_users
+        WHERE id = #{id}
+    </delete>
+
+    <update id="updateUser" parameterType="User">
+        UPDATE mb_users
+        SET name = #{name}, age = #{age}
+        WHERE id = #{id}
+    </update>
+
+    <select id="getAllUser" parameterType="int" resultType="User">
         SELECT *
         FROM mb_users
     </select>
+
 </mapper>

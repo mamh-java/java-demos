@@ -14,7 +14,7 @@
     </settings>
 
     <typeAliases>
-        <!-- 其实就是将bean的替换成一个短的名字-->
+        <!-- 其实就是将bean的替换成一个短的名字 -->
         <typeAlias type="com.mamh.mybatis.demo.User" alias="User"/>
     </typeAliases>
 

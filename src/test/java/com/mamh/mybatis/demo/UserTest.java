@@ -19,7 +19,7 @@ public class UserTest {
             reader = Resources.getResourceAsReader(resource);
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
             SqlSession session = sqlSessionFactory.openSession();
-            User user = session.selectOne("findById", 2);
+            User user = session.selectOne("getUser", 2);
             session.commit();
             System.out.println(user.getName());
         } catch (IOException e) {

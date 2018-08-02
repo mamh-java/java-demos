@@ -18,7 +18,15 @@
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
 
+
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/cglib/cglib -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.2.7</version>
+        </dependency>
+
         <!-- mybatis核心包 -->
         <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
         <dependency>

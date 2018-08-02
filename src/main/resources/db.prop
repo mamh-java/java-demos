@@ -1,0 +1,14 @@
+jdbc.user=atguigu
+jdbc.password=123456
+jdbc.url=jdbc:mysql:///atguigu
+jdbc.driverClass=com.mysql.cj.jdbc.Driver
+
+jdbc.initPoolSize=5
+jdbc.maxPoolSize=10
+
+# 如何创建ioc容器呢？？？？
+# 在非web应用中。我们直接new出来的一个ioc容器
+# 在web应用中，要在web应用被服务器加载时就创建ioc容器。使用监听器。ServletContextListener.
+
+# 在web应用中，其他组件中怎么访问这个ioc容器呢？
+# 放到 servletContext对象中。application域中。application的一个属性中。

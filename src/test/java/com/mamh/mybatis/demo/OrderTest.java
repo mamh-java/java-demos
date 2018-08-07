@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.List;
 
 public class OrderTest {
     private SqlSession session;
@@ -31,9 +32,9 @@ public class OrderTest {
 
     @Test
     public void test() {
-        String statement = "com.mamh.mybatis.demo.model.Order.getOrder";
-        Order order = session.selectOne(statement);
-        System.out.println(order);
+        String statement = "com.mamh.mybatis.demo.model.Order.getAllOrder";
+        List<Order> list = session.selectList(statement);
+        System.out.println(list);
 
 
     }

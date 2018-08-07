@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mamh.mybatis.demo.model.Order">
+    <select id="getOrder" parameterType="int" resultType="Order">
+        SELECT *
+        FROM mb_orders
+        WHERE order_id = #{id}
+    </select>
+
+    <insert id="addOrder" parameterType="Order">
+        INSERT INTO mb_orders (order_id, order_no, order_price) VALUE (#{id}, #{no}, #{price})
+    </insert>
+
+    <delete id="delOrder">
+        DELETE FROM mb_orders
+        WHERE id = #{id}
+    </delete>
+
+    <update id="updateOrder" parameterType="Order">
+        UPDATE mb_orders
+        SET name = #{name}, age = #{age}
+        WHERE id = #{id}
+    </update>
+
+    <select id="getAllOrder" parameterType="int" resultType="Order">
+        SELECT *
+        FROM mb_orders
+    </select>
+
+</mapper>

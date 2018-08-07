@@ -1,4 +1,4 @@
-package com.mamh.mybatis.demo;
+package com.mamh.mybatis.demo.model;
 
 public class User {
     private int id;

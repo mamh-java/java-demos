@@ -1,5 +1,7 @@
 package com.mamh.mybatis.demo;
 
+import com.mamh.mybatis.demo.mapper.UserMapper;
+import com.mamh.mybatis.demo.model.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -44,7 +46,7 @@ public class UserTest {
 
     @Test
     public void testDeleteUser() {
-        String statement = "com.mamh.mybatis.demo.User" + ".delUser";
+        String statement = "com.mamh.mybatis.demo.model.User" + ".delUser";
         int delete = session.delete(statement, 3);
         Assert.assertEquals(1, delete);
 
@@ -62,7 +64,7 @@ public class UserTest {
 
     @Test
     public void testUpdateUser() {
-        String statement = "com.mamh.mybatis.demo.User" + ".updateUser";
+        String statement = "com.mamh.mybatis.demo.model.User" + ".updateUser";
         User user = new User(3, "mamh", 20);
         int update = session.update(statement, user);
         Assert.assertEquals(1, update);
@@ -80,7 +82,7 @@ public class UserTest {
 
     @Test
     public void testAddUser() {
-        String statement = "com.mamh.mybatis.demo.User" + ".addUser";
+        String statement = "com.mamh.mybatis.demo.model.User" + ".addUser";
         User user = new User("bright", 28);
         int insert = session.insert(statement, user);
         Assert.assertEquals(insert, 1);
@@ -98,7 +100,7 @@ public class UserTest {
 
     @Test
     public void testGetUser() {
-        String statement = "com.mamh.mybatis.demo.User" + ".getUser";
+        String statement = "com.mamh.mybatis.demo.model.User" + ".getUser";
         User user1 = session.selectOne(statement, 1);
         Assert.assertEquals("tom", user1.getName());
 
@@ -109,7 +111,7 @@ public class UserTest {
 
     @Test
     public void testGetAllUser() {
-        String statement = "com.mamh.mybatis.demo.User" + ".getAllUser";
+        String statement = "com.mamh.mybatis.demo.model.User" + ".getAllUser";
         List<User> user = session.selectList(statement);
 
         Assert.assertEquals(3, user.size());
@@ -125,7 +127,7 @@ public class UserTest {
 
             SqlSession session = sqlSessionFactory.openSession();
 
-            String statement = "com.mamh.mybatis.demo.User" + ".getUser";
+            String statement = "com.mamh.mybatis.demo.model.User" + ".getUser";
             User user = session.selectOne(statement, 2);
 
 

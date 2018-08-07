@@ -1,5 +1,6 @@
-package com.mamh.mybatis.demo;
+package com.mamh.mybatis.demo.mapper;
 
+import com.mamh.mybatis.demo.model.User;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;

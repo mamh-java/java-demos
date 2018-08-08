@@ -30,6 +30,7 @@
         <property name="dataSource" ref="dataSource"/>
         <!-- 自动扫描是实体类的包名 -->
         <property name="typeAliasesPackage" value="com.mamh.mybatis.demo.model"/>
+        <property name="mapperLocations" value="classpath*:*Mapper.xml"/>
     </bean>
 
     <!-- 配置一个 mybatis 自动扫描的 映射文件  MapperScannerConfigurer -->
@@ -42,6 +43,11 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+
+
+    <context:component-scan base-package="com.mamh.mybatis.demo.dao"/>
+    <context:component-scan base-package="com.mamh.mybatis.demo.service"/>
+    <context:component-scan base-package="com.mamh.mybatis.demo.mapper"/>
 
 
     <tx:annotation-driven transaction-manager="transactionManager"/>

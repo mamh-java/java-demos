@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mamh.mybatis.demo.model.Classes">
+
+    <resultMap id="getClassMap" type="Classes">
+        <id property="id" column="c_id"/>
+        <result property="name" column="c_name"/>
+        <association property="teacher" javaType="Teacher">
+            <id property="id" column="t_id"/>
+            <result property="name" column="t_name"/>
+        </association>
+    </resultMap>
+
+    <select id="getClass" parameterType="int" resultMap="getClassMap">
+        SELECT *
+        FROM mb_class, mb_teacher
+        WHERE c_id = #{id} AND mb_teacher.t_id = mb_class.teacher_id;
+    </select>
+
+
+    <resultMap id="getClassMap2" type="Classes">
+        <id property="id" column="c_id"/>
+        <result property="name" column="c_name"/>
+
+        <association property="teacher" javaType="Teacher" column="teacher_id" select="getTeacher">
+
+        </association>
+
+    </resultMap>
+
+    <select id="getTeacher" parameterType="int" resultType="Teacher">
+        SELECT
+            t_id   id,
+            t_name name
+        FROM mb_teacher
+        WHERE t_id = #{id}
+    </select>
+
+    <select id="getClass2" parameterType="int" resultMap="getClassMap2">
+        SELECT *
+        FROM mb_class
+        WHERE c_id = #{id}
+    </select>
+
+
+</mapper>

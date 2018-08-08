@@ -1,6 +1,7 @@
 package com.mamh.mybatis.demo;
 
 import com.mamh.mybatis.demo.mapper.UserMapper;
+import com.mamh.mybatis.demo.model.ConditionUser;
 import com.mamh.mybatis.demo.model.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -32,6 +33,15 @@ public class UserTest {
     public void after() {
         session.commit();
         session.close();
+    }
+
+    @Test
+    public void testGetUsers() {
+        String statement = "com.mamh.mybatis.demo.model.User" + ".getUsers";
+        ConditionUser param = new ConditionUser("a", 11, 30);
+        List<User> list = session.selectList(statement, param);
+
+        Assert.assertEquals(2, list.size());
     }
 
     @Test

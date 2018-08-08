@@ -30,4 +30,12 @@
         FROM mb_users
     </select>
 
+    <select id="getUsers" parameterType="ConditionUser" resultType="User">
+        SELECT * FROM mb_users WHERE
+        <if test="name != null">
+            name LIKE "%"#{name}"%" AND
+        </if>
+        age between #{minAge} and #{maxAge}
+    </select>
+
 </mapper>

@@ -1,24 +1,29 @@
 package com.mamh.mybatis.demo.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
-public class User implements Serializable{
+public class User implements Serializable {
     private int id;
     private String name;
-    private int age;
+    private Date brithday;
+    private float salary;
 
     public User() {
+
     }
 
-    public User(int id, String name, int age) {
+    public User(String name, Date brithday, float salary) {
+        this.name = name;
+        this.brithday = brithday;
+        this.salary = salary;
+    }
+
+    public User(int id, String name, Date brithday, float salary) {
         this.id = id;
         this.name = name;
-        this.age = age;
-    }
-
-    public User(String name, int age) {
-        this.name = name;
-        this.age = age;
+        this.brithday = brithday;
+        this.salary = salary;
     }
 
     public int getId() {
@@ -37,20 +42,29 @@ public class User implements Serializable{
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public Date getBrithday() {
+        return brithday;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBrithday(Date brithday) {
+        this.brithday = brithday;
+    }
+
+    public float getSalary() {
+        return salary;
+    }
+
+    public void setSalary(float salary) {
+        this.salary = salary;
     }
 
     @Override
     public String toString() {
-        return "\nUser{" +
+        return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", age=" + age +
+                ", brithday=" + brithday +
+                ", salary=" + salary +
                 '}';
     }
 }

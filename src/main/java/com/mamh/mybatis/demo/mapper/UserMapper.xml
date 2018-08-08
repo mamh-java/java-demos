@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mamh.mybatis.demo.mapper.UserMapper">
+
+    <insert id="save" parameterType="User">
+        INSERT INTO mb_users (name, birth, salary) VALUES (#{name}, #{birthday}, #{salary})
+    </insert>
+
+    <update id="update" parameterType="User">
+        UPDATE mb_users
+        SET name = #{name}, birth = #{birthday}, salary = #{salary}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM mb_users
+        WHERE id = #{id}
+    </delete>
+
+    <select id="findById" parameterType="int" resultType="User">
+        SELECT
+            id,
+            name,
+            birth birthday,
+            salary
+        FROM mb_users
+        WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultType="User">
+        SELECT
+            id,
+            name,
+            birth birthday,
+            salary
+        FROM mb_users
+    </select>
+
+</mapper>

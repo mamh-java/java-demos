@@ -1,4 +1,4 @@
-jdbc.user=atguigu
+jdbc.username=atguigu
 jdbc.password=123456
 jdbc.url=jdbc:mysql:///atguigu
 jdbc.driverClass=com.mysql.cj.jdbc.Driver

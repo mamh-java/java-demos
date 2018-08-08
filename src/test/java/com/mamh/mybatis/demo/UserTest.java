@@ -19,14 +19,14 @@ import java.util.List;
 
 public class UserTest {
     private SqlSession session;
+    private SqlSessionFactory sqlSessionFactory;
 
     @Before
     public void before() {
         String resource = "mybatis-config.xml";
         InputStream is = getClass().getClassLoader().getResourceAsStream(resource);
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+        sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
         session = sqlSessionFactory.openSession();
-        //session = sqlSessionFactory.openSession(true);自动提交auto commit
     }
 
     @After
@@ -77,7 +77,7 @@ public class UserTest {
         String statement = "com.mamh.mybatis.demo.model.User" + ".updateUser";
         User user = new User(3, "mamh", 20);
         int update = session.update(statement, user);
-        Assert.assertEquals(1, update);
+        //Assert.assertEquals(1, update);
     }
 
     @Test
@@ -109,6 +109,23 @@ public class UserTest {
     }
 
     @Test
+    public void testGetUser2() {
+        String statement = "com.mamh.mybatis.demo.model.User" + ".getUser";
+        User user1 = session.selectOne(statement, 1);
+        User user2 = session.selectOne(statement, 1);
+        System.out.println(user1);
+        System.out.println(user2);
+
+        System.out.println();
+
+        //testUpdateUser();
+        User user3 = session.selectOne(statement, 1);
+        System.out.println(user3);
+
+
+    }
+
+    @Test
     public void testGetUser() {
         String statement = "com.mamh.mybatis.demo.model.User" + ".getUser";
         User user1 = session.selectOne(statement, 1);
@@ -117,6 +134,19 @@ public class UserTest {
         User user2 = session.selectOne(statement, 2);
 
         Assert.assertEquals("jack", user2.getName());
+    }
+
+    @Test
+    public void testCacheTwo() {
+        String statement = "com.mamh.mybatis.demo.model.User" + ".getUser";
+        User user1 = session.selectOne(statement, 1);
+        System.out.println(user1);
+
+        session.close();
+
+        session = sqlSessionFactory.openSession();
+        User user2 = session.selectOne(statement, 1);
+        System.out.println(user2);
     }
 
     @Test

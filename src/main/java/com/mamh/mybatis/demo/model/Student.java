@@ -1,8 +1,9 @@
 package com.mamh.mybatis.demo.model;
 
-public class Teacher {
+public class Student {
     private int id;
     private String name;
+
 
     public int getId() {
         return id;
@@ -22,7 +23,7 @@ public class Teacher {
 
     @Override
     public String toString() {
-        return "\nTeacher{" +
+        return "\nStudent{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

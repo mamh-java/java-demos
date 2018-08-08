@@ -40,6 +40,7 @@
         <mapper resource="UserMapper.xml"/>
         <mapper resource="OrderMapper.xml"/>
         <mapper resource="ClassMapper.xml"/>
+        <mapper resource="StudentMapper.xml"/>
         <mapper class="com.mamh.mybatis.demo.mapper.UserMapper"/>
     </mappers>
 

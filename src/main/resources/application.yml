@@ -1,4 +1,20 @@
 server:
-  port: 8080
+  port: 8081
+
+person:
+  age: 9999
 
 
+---
+#不同的文档块
+server:
+  port: 8082
+spring:
+  profiles: dev
+
+---
+#不同的文档块
+server:
+  port: 8282
+spring:
+  profiles: test

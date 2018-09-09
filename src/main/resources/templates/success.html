@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>success</title>
+</head>
+<body>
+success<br/>
+<div th:utext="${name}">
+    这是显示欢迎信息的
+</div>
+<div th:utext="${#locale.country}">
+</div>
+<br/>
+
+<div>
+    <h1 th:each="u: ${user}" th:text="${u}"></h1>
+</div>
+<div>
+    <h1>
+        <span th:each="u:${user}">[[${u}]]</span>
+    </h1>
+</div>
+
+<div>
+    <h1>
+        <span th:each="s:${student}">[[${s.name}]] == [[${s.age}]]</span>
+    </h1>
+</div>
+</body>
+</html>

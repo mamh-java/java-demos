@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HelloController {
 
-    @Value("${person.last-name}")
     private String name;
 
     @RequestMapping("/hello")

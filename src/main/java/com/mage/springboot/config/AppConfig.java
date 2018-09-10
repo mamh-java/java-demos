@@ -9,16 +9,15 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 
 @Configuration//指名这是一个配置类，用来添加组件的
-public class AppConfig extends WebMvcConfigurerAdapter {
+public class AppConfig implements WebMvcConfigurer {
 
 
     @Bean
-    public WebMvcConfigurerAdapter webMvcConfigurerAdapter() {
-        WebMvcConfigurerAdapter webMvcConfigurer = new WebMvcConfigurerAdapter() {
+    public WebMvcConfigurer webMvcConfigurerAdapter() {
+        WebMvcConfigurer webMvcConfigurer = new WebMvcConfigurer() {
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {
                 registry.addViewController("/").setViewName("index");
@@ -30,7 +29,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
             public void addInterceptors(InterceptorRegistry registry) {
                 registry.addInterceptor(new LoginHandlerInterceptor())
                         .addPathPatterns("/**")
-                        .excludePathPatterns("/", "/index.html", "/usr/login");
+                        .excludePathPatterns("/", "/index.html", "/usr/login")
+                        .excludePathPatterns("/asserts/**", "/webjars/**");
 
             }
         };

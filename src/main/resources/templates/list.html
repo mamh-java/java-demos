@@ -44,13 +44,13 @@
 
 <body>
 <!-- 引入抽取的navbar片段 , 模板名-->
-<div th:replace="~{dashboard :: navbar}"></div>
+<div th:replace="commons/bar::topbar"></div>
 
 <div class="container-fluid">
     <div class="row">
 
         <!-- 引入侧边栏 -->
-        <div th:replace="~{dashboard::leftbar}"></div>
+        <div th:replace="commons/bar::leftbar"></div>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <h2>Section title</h2>

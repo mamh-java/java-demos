@@ -15,7 +15,7 @@ public class LoginController {
     @PostMapping("/usr/login")
     private String login(@RequestParam String username, @RequestParam String password
             , Map<String, Object> map, HttpSession session) {
-        if (!StringUtils.isEmpty(username) && password.equals("123456")) {
+        if (!StringUtils.isEmpty(username) && !StringUtils.isEmpty(password)) {
             session.setAttribute("loginUser", username);
             return "redirect:/main.html";//防止表单重复提交，这里使用重定向,这里的main.html 添加了视图映射了。
             //这样之后 有个问题，就是可以直接通过main.html 直接访问了。跳过了登录操作.

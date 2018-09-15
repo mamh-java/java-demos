@@ -82,7 +82,10 @@
                             <a href="#" th:href="@{/emp/}+${emp.id}" class="btn btn-sm btn-primary">编辑</a>
                         </td>
                         <td>
-                            <a href="#" th:href="@{/emp}" class="btn btn-sm btn-danger">删除</a>
+                            <form th:action="@{/emp/}+${emp.id}" method="post">
+                                <input type="hidden" name="_method" value="delete"/>
+                                <button type="submit" class="btn btn-sm btn-danger">删除</button>
+                            </form>
                         </td>
                         <td>
                             <a href="#" th:href="@{/emp}" class="btn btn-sm btn-success">添加</a>

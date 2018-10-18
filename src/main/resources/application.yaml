@@ -4,4 +4,7 @@ spring:
     password: 123456
     url: jdbc:mysql://localhost:3306/atguigu
     driver-class-name: com.mysql.jdbc.Driver
-    type: org.springframework.jdbc.datasource.DriverManagerDataSource
+    type: org.apache.tomcat.jdbc.pool.DataSource
+    schema:
+      - classpath:schema-all.sql
+    initialization-mode: always

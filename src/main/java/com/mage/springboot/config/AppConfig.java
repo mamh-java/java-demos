@@ -63,7 +63,7 @@ public class AppConfig implements WebMvcConfigurer {
      */
     @Bean
     public WebServerFactoryCustomizer<ConfigurableWebServerFactory> webServerFactoryCustomizer() {
-        return factory -> factory.setPort(8000);
+        return factory -> factory.setPort(8080);
     }
 
 

@@ -41,7 +41,7 @@ public class AppConfig implements WebMvcConfigurer {
      */
     @Bean
     public ServletRegistrationBean servletRegistrationBean() {
-        return new ServletRegistrationBean(new SpringBootServlet(), "/hello");
+        return new ServletRegistrationBean(new SpringBootServlet(), "/servlet");
     }
 
     @Bean

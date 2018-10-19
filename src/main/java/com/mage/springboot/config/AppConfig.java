@@ -6,6 +6,7 @@ import com.mage.springboot.listener.SpringBootListener;
 import com.mage.springboot.resolver.LocalResolver;
 import com.mage.springboot.servlet.SpringBootServlet;
 
+import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
 import org.springframework.boot.web.server.ConfigurableWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -92,5 +93,11 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public LocaleResolver localeResolver() {
         return new LocalResolver();
+    }
+
+    @Bean
+    public ConfigurationCustomizer configurationCustomizer() {
+        //开启 sql 列名 驼峰命名规则
+        return configuration -> configuration.setMapUnderscoreToCamelCase(true);
     }
 }

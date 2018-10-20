@@ -1,7 +1,9 @@
 package com.mage.springboot.controller;
 
 import com.mage.springboot.entities.Department;
+import com.mage.springboot.entities.Employee;
 import com.mage.springboot.mapper.DepartmentMapper;
+import com.mage.springboot.mapper.EmployeeMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,14 +16,23 @@ public class DepartmentController {
     @Autowired
     DepartmentMapper departmentMapper;
 
-    @GetMapping("/dept/{id}")
-    public Department get(@PathVariable("id") Integer id) {
+    @Autowired
+    EmployeeMapper employeeMapper;
+
+
+    @GetMapping("/department/{id}")
+    public Department getDept(@PathVariable("id") Integer id) {
         return departmentMapper.getDeptById(id);
     }
 
-    @GetMapping("/dept")
+    @GetMapping("/department")
     public Department add(Department department) {
         departmentMapper.insertDept(department);
         return department;
+    }
+
+    @GetMapping("/employee/{id}")
+    public Employee getEmp(@PathVariable("id") Integer id) {
+        return employeeMapper.getEmpById(id);
     }
 }

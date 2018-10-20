@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mage.springboot.mapper.EmployeeMapper">
+
+    <select id="getEmpById" resultMap="empResultMap">
+        select e.id as e_id, lastName, email, gender, d_id, departmentName
+        from sp_employee e,
+             sp_department d
+        where e.id = #{id}
+          and e.d_id = d.id
+    </select>
+    <resultMap id="empResultMap" type="com.mage.springboot.entities.Employee">
+        <id property="id" column="e_id" />
+        <result property="lastName" column="lastName" />
+        <result property="email" column="email" />
+        <result property="gender" column="gender" />
+
+        <association property="department" javaType="com.mage.springboot.entities.Department">
+            <id property="id" column="d_id" />
+            <result property="departmentName" column="departmentName" />
+        </association>
+    </resultMap>
+
+    <insert id="insertEmp">
+        insert into sp_employee (lastName, email, gender, d_id)
+        values (#{lastName}, #{email}, #{gender}, #{department.id})
+    </insert>
+
+
+</mapper>

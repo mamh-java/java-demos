@@ -1,6 +1,9 @@
 package com.mage.springboot;
 
 import com.mage.springboot.bean.Person;
+import com.mage.springboot.entities.Department;
+import com.mage.springboot.entities.Employee;
+import com.mage.springboot.mapper.EmployeeMapper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +29,9 @@ public class MainApplicationTest {
     @Autowired
     DataSource dataSource;
 
+    @Autowired
+    EmployeeMapper employeeMapper;
+
     @Test
     public void test1(){
         boolean b = ioc.containsBean("student");
@@ -43,5 +49,12 @@ public class MainApplicationTest {
     public void test2() throws SQLException {
         System.err.println(dataSource.getClass());
         System.err.println(dataSource.getConnection());
+    }
+
+    @Test
+    public void test3(){
+        System.err.println("get empby id");
+        Employee emp = employeeMapper.getEmpById(1);
+        System.err.println(emp);
     }
 }

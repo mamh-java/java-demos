@@ -31,10 +31,10 @@ spring:
       # Spring Boot集成JPA的Column注解命名字段无效的问题
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-
     show-sql: true
-
-
-mybatis:
-  config-location: classpath:mybatis.xml
-  mapper-locations: classpath:EmployeeMapper.xml
+#mybatis:
+  #config-location: classpath:mybatis.xml
+  #mapper-locations: classpath:EmployeeMapper.xml
+logging:
+  level:
+    com.mage.springboot.mapper: debug

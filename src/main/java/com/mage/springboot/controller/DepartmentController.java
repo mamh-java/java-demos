@@ -4,6 +4,7 @@ import com.mage.springboot.entities.Department;
 import com.mage.springboot.entities.Employee;
 import com.mage.springboot.mapper.DepartmentMapper;
 import com.mage.springboot.mapper.EmployeeMapper;
+import com.mage.springboot.service.EmployeeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,8 @@ public class DepartmentController {
     @Autowired
     EmployeeMapper employeeMapper;
 
+    @Autowired
+    EmployeeService employeeService;
 
     @GetMapping("/department/{id}")
     public Department getDept(@PathVariable("id") Integer id) {
@@ -33,6 +36,6 @@ public class DepartmentController {
 
     @GetMapping("/employee/{id}")
     public Employee getEmp(@PathVariable("id") Integer id) {
-        return employeeMapper.getEmpById(id);
+        return employeeService.getEmp(id);
     }
 }

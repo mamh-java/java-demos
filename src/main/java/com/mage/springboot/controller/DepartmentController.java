@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class DepartmentController {
 
@@ -36,6 +38,12 @@ public class DepartmentController {
 
     @GetMapping("/employee/{id}")
     public Employee getEmp(@PathVariable("id") Integer id) {
-        return employeeService.getEmp(id);
+        return employeeService.getEmp1(id);
+    }
+
+
+    @GetMapping("/employees")
+    public List<Employee> getEmp() {
+        return employeeService.getEmps();
     }
 }

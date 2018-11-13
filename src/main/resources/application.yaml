@@ -2,7 +2,7 @@ spring:
   datasource:
     username: atguigu
     password: 123456
-    url: jdbc:mysql://localhost:3306/atguigu
+    url: jdbc:mysql://10.0.63.21:3306/atguigu
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     #   数据源其他配置
@@ -35,6 +35,12 @@ spring:
 #mybatis:
   #config-location: classpath:mybatis.xml
   #mapper-locations: classpath:EmployeeMapper.xml
+  cache:
+    cache-names:
+      - cc1
+      - cc2
+      - emps
+      - depts
 logging:
   level:
     com.mage.springboot.mapper: debug

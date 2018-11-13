@@ -9,8 +9,12 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.List;
+
 @Mapper
 public interface EmployeeMapper {
+    @Select("select * from sp_employee")
+    List<Employee> getEmps();
 
     @Select("select * from sp_employee where id = #{id}")
     Employee getEmpById(Integer id);

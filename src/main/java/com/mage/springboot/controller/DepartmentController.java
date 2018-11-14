@@ -40,7 +40,10 @@ public class DepartmentController {
     public Employee getEmp(@PathVariable("id") Integer id) {
         return employeeService.getEmp1(id);
     }
-
+    @GetMapping("/lastname/{name}")
+    public Employee getEmp2(@PathVariable("name") String name  ) {
+        return employeeService.getEmp2(name);
+    }
 
     @GetMapping("/employees")
     public List<Employee> getEmp() {

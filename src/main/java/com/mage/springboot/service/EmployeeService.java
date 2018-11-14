@@ -4,14 +4,17 @@ import com.mage.springboot.entities.Employee;
 import com.mage.springboot.mapper.EmployeeMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@CacheConfig(cacheNames = "emps")/*可以在类上加个缓存配置的注解，统一设置缓存名称*/
 public class EmployeeService {
 
     @Autowired
@@ -47,6 +50,15 @@ public class EmployeeService {
         return emp;
     }
 
+    @Caching( //定义复杂缓存注解
+            cacheable = {@Cacheable(value = "emps", key = "#name")},
+            put = {@CachePut(value = "emps", key = "#result.id"), @CachePut(value = "emps", key = "#result.email")}
+    )
+    public Employee getEmp2(String name) {
+        System.err.println("find emp by name");
+        return employeeMapper.getEmpByName(name);
+    }
+
     /**
      * value 是设置缓存名称,可以在配置文件中设置spring.cache.cache-names:指定多个值.
      * 这里的value就必须是配置文件中的某一个,不然会报错的.
@@ -80,14 +92,12 @@ public class EmployeeService {
     }
 
     /**
-     * @CacheEvict  删除缓存。
+     * @param id
+     * @return
+     * @CacheEvict 删除缓存。
      * allEntries = true 指定清除缓存中的所有数据
      * beforeInvocation = false 默认是false，是否在方法执行之前清除缓存。默认是方法执行后清除缓存的。
      * 如果方法抛出了异常，在方法之后清除缓存的步骤就不执行了。
-     *
-     *
-     * @param id
-     * @return
      */
     @CacheEvict(value = "emps", key = "#id", allEntries = true, beforeInvocation = false)
     public String deleteEmp(Integer id) {
@@ -95,4 +105,6 @@ public class EmployeeService {
         //employeeMapper.deleteEmp(id);
         return null;
     }
+
+
 }

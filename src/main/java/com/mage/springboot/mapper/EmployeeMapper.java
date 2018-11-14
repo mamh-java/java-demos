@@ -27,4 +27,7 @@ public interface EmployeeMapper {
 
     @Insert("insert into sp_employee(lastName, email, gender, d_id) values(#{lastName}, #{email}, #{gender}, #{department.id})")
     int insertEmp(Employee employee);
+
+    @Select("select * from sp_employee where lastName = #{name}")
+    Employee getEmpByName(String name);
 }

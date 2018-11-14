@@ -52,4 +52,9 @@ public class DepartmentController {
         Employee emp = employeeService.updateEmp(employee);
         return emp;
     }
+
+    @GetMapping("/delemp")
+    public String delete(Integer id){
+        return employeeService.deleteEmp(id);
+    }
 }

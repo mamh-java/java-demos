@@ -4,6 +4,7 @@ import com.mage.springboot.entities.Employee;
 import com.mage.springboot.mapper.EmployeeMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -62,21 +63,36 @@ public class EmployeeService {
 
     /**
      * @CachePut 既调用方法也更新缓存数据
-     *
+     * <p>
      * 测试步骤，
      * 1.查询1号，查到的结果会放到缓存中，其中使用的key是  id。
      * 2.以后查询1号，还是这个缓存中的值
      * 3.更新1号，这个时候因为方法加的有@cachePut注解，也是会 放到缓存中的。不过这个时候使用的key是默认的格式，和上面的格式是不一样的。
      * 4.再次查询1号，得到的是更新前的结果？还是更新后的结果。 答： 更新前的结果，因为2次放入缓存使用的key不一致。不过数据库已经是更新后的结果了。
-     *
+     * <p>
      * 5. 再次测试，
-     *
-     *
      */
-    @CachePut(value = "emps", key="#result.id")
+    @CachePut(value = "emps", key = "#result.id")
     public Employee updateEmp(Employee employee) {
         System.err.println("update emp: " + employee);
         employeeMapper.updateEmp(employee);
         return employee;
+    }
+
+    /**
+     * @CacheEvict  删除缓存。
+     * allEntries = true 指定清除缓存中的所有数据
+     * beforeInvocation = false 默认是false，是否在方法执行之前清除缓存。默认是方法执行后清除缓存的。
+     * 如果方法抛出了异常，在方法之后清除缓存的步骤就不执行了。
+     *
+     *
+     * @param id
+     * @return
+     */
+    @CacheEvict(value = "emps", key = "#id", allEntries = true, beforeInvocation = false)
+    public String deleteEmp(Integer id) {
+        System.err.println("delete emp: " + id);
+        //employeeMapper.deleteEmp(id);
+        return null;
     }
 }

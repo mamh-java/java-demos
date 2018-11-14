@@ -46,4 +46,10 @@ public class DepartmentController {
     public List<Employee> getEmp() {
         return employeeService.getEmps();
     }
+
+    @GetMapping("/employee")
+    public Employee update(Employee employee) {
+        Employee emp = employeeService.updateEmp(employee);
+        return emp;
+    }
 }

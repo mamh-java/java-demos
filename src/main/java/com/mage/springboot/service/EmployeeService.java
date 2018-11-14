@@ -106,5 +106,11 @@ public class EmployeeService {
         return null;
     }
 
+    /**
+     * 引入redis作为缓存组件
+     *
+     * 原理: CacheManager(缓存管理器) == Cache 缓存组件来实际给缓存中存取数据.
+     *
+     */
 
 }

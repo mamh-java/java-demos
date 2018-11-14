@@ -38,7 +38,7 @@ public class DepartmentController {
 
     @GetMapping("/employee/{id}")
     public Employee getEmp(@PathVariable("id") Integer id) {
-        return employeeService.getEmp1(id);
+        return employeeService.getEmp(id);
     }
     @GetMapping("/lastname/{name}")
     public Employee getEmp2(@PathVariable("name") String name  ) {

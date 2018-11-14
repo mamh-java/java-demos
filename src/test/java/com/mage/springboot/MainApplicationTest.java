@@ -10,6 +10,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.data.redis.core.ReactiveRedisOperations;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.SQLException;
@@ -21,19 +24,29 @@ import javax.sql.DataSource;
 public class MainApplicationTest {
 
     @Autowired
-    Person person;
+    private Person person;
 
     @Autowired
-    ApplicationContext ioc;
+    private ApplicationContext ioc;
 
     @Autowired
-    DataSource dataSource;
+    private DataSource dataSource;
 
     @Autowired
-    EmployeeMapper employeeMapper;
+    private EmployeeMapper employeeMapper;
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
+    @Autowired
+    private RedisTemplate empRedisTemplate;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
 
     @Test
-    public void test1(){
+    public void test1() {
         boolean b = ioc.containsBean("student");
         System.err.println(b);
         System.err.println(ioc.getBean("student"));
@@ -52,9 +65,23 @@ public class MainApplicationTest {
     }
 
     @Test
-    public void test3(){
+    public void test3() {
         System.err.println("get empby id");
         Employee emp = employeeMapper.getEmpById(1);
         System.err.println(emp);
+    }
+
+
+    @Test
+    public void testRedis() {
+        stringRedisTemplate.opsForList().leftPush("list", "1");
+        stringRedisTemplate.opsForValue().append("msg", "msg01");
+        System.err.println(redisTemplate);
+        System.err.println(empRedisTemplate);
+
+        Employee emp01 = employeeMapper.getEmpById(1);
+        redisTemplate.opsForValue().set("emp01", emp01);  //保存一个对象到redis里面.
+
+        empRedisTemplate.opsForValue().set("emp02", emp01);  //保存一个对象到redis里面.
     }
 }

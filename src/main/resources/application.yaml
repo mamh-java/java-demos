@@ -41,6 +41,9 @@ spring:
       - cc2
       - emps
       - depts
+  redis:
+    host: 10.0.63.21
+
 logging:
   level:
     com.mage.springboot.mapper: debug

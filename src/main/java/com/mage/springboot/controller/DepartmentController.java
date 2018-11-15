@@ -1,63 +1,38 @@
 package com.mage.springboot.controller;
 
+import com.mage.springboot.dao.DepartmentDao;
 import com.mage.springboot.entities.Department;
-import com.mage.springboot.entities.Employee;
-import com.mage.springboot.mapper.DepartmentMapper;
-import com.mage.springboot.mapper.EmployeeMapper;
-import com.mage.springboot.service.EmployeeService;
+import com.mage.springboot.service.DepartmentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Collection;
 
 @RestController
 public class DepartmentController {
 
     @Autowired
-    DepartmentMapper departmentMapper;
+    DepartmentDao departmentDao;
+
 
     @Autowired
-    EmployeeMapper employeeMapper;
-
-    @Autowired
-    EmployeeService employeeService;
+    DepartmentService departmentService;
 
     @GetMapping("/department/{id}")
     public Department getDept(@PathVariable("id") Integer id) {
-        return departmentMapper.getDeptById(id);
+        return departmentService.getDept(id);
     }
 
-    @GetMapping("/department")
-    public Department add(Department department) {
-        departmentMapper.insertDept(department);
-        return department;
+    @GetMapping("/emp")
+    public String toaddPage(Model model) {
+        //查出所有部门
+        Collection<Department> departments = departmentDao.getDepartments();
+        model.addAttribute("depts", departments);
+        return "add";//添加员工页面
     }
 
-    @GetMapping("/employee/{id}")
-    public Employee getEmp(@PathVariable("id") Integer id) {
-        return employeeService.getEmp(id);
-    }
-    @GetMapping("/lastname/{name}")
-    public Employee getEmp2(@PathVariable("name") String name  ) {
-        return employeeService.getEmp2(name);
-    }
-
-    @GetMapping("/employees")
-    public List<Employee> getEmp() {
-        return employeeService.getEmps();
-    }
-
-    @GetMapping("/employee")
-    public Employee update(Employee employee) {
-        Employee emp = employeeService.updateEmp(employee);
-        return emp;
-    }
-
-    @GetMapping("/delemp")
-    public String delete(Integer id){
-        return employeeService.deleteEmp(id);
-    }
 }

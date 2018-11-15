@@ -4,19 +4,21 @@ import com.mage.springboot.dao.DepartmentDao;
 import com.mage.springboot.dao.EmployeeDao;
 import com.mage.springboot.entities.Department;
 import com.mage.springboot.entities.Employee;
+import com.mage.springboot.service.EmployeeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
+import java.util.List;
 
-@Controller
+@RestController
 public class EmployeeController {
 
     @Autowired
@@ -25,6 +27,10 @@ public class EmployeeController {
     @Autowired
     DepartmentDao departmentDao;
 
+
+    @Autowired
+    EmployeeService employeeService;
+
     @GetMapping("/emps")
     public String list(Model model) {
         Collection<Employee> all = employeeDao.getAll();
@@ -32,13 +38,6 @@ public class EmployeeController {
         return "list";
     }
 
-    @GetMapping("/emp")
-    public String toaddPage(Model model) {
-        //查出所有部门
-        Collection<Department> departments = departmentDao.getDepartments();
-        model.addAttribute("depts", departments);
-        return "add";//添加员工页面
-    }
 
     @PutMapping("/emp")
     public String edit(Employee employee) {
@@ -67,5 +66,32 @@ public class EmployeeController {
 
         //回到修改页面
         return "edit";
+    }
+
+
+    @GetMapping("/employee/{id}")
+    public Employee getEmp(@PathVariable("id") Integer id) {
+        return employeeService.getEmp(id);
+    }
+
+    @GetMapping("/lastname/{name}")
+    public Employee getEmp2(@PathVariable("name") String name) {
+        return employeeService.getEmp2(name);
+    }
+
+    @GetMapping("/employees")
+    public List<Employee> getEmp() {
+        return employeeService.getEmps();
+    }
+
+    @GetMapping("/employee")
+    public Employee update(Employee employee) {
+        Employee emp = employeeService.updateEmp(employee);
+        return emp;
+    }
+
+    @GetMapping("/delemp")
+    public String delete(Integer id) {
+        return employeeService.deleteEmp(id);
     }
 }

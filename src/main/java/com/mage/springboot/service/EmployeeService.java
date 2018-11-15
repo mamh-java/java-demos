@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@CacheConfig(cacheNames = "emps")/*可以在类上加个缓存配置的注解，统一设置缓存名称*/
+@CacheConfig(cacheNames = "emps", cacheManager = "empCacheManager")/*可以在类上加个缓存配置的注解，统一设置缓存名称*/
 public class EmployeeService {
 
     @Autowired
@@ -29,7 +29,7 @@ public class EmployeeService {
      * @param id
      * @return
      */
-    @Cacheable(value = "emps", key = "#root.methodName + '['+ #id + ']' ", condition = "#a0 > 1")
+    @Cacheable(value = "emps", key = "#root.methodName + '['+ #id + ']' " )
     public Employee getEmp(Integer id) {
         System.err.println("find emp by id");
         Employee emp = employeeMapper.getEmpById(id);

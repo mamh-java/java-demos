@@ -71,17 +71,26 @@ public class EmployeeController {
 
     @GetMapping("/employee/{id}")
     public Employee getEmp(@PathVariable("id") Integer id) {
-        return employeeService.getEmp(id);
+        Employee emp = employeeService.getEmp(id);
+        return emp;
     }
 
-    @GetMapping("/lastname/{name}")
+    @GetMapping("/employee1/{id}")
+    public Employee getEmp1(@PathVariable("id") Integer id) {
+        Employee emp = employeeService.getEmp1(id);
+        return emp;
+    }
+
+    @GetMapping("/employee2/{name}")
     public Employee getEmp2(@PathVariable("name") String name) {
-        return employeeService.getEmp2(name);
+        Employee emp = employeeService.getEmp2(name);
+        return emp;
     }
 
     @GetMapping("/employees")
     public List<Employee> getEmp() {
-        return employeeService.getEmps();
+        List<Employee> emps = employeeService.getEmps();
+        return emps;
     }
 
     @GetMapping("/employee")
@@ -92,6 +101,7 @@ public class EmployeeController {
 
     @GetMapping("/delemp")
     public String delete(Integer id) {
-        return employeeService.deleteEmp(id);
+        String emp = employeeService.deleteEmp(id);
+        return emp;
     }
 }

@@ -27,6 +27,11 @@ public class DepartmentController {
         return departmentService.getDept(id);
     }
 
+    @GetMapping("/department1/{id}")
+    public Department getDept1(@PathVariable("id") Integer id) {
+        return departmentService.getDept1(id);
+    }
+
     @GetMapping("/emp")
     public String toaddPage(Model model) {
         //查出所有部门

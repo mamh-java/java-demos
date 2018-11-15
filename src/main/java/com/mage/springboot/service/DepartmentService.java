@@ -4,8 +4,11 @@ import com.mage.springboot.entities.Department;
 import com.mage.springboot.mapper.DepartmentMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.Cache;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +17,10 @@ public class DepartmentService {
 
     @Autowired
     DepartmentMapper departmentMapper;
+
+    @Autowired
+    @Qualifier("deptCacheManager")  //明确知道使用哪个缓存管理器
+            RedisCacheManager deptCacheManager;
 
     /**
      * cacheNames 和 value 设置缓存名称
@@ -31,5 +38,21 @@ public class DepartmentService {
         return department;
     }
 
+    /**
+     * 使用编码的方式放入缓存,获取缓存等.
+     *
+     * @param id
+     * @return
+     */
+    public Department getDept1(Integer id) {
+        System.err.println("find dept by id");
+        Department department = departmentMapper.getDeptById(id);
+
+        //获取某个缓存,然后进行增删改查
+        Cache depts = deptCacheManager.getCache("depts");
+        depts.put("dept" + id, department);
+
+        return department;
+    }
 
 }

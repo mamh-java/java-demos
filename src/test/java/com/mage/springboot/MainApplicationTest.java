@@ -6,6 +6,11 @@ import com.mage.springboot.mapper.EmployeeMapper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.amqp.core.AmqpAdmin;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.Exchange;
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -47,6 +52,8 @@ public class MainApplicationTest {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    @Autowired
+    private AmqpAdmin amqpAdmin;
 
     @Test
     public void testRabbit() {
@@ -76,6 +83,24 @@ public class MainApplicationTest {
         String exchange = "exchange.direct";
         String routeKey = "atguigu";
         rabbitTemplate.convertAndSend(exchange, routeKey, emp);
+    }
+
+    @Test
+    public void testRabbit3(){
+        //创建一个exchange，名称是 exchange.amqpadmin
+        Exchange exchange = new DirectExchange("exchange.amqpadmin");
+        amqpAdmin.declareExchange(exchange);
+        System.err.println("创建 exchange 完成.");
+
+        //创建一个队列，名称是atguigu.amqpadmin
+        amqpAdmin.declareQueue(new Queue("atguigu.amqpadmin", true));
+
+        //绑定
+        amqpAdmin.declareBinding(new Binding("atguigu.amqpadmin",
+                Binding.DestinationType.QUEUE,
+                "exchange.amqpadmin",
+                "atguigu.dest",null
+                ));
     }
 
     @Test

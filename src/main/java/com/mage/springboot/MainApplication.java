@@ -1,6 +1,7 @@
 package com.mage.springboot;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -30,9 +31,10 @@ import org.springframework.cache.annotation.EnableCaching;
  *
  *
  */
-@SpringBootApplication
-@MapperScan(value = "com.mage.springboot.mapper")
+@EnableRabbit //开启注解rabbitMQ
 @EnableCaching
+@MapperScan(value = "com.mage.springboot.mapper")
+@SpringBootApplication
 public class MainApplication {
 
     public static void main(String[] args) {

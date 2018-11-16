@@ -71,6 +71,14 @@ public class MainApplicationTest {
     }
 
     @Test
+    public void testRabbit2() {
+        Employee emp = employeeMapper.getEmpById(2);
+        String exchange = "exchange.direct";
+        String routeKey = "atguigu";
+        rabbitTemplate.convertAndSend(exchange, routeKey, emp);
+    }
+
+    @Test
     public void testStudent() {
         boolean b = ioc.containsBean("student");
         System.err.println(b);

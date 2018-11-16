@@ -20,6 +20,15 @@ import org.springframework.cache.annotation.EnableCaching;
  * @EnableCaching 开启基于注解的缓存
  * keyGenerator  缓存数据时key生成策略
  * serialize  缓存数据时value序列化策略
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  */
 @SpringBootApplication
 @MapperScan(value = "com.mage.springboot.mapper")

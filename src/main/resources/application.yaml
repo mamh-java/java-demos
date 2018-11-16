@@ -43,6 +43,12 @@ spring:
       - depts
   redis:
     host: 10.0.63.21
+  rabbitmq:
+    host: 10.0.63.21
+    username: guest
+    password: guest
+    port: 5672
+    virtual-host: /
 
 logging:
   level:

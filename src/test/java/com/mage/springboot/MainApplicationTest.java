@@ -1,21 +1,21 @@
 package com.mage.springboot;
 
 import com.mage.springboot.bean.Person;
-import com.mage.springboot.entities.Department;
 import com.mage.springboot.entities.Employee;
 import com.mage.springboot.mapper.EmployeeMapper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
-import org.springframework.data.redis.core.ReactiveRedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -44,9 +44,34 @@ public class MainApplicationTest {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
 
     @Test
-    public void test1() {
+    public void testRabbit() {
+        //Message message = new Message();
+        ///rabbitTemplate.send(message);
+        Employee emp = employeeMapper.getEmpById(1);
+        String exchange = "exchange.direct";
+        String routeKey = "atguigu.news";
+        rabbitTemplate.convertAndSend(exchange, routeKey, emp);
+
+        List emps = employeeMapper.getEmps();
+        rabbitTemplate.convertAndSend(exchange, routeKey, emps);
+    }
+
+    @Test
+    public void testRabbit1() {
+        Object o = rabbitTemplate.receiveAndConvert("atguigu.news");
+        System.err.println(o);
+
+        o = rabbitTemplate.receiveAndConvert("atguigu.emps");
+        System.err.println(o);
+    }
+
+    @Test
+    public void testStudent() {
         boolean b = ioc.containsBean("student");
         System.err.println(b);
         System.err.println(ioc.getBean("student"));
@@ -54,18 +79,18 @@ public class MainApplicationTest {
 
 
     @Test
-    public void test() {
+    public void testPerson() {
         System.err.println(person);
     }
 
     @Test
-    public void test2() throws SQLException {
+    public void testDataSource() throws SQLException {
         System.err.println(dataSource.getClass());
         System.err.println(dataSource.getConnection());
     }
 
     @Test
-    public void test3() {
+    public void testEmployeeMapper() {
         System.err.println("get empby id");
         Employee emp = employeeMapper.getEmpById(1);
         System.err.println(emp);

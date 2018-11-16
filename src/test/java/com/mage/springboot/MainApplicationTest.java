@@ -4,6 +4,10 @@ import com.mage.springboot.bean.Person;
 import com.mage.springboot.entities.Employee;
 import com.mage.springboot.mapper.EmployeeMapper;
 
+import io.searchbox.client.JestClient;
+import io.searchbox.core.Index;
+import io.searchbox.core.Search;
+import io.searchbox.core.SearchResult;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.amqp.core.AmqpAdmin;
@@ -19,6 +23,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -55,6 +60,36 @@ public class MainApplicationTest {
     @Autowired
     private AmqpAdmin amqpAdmin;
 
+    @Autowired
+    private JestClient jestClient;
+
+    @Test
+    public void testJestClient() throws IOException {
+        Employee emp1 = employeeMapper.getEmpById(2);
+
+        Index.Builder builder = new Index.Builder(emp1).index("atguigu").type("emps").id("2");
+        Index index = builder.build();
+        jestClient.execute(index);
+
+    }
+
+    @Test
+    public void testJestClient1() throws IOException {
+
+        String json = "{\n" +
+                "    \"query\" : {\n" +
+                "        \"match\" : { \"lastName\" : \"mamh\" }\n" +
+                "    }\n" +
+                "}";
+        Search.Builder builder = new Search.Builder(json).addIndex("atguigu").addType("emps");
+        Search search = builder.build();
+
+        SearchResult re = jestClient.execute(search);
+
+        System.err.println(re.getJsonString());
+
+    }
+
     @Test
     public void testRabbit() {
         //Message message = new Message();
@@ -86,7 +121,7 @@ public class MainApplicationTest {
     }
 
     @Test
-    public void testRabbit3(){
+    public void testRabbit3() {
         //创建一个exchange，名称是 exchange.amqpadmin
         Exchange exchange = new DirectExchange("exchange.amqpadmin");
         amqpAdmin.declareExchange(exchange);
@@ -99,8 +134,8 @@ public class MainApplicationTest {
         amqpAdmin.declareBinding(new Binding("atguigu.amqpadmin",
                 Binding.DestinationType.QUEUE,
                 "exchange.amqpadmin",
-                "atguigu.dest",null
-                ));
+                "atguigu.dest", null
+        ));
     }
 
     @Test

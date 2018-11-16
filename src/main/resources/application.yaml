@@ -49,6 +49,9 @@ spring:
     password: guest
     port: 5672
     virtual-host: /
+  elasticsearch:
+    jest:
+      uris: http://10.0.63.21:9200
 
 logging:
   level:

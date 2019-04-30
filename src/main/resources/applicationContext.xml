@@ -41,6 +41,8 @@
         <property name="filterChainDefinitions">
             <value>
                 /login.jsp = anon <!--匿名可以访问的-->
+                /shiro/login = anon <!--匿名可以访问的-->
+                /shiro/logout = logout
 
 
                 <!-- 除此以外的，必须登录后才能访问的页面  -->

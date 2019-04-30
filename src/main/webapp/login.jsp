@@ -9,15 +9,9 @@
 
     <h1>Shiro Login</h1>
 
-    <p>
-        <span style="color: red;">
-                ${errorInvalidLogin}
-        </span>
-    </p>
-
-    <form action="login" method="POST">
+    <form action="/shiro/login" method="POST">
         Username: <input id="username" name="username" type="text"/><br/><br/>
-        Password: <input name="password" type="password"/><br/><br/>
+        Password: <input id="password" name="password" type="password"/><br/><br/>
         <input type="submit" value="Login"/>
     </form>
 

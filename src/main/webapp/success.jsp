@@ -5,8 +5,9 @@
 </head>
 <body>
 
-list jsp page
-
+success jsp page
 <a href="/shiro/logout">logout</a>
+
+
 </body>
 </html>

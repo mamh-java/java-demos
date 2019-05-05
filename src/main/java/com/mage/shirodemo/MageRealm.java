@@ -12,8 +12,9 @@ import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ShiroRealm extends AuthenticatingRealm {
-    private static final transient Logger log = LoggerFactory.getLogger(ShiroRealm.class);
+public class MageRealm extends AuthenticatingRealm {
+
+    private static final transient Logger log = LoggerFactory.getLogger(MageRealm.class);
 
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         //1. 把 AuthenticationToken 转换为 UsernamePasswordToken 类型
@@ -34,20 +35,20 @@ public class ShiroRealm extends AuthenticatingRealm {
         }
         //6.根据用户信息构建AuthenticationInfo信息
         Object principal = username;
-        //Object credentials = "21d489dc169e1f9a07c26fba312269a9";//b9255bbad1f1b8b55c7a36635539849e
         Object credentials = null;//"b9255bbad1f1b8b55c7a36635539849e";//b9255bbad1f1b8b55c7a36635539849e
-
         if ("admin".equals(username)) {
-            credentials = "038bdaf98f2037b31f1e75b5b4c9b26e";
+            credentials = "ce2f6417c7e1d32c1d81a797ee0b499f87c5de06";
         } else if ("user".equals(username)) {
-            credentials = "098d2c478e9c11555ce2823231e02ec1";
+            credentials = "073d4c3ae812935f23cb3f2a71943f49e082a718";
         }
 
         String realmName = getName();
         ByteSource salt = ByteSource.Util.bytes(username); //加盐
 
-
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal, credentials, salt, realmName);
         return info;
     }
+
+
+
 }

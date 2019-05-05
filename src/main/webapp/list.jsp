@@ -7,6 +7,10 @@
 
 list jsp page
 
-<a href="/shiro/logout">logout</a>
+<a href="/shiro/logout">logout</a><br/>
+
+<a href="/admin.jsp">admin</a><br/>
+<a href="/user.jsp">user</a><br/>
+
 </body>
 </html>

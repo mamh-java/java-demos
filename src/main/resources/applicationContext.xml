@@ -72,8 +72,8 @@
                 /login.jsp = anon <!--匿名可以访问的-->
                 /shiro/login = anon <!--匿名可以访问的-->
                 /shiro/logout = logout
-
-
+                /user.jsp=roles[user]
+                /admin.jsp=roles[admin]
                 <!-- 除此以外的，必须登录后才能访问的页面  -->
                 /** = authc <!-- 必须认证后才能访问的-->
             </value>

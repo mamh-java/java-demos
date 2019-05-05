@@ -24,6 +24,9 @@
                 <ref bean="mageRealm"/>
             </list>
         </property>
+        <property name="authenticationStrategy">
+            <bean class="org.apache.shiro.authc.pam.AllSuccessfulStrategy"/>
+        </property>
     </bean>
 
     <!-- 配置 realm -->

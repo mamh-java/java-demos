@@ -33,7 +33,7 @@ public class ShiroRealm extends AuthenticatingRealm {
             throw new LockedAccountException("用户被锁定 " + username);
         }
         //6.根据用户信息构建AuthenticationInfo信息
-        Object principal = username;
+        Object principal = username + "ShiroRealm";
         //Object credentials = "21d489dc169e1f9a07c26fba312269a9";//b9255bbad1f1b8b55c7a36635539849e
         Object credentials = null;//"b9255bbad1f1b8b55c7a36635539849e";//b9255bbad1f1b8b55c7a36635539849e
 

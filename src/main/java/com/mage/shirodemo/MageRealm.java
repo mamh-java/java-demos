@@ -34,7 +34,7 @@ public class MageRealm extends AuthenticatingRealm {
             throw new LockedAccountException("用户被锁定 " + username);
         }
         //6.根据用户信息构建AuthenticationInfo信息
-        Object principal = username;
+        Object principal = username + "MageRealm";
         Object credentials = null;//"b9255bbad1f1b8b55c7a36635539849e";//b9255bbad1f1b8b55c7a36635539849e
         if ("admin".equals(username)) {
             credentials = "ce2f6417c7e1d32c1d81a797ee0b499f87c5de06";

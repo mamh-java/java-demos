@@ -8,6 +8,7 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.realm.AuthenticatingRealm;
+import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,9 +34,13 @@ public class ShiroRealm extends AuthenticatingRealm {
         }
         //6.根据用户信息构建AuthenticationInfo信息
         Object principal = username;
-        Object credentials = "passwd";
+        //Object credentials = "21d489dc169e1f9a07c26fba312269a9";//b9255bbad1f1b8b55c7a36635539849e
+        Object credentials = "b9255bbad1f1b8b55c7a36635539849e";//b9255bbad1f1b8b55c7a36635539849e
         String realmName = getName();
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal, credentials, realmName);
+        ByteSource salt = ByteSource.Util.bytes(username); //加盐
+
+
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal, credentials, salt, realmName);
         return info;
     }
 }

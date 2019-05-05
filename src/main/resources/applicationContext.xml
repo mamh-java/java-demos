@@ -19,7 +19,15 @@
 
 
     <!-- 配置 realm -->
-    <bean id="jdbcRealm" class="com.mage.shirodemo.ShiroRealm" />
+    <bean id="jdbcRealm" class="com.mage.shirodemo.ShiroRealm">
+        <property name="credentialsMatcher">
+            <!-- 内部bean，凭证匹配器 -->
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <property name="hashAlgorithmName" value="MD5"/>
+                <property name="hashIterations" value="1024"/>
+            </bean>
+        </property>
+    </bean>
 
     <!-- 配置lifecycleBeanPostProcessor，  -->
     <bean id="lifecycleBeanPostProcessor"

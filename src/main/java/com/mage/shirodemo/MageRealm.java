@@ -7,12 +7,15 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthenticatingRealm;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MageRealm extends AuthenticatingRealm {
+public class MageRealm extends AuthorizingRealm {
 
     private static final transient Logger log = LoggerFactory.getLogger(MageRealm.class);
 
@@ -50,5 +53,9 @@ public class MageRealm extends AuthenticatingRealm {
     }
 
 
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        log.info("    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {\n");
 
+        return null;
+    }
 }

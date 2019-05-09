@@ -8,21 +8,27 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.realm.AuthenticatingRealm;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashSet;
-import java.util.Set;
+/**
+ * 授权需要继承 AuthorizingRealm 类， 他继承 AuthenticatingRealm类。
+ * 认证和授权值需要继承 AuthorizingRealm 类，同时实现
+ * doGetAuthorizationInfo(PrincipalCollection principals) 和
+ * doGetAuthenticationInfo(AuthenticationToken token)  方法。
+ */
+public class Realm extends AuthorizingRealm {
+    private static final transient Logger log = LoggerFactory.getLogger(Realm.class);
 
-//认证的realm
-public class ShiroRealm extends AuthorizingRealm {
-    private static final transient Logger log = LoggerFactory.getLogger(ShiroRealm.class);
+    //用于授权的方法
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        return null;
+    }
 
+    //用于认证的方法
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         //1. 把 AuthenticationToken 转换为 UsernamePasswordToken 类型
         UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
@@ -56,21 +62,6 @@ public class ShiroRealm extends AuthorizingRealm {
 
 
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal, credentials, salt, realmName);
-        return info;
-    }
-
-    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        log.info("    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {\n");
-        Object principal = principals.getPrimaryPrincipal();
-        log.info("principal =  " + principal);
-
-        Set<String> roles = new HashSet<String>();
-        roles.add("user");
-        if ("adminShiroRealm".equals(principal)) {
-            roles.add("admin");
-        }
-        AuthorizationInfo info = new SimpleAuthorizationInfo(roles);
-
         return info;
     }
 }

@@ -9,6 +9,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,7 +31,7 @@ public class ShiroHandler {
             try {
                 log.info("login: " + token);
                 currentUser.login(token);
-            }catch (AuthenticationException ae) {
+            } catch (AuthenticationException ae) {
                 //所有认证异常的父类
 //                ae.printStackTrace();
                 log.info("登录失败 " + token.getPrincipal() + "");
@@ -38,6 +39,15 @@ public class ShiroHandler {
             }
         }
 
+        return "redirect:/list.jsp";
+    }
+
+    @Autowired
+    private ShiroService shiroService;
+
+    @RequestMapping("/test")
+    public String test() {
+        shiroService.testService();
         return "redirect:/list.jsp";
     }
 }

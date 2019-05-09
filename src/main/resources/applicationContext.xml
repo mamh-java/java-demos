@@ -55,9 +55,6 @@
         class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
 
 
-    <bean id="advisor"
-        class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor" />
-
 
     <!--id 和 web.xml 中 DelegatingFilterProxy 的name必须一样 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">

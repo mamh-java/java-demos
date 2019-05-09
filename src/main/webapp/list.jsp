@@ -17,6 +17,7 @@ Welcome <shiro:principal/> to list jsp page <br/>
 </shiro:hasRole>
 
 <shiro:authenticated>
+<br/><a href="/shiro/test">test</a><br/>
 <br/><a href="/shiro/logout">logout</a><br/>
 </shiro:authenticated>
 
